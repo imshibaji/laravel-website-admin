@@ -50,7 +50,8 @@ class AdminServiceProvider extends ServiceProvider{
         view()->share('user', Auth::user());
 
         $this->publishes([
-            __DIR__.'/resources' => public_path(config('admin.assets', '/')),
+            // __DIR__.'/resources' => public_path(config('admin.assets', 'assets')),
+            __DIR__.'/resources' => public_path('/'),
         ], 'admin-assets');
 
         $this->publishes([
@@ -58,9 +59,12 @@ class AdminServiceProvider extends ServiceProvider{
         ], 'admin-config');
 
         $this->publishes([
+            __DIR__.'/database/migrations/' => database_path('migrations'),
+        ], 'admin-migration');
+
+        $this->publishes([
             __DIR__.'/views' => resource_path('views/vendor/admin'),
             __DIR__.'/translations' => resource_path('lang/vendor/courier'),
-            __DIR__.'/database/migrations/' => database_path('migrations'),
-        ]);
+        ], 'admin-resources');
     }
 }
