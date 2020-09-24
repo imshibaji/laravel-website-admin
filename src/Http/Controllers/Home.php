@@ -18,7 +18,7 @@ class Home extends Controller
         $page = new Page();
         $form = new Form($page);
 
-        debug($form->getColumnsName());
+        // debug($form->getColumnsName());
 
         $form->input('meta_title', 'Title');
         $form->input('meta_keywords', 'Keywords');
