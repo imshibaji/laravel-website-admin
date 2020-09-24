@@ -50,7 +50,7 @@ class AdminServiceProvider extends ServiceProvider{
         view()->share('user', Auth::user());
 
         $this->publishes([
-            __DIR__.'/assets' => public_path(config('admin.assets', 'assets')),
+            __DIR__.'/resources' => public_path(config('admin.assets', '/')),
         ], 'admin-assets');
 
         $this->publishes([

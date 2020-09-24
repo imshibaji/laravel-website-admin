@@ -20,7 +20,7 @@ return [
         ],
         'hotmenus' => [
             [
-                'link' => './',
+                'link' => '/admin',
                 'label' => 'Dashboard'
             ],
             [
@@ -62,11 +62,11 @@ return [
     'left_side_menu' => [
         'dashboard' => [
             [
-                'link' => './',
+                'link' => '/admin',
                 'label' => 'Dashboard'
             ],
             [
-                'link' => 'page',
+                'link' => '/admin/page',
                 'label' => 'Pages'
             ]
         ],
