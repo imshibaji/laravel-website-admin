@@ -23,6 +23,7 @@
     },
     "minimum-stability": "dev",
     "require": {
-        "doctrine/dbal": "^2.11"
+        "doctrine/dbal": "^2.11",
+        "laravel/ui": "^3.0"
     }
 }
