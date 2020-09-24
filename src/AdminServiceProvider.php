@@ -24,10 +24,10 @@ class AdminServiceProvider extends ServiceProvider{
 
         $lf->append('app', [
             'link' => '',
-            'label' => 'Test Menu',
+            'label' => 'App Test Menu',
             'child' => [
                 [
-                    'link' => '#',
+                    'link' => '#Test',
                     'label' => 'Test Submenu'
                 ]
             ]
