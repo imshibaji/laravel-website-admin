@@ -36,8 +36,8 @@ class AdminServiceProvider extends ServiceProvider{
         $this->loadFactoriesFrom(__DIR__.'/database/factories');
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
         $this->loadRoutesFrom(__DIR__.'/routes/web.php');
-        $this->loadViewsFrom(__DIR__.'/views', 'admin');
-        $this->loadTranslationsFrom(__DIR__.'/translations', 'admin');
+        $this->loadViewsFrom(__DIR__.'/resources/views', 'admin');
+        $this->loadTranslationsFrom(__DIR__.'/resources/translations', 'admin');
         $this->loadViewComponentsAs('admin', [
             Alert::class,
         ]);
@@ -51,7 +51,7 @@ class AdminServiceProvider extends ServiceProvider{
 
         $this->publishes([
             // __DIR__.'/resources' => public_path(config('admin.assets', 'assets')),
-            __DIR__.'/resources' => public_path('/'),
+            __DIR__.'/resources/public' => public_path('/'),
         ], 'admin-assets');
 
         $this->publishes([
@@ -63,8 +63,8 @@ class AdminServiceProvider extends ServiceProvider{
         ], 'admin-migration');
 
         $this->publishes([
-            __DIR__.'/views' => resource_path('views/vendor/admin'),
-            __DIR__.'/translations' => resource_path('lang/vendor/courier'),
+            __DIR__.'/resources/views' => resource_path('views/vendor/admin'),
+            __DIR__.'/resources/translations' => resource_path('lang/vendor/courier'),
         ], 'admin-resources');
     }
 }
