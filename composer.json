@@ -1,0 +1,28 @@
+{
+    "name": "shibaji/admin",
+    "description": "This is the basic admin controll panel",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Shibaji Debnath",
+            "email": "imshibaji@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Shibaji\\Admin\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Shibaji\\Admin\\AdminServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "doctrine/dbal": "^2.11"
+    }
+}
