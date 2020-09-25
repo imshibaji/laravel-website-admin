@@ -1,7 +1,7 @@
 
 # Laravel Website Admin
 
-## This is usable for the Enterprise application Web Admin develop with Laravel 8
+## This Web Admin panel usable for the Enterprise application develop with Laravel 8
 
 This web admin develop for **Laravel** Framework. It's have so many screens. components, managable menus, and auto dark modes included.
 
