@@ -207,6 +207,16 @@
                         </div>
                         <div class="p-2 text-left mt-3">
                             <div class="custom-control custom-switch switch-primary mb-3">
+                                <input type="checkbox" class="custom-control-input" id="auto-color-switch">
+                                <label class="custom-control-label" for="auto-color-switch">Auto Change Color</label>
+                            </div>
+
+                            <div class="custom-control custom-switch switch-primary mb-3">
+                                <input type="checkbox" class="custom-control-input" id="color-switch">
+                                <label class="custom-control-label" for="color-switch">Light / Dark</label>
+                            </div>
+
+                            <div class="custom-control custom-switch switch-primary mb-3">
                                 <input type="checkbox" class="custom-control-input" id="settings-switch1" checked="">
                                 <label class="custom-control-label" for="settings-switch1">Auto updates</label>
                             </div>

@@ -21,9 +21,9 @@
 
         <!-- App css -->
         @if($color_scheme == 'light')
-            <link href="{{ URL::asset( $assetLink . '/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+            <link id="css-link" href="{{ URL::asset( $assetLink . '/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
         @else
-            <link href="{{ URL::asset( $assetLink . '/css/bootstrap-dark.min.css')}}" rel="stylesheet" type="text/css" />
+            <link id="css-link" href="{{ URL::asset( $assetLink . '/css/bootstrap-dark.min.css')}}" rel="stylesheet" type="text/css" />
         @endIf
         <link href="{{ URL::asset( $assetLink . '/css/jquery-ui.min.css')}}" rel="stylesheet">
         <link href="{{ URL::asset( $assetLink . '/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
@@ -41,7 +41,8 @@
     <body>
 
          <!-- leftbar -->
-        @include('admin::layouts/partials/sidebar/leftbar')
+        {{-- @include('admin::layouts/partials/sidebar/leftbar') --}}
+        @include('admin::layouts/partials/sidebar/'. config('admin.sidebar', 'leftbar'))
 
          <!-- toptbar -->
         @include('admin::layouts/partials/topbar')

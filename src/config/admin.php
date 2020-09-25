@@ -9,6 +9,9 @@ return [
     // Public Assets Path
     'assets' => 'assets',
 
+    // Set Left Sidebar (leftbar and leftbar2)
+    'sidebar' => 'leftbar',
+
     //Top Menu Left and Submenu
     'top_left_menu' => [
         'label' => 'Shortcuts',

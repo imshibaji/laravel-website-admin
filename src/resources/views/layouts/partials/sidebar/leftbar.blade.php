@@ -3,7 +3,7 @@
             <div class="main-icon-menu">
                 <a href="/admin" class="logo logo-metrica d-block text-center">
                     <span>
-                        <img src="{{ URL::asset( $assetLink . '/images/logo-sm.png')}}" alt="logo-small" class="logo-sm">
+                        <img src="{{ URL::asset( $assetLink . '/images/web-admin-logo.png')}}" alt="logo-small" class="logo-sm">
                     </span>
                 </a>
                 <nav class="nav">

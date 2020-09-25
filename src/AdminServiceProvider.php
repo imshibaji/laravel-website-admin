@@ -7,6 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use Shibaji\Admin\Components\Alert;
 use Shibaji\Admin\Console\Commands\Admin;
 use Shibaji\Admin\Menus\LeftMenu;
+require_once(__DIR__.'/helpers/utilities.php');
 
 class AdminServiceProvider extends ServiceProvider{
 
@@ -20,18 +21,19 @@ class AdminServiceProvider extends ServiceProvider{
     public function boot(){
         Schema::defaultStringLength(191);
 
-        $lf = new LeftMenu();
 
-        $lf->append('app', [
-            'link' => '',
-            'label' => 'App Test Menu',
-            'child' => [
-                [
-                    'link' => '#Test',
-                    'label' => 'Test Submenu'
-                ]
-            ]
-        ]);
+        // $lf = new LeftMenu();
+
+        // $lf->append('app', [
+        //     'link' => '',
+        //     'label' => 'App Test Menu',
+        //     'child' => [
+        //         [
+        //             'link' => '#Test',
+        //             'label' => 'Test Submenu'
+        //         ]
+        //     ]
+        // ]);
 
         $this->loadFactoriesFrom(__DIR__.'/database/factories');
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
@@ -46,9 +48,12 @@ class AdminServiceProvider extends ServiceProvider{
                 Admin::class,
             ]);
         }
+        // Template Variables
         view()->share('assetLink', config('admin.assets', 'assets'));
-        view()->share('user', Auth::user());
+        // view()->share('user', Auth::user()); // Not working
 
+
+        // Resource Shareing to the public
         $this->publishes([
             // __DIR__.'/resources' => public_path(config('admin.assets', 'assets')),
             __DIR__.'/resources/public' => public_path('/'),
@@ -63,8 +68,11 @@ class AdminServiceProvider extends ServiceProvider{
         ], 'admin-migration');
 
         $this->publishes([
-            __DIR__.'/resources/views' => resource_path('views/vendor/admin'),
             __DIR__.'/resources/translations' => resource_path('lang/vendor/courier'),
-        ], 'admin-resources');
+        ], 'admin-trans');
+
+        $this->publishes([
+            __DIR__.'/resources/views' => resource_path('views/vendor/admin'),
+        ], 'admin-views');
     }
 }

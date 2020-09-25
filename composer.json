@@ -12,7 +12,10 @@
     "autoload": {
         "psr-4": {
             "Shibaji\\Admin\\": "src/"
-        }
+        },
+        "files": [
+            "src/helpers/utilities.php"
+        ]
     },
     "extra": {
         "laravel": {
