@@ -75,7 +75,7 @@ $('#auto-color-switch').prop('checked', (getAutoColor() === 'true')? true : fals
 
 $('#auto-color-switch').click(function(){
     var auto = Cookies.get('auto_color');
-    auto = !(auto === "true");
+    auto = !((auto === "true")? true: false);
     $(this).prop('checked', auto);
     updateAutoColor(auto);
 
