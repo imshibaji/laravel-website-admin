@@ -5,8 +5,8 @@
 
 This A beutiful web admin develop for **Laravel** Framework. It's have so many screens. components, managable menus, and auto dark modes included.
 
-![Screen 1](Screen-1.png)
-![Screen 2](Screen-2.png)
+![Screen 1](./Screen-1.png)
+![Screen 2](./Screen-2.png)
 
 # It's a samply used for your own application
 
