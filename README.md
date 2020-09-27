@@ -8,27 +8,57 @@ This A beutiful web admin develop for **Laravel** Framework. It's have so many s
 ![Screen 1](https://github.com/imshibaji/my-web-admin/blob/master/src/screens/screen-1.png?raw=true)
 ![Screen 2](https://github.com/imshibaji/my-web-admin/blob/master/src/screens/screen-2.png?raw=true)
 
-# It's a samply used for your own application
+# It's a simply used for your own laravel project
 
-`this is the code`
+1. Installation process
+    * First initiate the Laravel Project
+    * Open the terminal from the project
+    * then put the command
 
 ```php
-echo 'Test Out';
+composer require shibaji/admin
 ```
 
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+2. Setup the database connection in your new laravel project.
+3. Install Laravel UI package in your Application.
 
-* Item 1
-  * Nested Item 1
-  * Nested Item 2
-  * Nested Item 3
+```php
+composer require laravel/ui
+```
 
-1. List item
-   * List item
-   * List item
+4. Migrate the project for tables creations.
 
-2. List item
+```php
+php artisan migrate
+```
+
+5. Start the development environment
+
+```php
+php artisan serve
+```
+
+6. Open browser tab with this url `http://localhost:8000`.
+7. After open register an user.
+8. After login go to `http://localhost:8000/admin`.
+
+Now you can see this admin. <br>
+**Lets Enjoy!** :)
+
+
+<!-- | Tables        | Are           | Cool  | -->
+<!-- | ------------- |:-------------:| -----:| -->
+<!-- | col 3 is      | right-aligned | $1600 | -->
+<!-- | col 2 is      | centered      |   $12 | -->
+<!-- | zebra stripes | are neat      |    $1 | -->
+<!--  -->
+<!-- * Item 1 -->
+  <!-- * Nested Item 1 -->
+  <!-- * Nested Item 2 -->
+  <!-- * Nested Item 3 -->
+<!--  -->
+<!-- 1. List item -->
+   <!-- * List item -->
+   <!-- * List item -->
+<!--  -->
+<!-- 2. List item -->
