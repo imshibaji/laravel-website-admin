@@ -10,12 +10,12 @@
                             <div class="card-body">
                                 <div class="px-3">
                                     <div class="auth-logo-box">
-                                        <a href="/" class="logo logo-admin"><img src="{{ URL::asset('assets/images/logo-sm.png') }}" height="55" alt="logo" class="auth-logo"></a>
+                                        <a href="/" class="logo logo-admin"><img src="{{ URL::asset('assets/images/web-admin-logo.png') }}" height="55" alt="logo" class="auth-logo"></a>
                                     </div><!--end auth-logo-box-->
 
                                     <div class="text-center auth-logo-text">
-                                        <h4 class="mt-0 mb-3 mt-5">Free Register for Metrica</h4>
-                                        <p class="text-muted mb-0">Get your free Metrica account now.</p>
+                                        <h4 class="mt-0 mb-3 mt-5">Free Register for Web Admin</h4>
+                                        <p class="text-muted mb-0">Get your free Web Admin account now.</p>
                                     </div> <!--end auth-logo-text-->
 
                                     <form class="form-horizontal auth-form my-4" method="POST" action="{{ route('register') }}">
@@ -87,7 +87,7 @@
                                             <div class="col-sm-12">
                                                 <div class="custom-control custom-switch switch-success">
                                                     <input type="checkbox" class="custom-control-input" id="customSwitchSuccess">
-                                                    <label class="custom-control-label text-muted" for="customSwitchSuccess">By registering you agree to the Metrica <a href="#" class="text-primary">Terms of Use</a></label>
+                                                    <label class="custom-control-label text-muted" for="customSwitchSuccess">By registering you agree to the Web Admin <a href="#" class="text-primary">Terms of Use</a></label>
                                                 </div>
                                             </div><!--end col-->
                                         </div><!--end form-group-->

@@ -5,6 +5,7 @@ namespace Shibaji\Admin\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Shibaji\Admin\Classes\Seo;
 use Shibaji\Admin\Http\Middleware\VerifyCsrfToken;
 use Shibaji\Admin\Models\Page;
 use Shibaji\Admin\Models\SeoOptimization;
@@ -43,23 +44,15 @@ class PageController extends Controller
      */
     public function store(Request $req)
     {
-        $seo = new SeoOptimization();
-        $seo->meta_title = $req->meta_title;
-        $seo->meta_keywords = $req->meta_keywords;
-        $seo->meta_description = $req->meta_description;
-        $seo->meta_robots = $req->meta_robots;
-        $seo->meta_author = $req->meta_author;
-        $seo->save();
+        $seo = new Seo();
 
         $p = new Page();
-        $p->seo_optimization_id = $seo->id;
+        $p->seo_optimization_id = $seo->store($req);
         $p->title = $req->title;
         $p->slag = Str::slug($req->title);
         $p->content = $req->content;
         $p->status = $req->status;
         $p->save();
-
-
 
         return redirect(route('admin.page'));
     }
@@ -103,14 +96,8 @@ class PageController extends Controller
         $p->status = $req->status;
         $p->save();
 
-        $seo = SeoOptimization::find($p->seo_optimization_id);
-        $seo->meta_title = $req->meta_title;
-        $seo->meta_keywords = $req->meta_keywords;
-        $seo->meta_description = $req->meta_description;
-        $seo->meta_robots = $req->meta_robots;
-        $seo->meta_author = $req->meta_author;
-        $seo->save();
-
+        $seo = new Seo();
+        $seo->update($p->seo_optimization_id, $req);
 
         return redirect(route('admin.page'));;
     }

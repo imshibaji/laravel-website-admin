@@ -2,8 +2,6 @@
 
 @section('title', 'Page Edit')
 
-
-
 @section('content')
   <div class="container-fluid">
     <!-- Page-Title -->
@@ -60,48 +58,9 @@
                     <input type="text" id="title" class="form-control form-control-lg" name="title" placeholder="Page Title" value="{{ $page->title }}">
                     <textarea id="elm1" class="form-control content" name="content">{{ $page->content }}</textarea>
                     <hr>
-                    {{--  --}}
-                    <div class="card-body">
-                        <!-- Nav tabs -->
-                        <ul class="nav nav-pills nav-justified" role="tablist">
-                            <li class="nav-item waves-effect waves-light">
-                                <a class="nav-link active" data-toggle="tab" href="#home-1" role="tab" aria-selected="true">Common Meta Tags</a>
-                            </li>
-                            <li class="nav-item waves-effect waves-light">
-                                <a class="nav-link" data-toggle="tab" href="#facebook" role="tab" aria-selected="false">Facebook Tags</a>
-                            </li>
-                            <li class="nav-item waves-effect waves-light">
-                                <a class="nav-link" data-toggle="tab" href="#twitter" role="tab" aria-selected="false">Twitter Tags</a>
-                            </li>
-                        </ul>
+                    {{-- seo  --}}
+                    @include('admin::seo.edit')
 
-                        <!-- Tab panes -->
-                        <div class="tab-content">
-                            <div class="tab-pane p-3 active" id="home-1" role="tabpanel">
-                                <input type="text" id="meta-title" class="form-control form-control-lg" name="meta_title" placeholder="Meta Title" value="{{ $page->seo->meta_title }}">
-                                <input type="text" id="meta-keyword" class="form-control form-control-lg" name="meta_keywords" placeholder="Meta Keyword" value="{{ $page->seo->meta_keywords }}">
-                                <textarea id="meta-desc" class="form-control content" name="meta_description" placeholder="Meta Description">{{ $page->seo->meta_description }}</textarea>
-                                <select id="meta-robots" class="form-control form-control-lg" name="meta_robots">
-                                    <option value="index, follow" @if($page->seo->meta_robots == 'index, follow') selected @endIf>Indexed and Follow</option>
-                                    <option value="noindex, follow" @if($page->seo->meta_robots == 'noindex, follow') selected @endIf>No Indexed and Follow</option>
-                                    <option value="index, nofollow" @if($page->seo->meta_robots == 'index, nofollow') selected @endIf>Indexed But Don't Follow</option>
-                                    <option value="noindex, nofollow" @if($page->seo->meta_robots == 'noindex, nofollow') selected @endIf>No Indexed and No Follow</option>
-                                </select>
-                                {{-- <input type="text" id="meta-revisited-after" class="form-control form-control-lg" name="meta-revisited-after" placeholder="Revisited After. eg: 10 Days"> --}}
-                                <input type="text" id="meta-author" class="form-control form-control-lg" name="meta_author" placeholder="Meta Author" value="{{ $page->seo->meta_author ?? Auth::user()->name }}">
-                            </div>
-                            <div class="tab-pane p-3" id="facebook" role="tabpanel">
-                                <p class="text-muted mb-0">
-                                    Facebook fund seitan letterpress, keytar raw denim keffiyeh etsy.
-                                </p>
-                            </div>
-                            <div class="tab-pane p-3" id="twitter" role="tabpanel">
-                                <p class="text-muted mb-0">
-                                    Twitter fund seitan letterpress, keytar raw denim keffiyeh etsy.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
                     <div class="row">
                         <div class="col-12 text-right py-2">
                             <button type="submit" class="btn btn-secondary btn-block">Save</button>

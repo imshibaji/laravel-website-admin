@@ -31,7 +31,9 @@
 
     {{ __('You are logged in!') }}
 
-    {!! $form->render() !!}
+    {{-- {!! $form->render() !!} --}}
+
+    @include('admin::dashboard.home')
 
 <!-- container -->
 @stop

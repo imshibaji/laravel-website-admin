@@ -16,8 +16,8 @@
                             <!--end auth-logo-box-->
 
                             <div class="text-center auth-logo-text">
-                                <h4 class="mt-0 mb-3 mt-5">Let's Get Started Metrica</h4>
-                                <p class="text-muted mb-0">Sign in to continue to Metrica.</p>
+                                <h4 class="mt-0 mb-3 mt-5">Let's Get Started Web Admin</h4>
+                                <p class="text-muted mb-0">Sign in to continue to Web Admin.</p>
                             </div>
                             <!--end auth-logo-text-->
 

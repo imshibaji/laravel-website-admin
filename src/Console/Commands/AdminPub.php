@@ -2,24 +2,23 @@
 
 namespace Shibaji\Admin\Console\Commands;
 
-use App\Models\User;
 use Illuminate\Console\Command;
 
-class Admin extends Command
+class AdminPub extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'admin:install {argv?}';
+    protected $signature = 'admin:publish {argv?}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Admin Command for installation process';
+    protected $description = 'Admin Command for asset publishing process';
 
     /**
      * Create a new command instance.
@@ -38,6 +37,10 @@ class Admin extends Command
      */
     public function handle()
     {
-        return User::search($this->argument('argv'))->get();
+
+        $q = $this->line('Test Output: ', 'a');
+        // $q = $this->argument('argv');
+        $this->info('A: '. $q);
+        return ;
     }
 }

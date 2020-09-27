@@ -1,12 +1,12 @@
 <?php
 namespace Shibaji\Admin;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Shibaji\Admin\Components\Alert;
 use Shibaji\Admin\Console\Commands\Admin;
-use Shibaji\Admin\Menus\LeftMenu;
+use Shibaji\Admin\Console\Commands\AdminPub;
+
 require_once(__DIR__.'/helpers/utilities.php');
 
 class AdminServiceProvider extends ServiceProvider{
@@ -46,6 +46,7 @@ class AdminServiceProvider extends ServiceProvider{
         if ($this->app->runningInConsole()) {
             $this->commands([
                 Admin::class,
+                AdminPub::class
             ]);
         }
         // Template Variables

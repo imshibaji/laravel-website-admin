@@ -1,6 +1,9 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
+
+/* -------------------------------------------------------------------------- */
+/*                          This is the routing file                          */
+/* -------------------------------------------------------------------------- */
 
 $prefix = config('admin.prefix', 'admin');
 $namesapce = 'Shibaji\\Admin\\Http\\Controllers';
@@ -17,5 +20,3 @@ Route::prefix($prefix)
     ]);
 
 });
-
-
