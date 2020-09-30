@@ -8,7 +8,6 @@ use Illuminate\Support\Str;
 use Shibaji\Admin\Classes\Seo;
 use Shibaji\Admin\Http\Middleware\VerifyCsrfToken;
 use Shibaji\Admin\Models\Page;
-use Shibaji\Admin\Models\SeoOptimization;
 
 class PageController extends Controller
 {
