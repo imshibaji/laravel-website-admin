@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Shibaji\Admin\Classes\FormBuilder as Form;
 use Shibaji\Admin\Models\Page;
 
-class Home extends Controller
+class Dashboard extends Controller
 {
     // public function __construct()
     // {
