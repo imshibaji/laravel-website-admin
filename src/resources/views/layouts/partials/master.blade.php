@@ -24,18 +24,12 @@
     @yield('headerStyle')
 </head>
 <body>
-  <x-leftbar />
-  <x-topbar />
-
   <div class="page-wrapper">
 
       <!-- Page Content-->
       <div class="page-content-tab">
           @yield('content')
       </div>
-
-      <x-extra-modal />
-      <x-footer />
 
   </div>
   <!-- jQuery  -->

@@ -1,6 +1,6 @@
 <?php
 
-namespace Shibaji\Admin\Database\Factories;
+namespace Database\Factories;
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 

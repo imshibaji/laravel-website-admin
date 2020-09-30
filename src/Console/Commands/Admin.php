@@ -4,6 +4,7 @@ namespace Shibaji\Admin\Console\Commands;
 
 use App\Models\User;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 
 class Admin extends Command
 {
@@ -38,6 +39,13 @@ class Admin extends Command
      */
     public function handle()
     {
-        return User::search($this->argument('argv'))->get();
+        $clear = Artisan::call('clear-compiled');
+        $this->info("Pre-Compiled Data cleared.");
+
+        $opt = Artisan::call('optimize');
+        $this->info("Optimized Systems resources.");
+
+        $opt1 = Artisan::call('vendor:publish --tag=admin-config');
+        $this->info("Admin Systems Config published.");
     }
 }

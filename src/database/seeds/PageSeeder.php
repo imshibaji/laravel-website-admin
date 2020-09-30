@@ -1,5 +1,5 @@
 <?php
-namespace Shibaji\Admin\Database\Seeds;
+namespace Database\Seeds;
 
 use Illuminate\Database\Seeder;
 
