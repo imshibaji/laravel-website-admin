@@ -9,7 +9,7 @@
     if ($("#bar").length) {
         var currentChartCanvas = $("#bar").get(0).getContext("2d");
         var currentChart = new Chart(currentChartCanvas, {
-            type: 'bar',    
+            type: 'bar',
             data: {
                 labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
                 datasets: [{
@@ -21,18 +21,18 @@
                     hoverBackgroundColor: "#506ee4",
                     hoverBorderColor: "transparent",
                     data: [30, 39, 20, 31, 41, 25, 20, 39, 20, 31, 41, 25],
-                },]        
+                },]
             },
-            
+
             options: {
                 responsive: true,
                 maintainAspectRatio: true,
                 legend : {
                     display: false,
                     labels : {
-                        fontColor : '#50649c'  
+                        fontColor : '#50649c'
                     }
-                },  
+                },
                 tooltips: {
                     enabled: true,
                     callbacks: {
@@ -41,7 +41,7 @@
                         }
                     }
                 },
-                
+
                 scales: {
                     xAxes: [{
                         barPercentage: 0.35,
@@ -49,29 +49,29 @@
                         display: true,
                         gridLines: {
                             color: "transparent",
-                            borderDash: [0],       
+                            borderDash: [0],
                             zeroLineColor: "transparent",
                             zeroLineBorderDash: [2],
-                            zeroLineBorderDashOffset: [2] ,         
+                            zeroLineBorderDashOffset: [2] ,
                         },
                         ticks: {
                             fontColor: '#a4abc5',
                             beginAtZero: true,
                             padding: 12,
                         },
-                        
+
                     }],
                     yAxes: [{
                         gridLines: {
-                            color: "#8997bd29", 
+                            color: "#8997bd29",
                             borderDash: [3],
                             drawBorder: false,
                             drawTicks: false,
                             zeroLineColor: "#8997bd29",
                             zeroLineBorderDash: [2],
-                            zeroLineBorderDashOffset: [2] ,           
+                            zeroLineBorderDashOffset: [2] ,
                         },
-                        ticks: {                           
+                        ticks: {
                             fontColor: '#a4abc5',
                             beginAtZero: true,
                             padding: 12,
@@ -80,14 +80,14 @@
                                     return '$' + value + 'k'
                                 }
                             }
-                        },                        
+                        },
                     }]
                 },
-                
+
             }
         });
     }
-    
+
     });
 })(jQuery);
 
@@ -149,11 +149,11 @@ var options = {
       axisBorder: {
         show: true,
         color: '#45404a2e',
-      },  
+      },
       axisTicks: {
         show: true,
         color: '#45404a2e',
-      },                  
+      },
   },
 
   fill: {
@@ -240,7 +240,7 @@ chart.render();
 
 var options = {
     chart: {
-        height: 235,
+        height: 135,
         type: 'donut',
         dropShadow: {
           enabled: true,
@@ -252,7 +252,7 @@ var options = {
           color: '#45404a2e',
           opacity: 0.15
       },
-    }, 
+    },
     plotOptions: {
       pie: {
         donut: {
@@ -268,7 +268,7 @@ var options = {
         width: 2,
         colors: ['transparent']
     },
-   
+
     series: [10, 65, 25,],
     legend: {
         show: false,
@@ -282,7 +282,7 @@ var options = {
     },
     labels: [ "Footwear", "Electronic", "Clothes"],
     colors: ["#1ccab8", '#506ee4', "#fd3c97"],
-   
+
     responsive: [{
         breakpoint: 600,
         options: {
@@ -290,7 +290,7 @@ var options = {
               donut: {
                 customScale: 0.2
               }
-            },        
+            },
             chart: {
                 height: 240
             },
@@ -299,7 +299,7 @@ var options = {
             },
         }
     }],
-  
+
     tooltip: {
       y: {
           formatter: function (val) {
@@ -307,20 +307,20 @@ var options = {
           }
       }
     }
-    
+
   }
-  
+
   var chart = new ApexCharts(
     document.querySelector("#eco_categories"),
     options
   );
-  
+
   chart.render();
 
-   
+
 
   $('#usa').vectorMap({
-    map: 'us_aea_en',
+    map: 'in_merc',
     backgroundColor: 'transparent',
     borderColor: '#818181',
     regionStyle: {
