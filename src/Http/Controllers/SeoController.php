@@ -1,10 +1,10 @@
 <?php
-namespace Shibaji\Admin\Classes;
+namespace Shibaji\Admin\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Shibaji\Admin\Models\SeoOptimization;
 
-class Seo{
+class SeoController{
     public function show($id){
         $seo = SeoOptimization::find($id);;
         return $seo;

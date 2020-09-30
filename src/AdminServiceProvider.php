@@ -35,7 +35,7 @@ class AdminServiceProvider extends ServiceProvider{
         //     ]
         // ]);
 
-        $this->loadFactoriesFrom(__DIR__.'/database/factories');
+        // $this->loadFactoriesFrom(__DIR__.'/database/factories');
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
         $this->loadRoutesFrom(__DIR__.'/routes/web.php');
         $this->loadViewsFrom(__DIR__.'/resources/views', 'admin');
@@ -53,7 +53,11 @@ class AdminServiceProvider extends ServiceProvider{
         view()->share('assetLink', config('admin.assets', 'assets'));
         // view()->share('user', Auth::user()); // Not working
 
+        $this->resources();
 
+    }
+
+    private function resources(){
         // Resource Shareing to the public
         $this->publishes([
             // __DIR__.'/resources' => public_path(config('admin.assets', 'assets')),
@@ -67,6 +71,14 @@ class AdminServiceProvider extends ServiceProvider{
         $this->publishes([
             __DIR__.'/database/migrations/' => database_path('migrations'),
         ], 'admin-migration');
+
+        $this->publishes([
+            __DIR__.'/database/factories/' => database_path('factories'),
+        ], 'admin-migration');
+
+        $this->publishes([
+            __DIR__.'/database/seeds/' => database_path('seeds'),
+        ], 'admin-seeds');
 
         $this->publishes([
             __DIR__.'/resources/translations' => resource_path('lang/vendor/courier'),

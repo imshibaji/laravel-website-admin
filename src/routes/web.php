@@ -14,7 +14,7 @@ Route::prefix($prefix)
 ->name('admin.')
 ->group(function(){
 
-    Route::get('/', 'Home@index')->name('home');
+    Route::get('/', 'Dashboard@index')->name('home');
     Route::resource('/page', 'PageController')->names([
         'index' => 'page'
     ]);

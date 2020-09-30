@@ -5,7 +5,6 @@ namespace Shibaji\Admin\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Shibaji\Admin\Classes\Seo;
 use Shibaji\Admin\Http\Middleware\VerifyCsrfToken;
 use Shibaji\Admin\Models\Page;
 
@@ -43,7 +42,7 @@ class PageController extends Controller
      */
     public function store(Request $req)
     {
-        $seo = new Seo();
+        $seo = new SeoController();
 
         $p = new Page();
         $p->seo_optimization_id = $seo->store($req);
@@ -95,7 +94,7 @@ class PageController extends Controller
         $p->status = $req->status;
         $p->save();
 
-        $seo = new Seo();
+        $seo = new SeoController();
         $seo->update($p->seo_optimization_id, $req);
 
         return redirect(route('admin.page'));;
@@ -109,6 +108,9 @@ class PageController extends Controller
      */
     public function destroy(Page $page)
     {
+        $seo = new SeoController();
+        $seo->delete($page->seo_optimization_id);
+
         $page->delete();
         return redirect(route('admin.page'));
     }
