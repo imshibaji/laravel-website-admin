@@ -1,5 +1,7 @@
 <?php
 
+namespace Shibaji\Admin\Database\Factories;
+
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Model\Page;
