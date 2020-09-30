@@ -11,9 +11,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Shibaji\\Admin\\": "src/",
-            "Shibaji\\Admin\\Database\\Factories\\": "src/database/factories/",
-            "Shibaji\\Admin\\Database\\Seeders\\": "src/database/seeders/"
+            "Shibaji\\Admin\\": "src/"
         },
         "files": [
             "src/helpers/utilities.php"
