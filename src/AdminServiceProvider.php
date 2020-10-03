@@ -104,7 +104,7 @@ class AdminServiceProvider extends ServiceProvider{
 
         $this->publishes([
             __DIR__.'/resources/views/pages' => resource_path('views/vendor/admin/pages'),
-        ], 'admin-views-page');
+        ], 'admin-views-pages');
 
         $this->publishes([
             __DIR__.'/resources/views/seo' => resource_path('views/vendor/admin/seo'),
