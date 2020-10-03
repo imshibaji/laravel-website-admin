@@ -23,7 +23,10 @@ class PageFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->title,
+            'slag' => $this->faker->slag,
+            'content' => $this->faker->content,
+            'status' => $this->faker->status
         ];
     }
 }

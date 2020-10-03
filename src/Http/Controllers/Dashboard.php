@@ -27,7 +27,7 @@ class Dashboard extends Controller
 
         $form->action('admin/page');
 
-        return view('admin::dashboard.home', compact('form'));
+        return view('admin::home', compact('form'));
     }
 
     public function page(Request $req){

@@ -41,7 +41,7 @@
             <div class="main-menu-inner">
                 <!-- LOGO -->
                 <div class="topbar-left">
-                    <a href="#" class="logo">
+                    <a href="{{config('admin.prefix', '/')}}" class="logo">
                         {{-- <span>
                             <img src="{{ URL::asset('assets/images/logo-dark.png')}}" alt="logo-large" class="logo-lg logo-dark">
                             <img src="{{ URL::asset('assets/images/logo.png')}}" alt="logo-large" class="logo-lg logo-light">

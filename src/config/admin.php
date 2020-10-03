@@ -83,6 +83,9 @@ return [
         'profile' => ''
     ],
 
+    // Right Panel bar Area
+    'right_panel_show' => true,
+
     // Plugins
     'plugins' => [],
 ];

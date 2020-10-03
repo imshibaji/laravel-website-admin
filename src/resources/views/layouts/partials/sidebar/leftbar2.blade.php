@@ -2,7 +2,7 @@
         <div class="left-sidenav">
             <!-- LOGO -->
             <div class="topbar-left" style="background-color: var(--classic)">
-                <a href="/helpdesk/helpdesk-index" class="logo">
+                <a href="{{config('admin.prefix', '/')}}" class="logo">
                     <span>
                         <img src="{{ URL::asset( $assetLink . '/images/web-admin-logo.png')}}" alt="logo-small" class="logo-sm">
                     </span>

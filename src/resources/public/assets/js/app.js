@@ -86,13 +86,13 @@
             var pageUrl = window.location.href.split(/[?#]/)[0];
             if (this.href == pageUrl) {
                 $(this).addClass("active");
-                $(this).parent().addClass("active"); // add active to li of the current link                 
+                $(this).parent().addClass("active"); // add active to li of the current link
                 $(this).parent().parent().addClass("in");
                 $(this).parent().parent().addClass("mm-show");
                 $(this).parent().parent().parent().addClass("mm-active");
                 $(this).parent().parent().prev().addClass("active"); // add active class to an anchor
                 $(this).parent().parent().parent().addClass("active");
-                $(this).parent().parent().parent().parent().addClass("mm-show"); // add active to li of the current link                
+                $(this).parent().parent().parent().parent().addClass("mm-show"); // add active to li of the current link
                 $(this).parent().parent().parent().parent().parent().addClass("mm-active");
                 $(this).parent().parent().parent().parent().parent().addClass("active");
                 var menu = $(this).closest('.main-icon-menu-pane').attr('id');
@@ -103,10 +103,11 @@
     }
 
     function initFeatherIcon() {
-        feather.replace()
+        feather.replace();
     }
     // Auto complate
 
+    /*
     function initAutoComplate() {
         $(document).ready(function () {
             BindControls();
@@ -128,6 +129,7 @@
             });
         }
     }
+    */
 
 
     function initMainIconMenu() {
@@ -260,7 +262,7 @@
         initMainIconTabMenu();
         initActiveMenu();
         initFeatherIcon();
-        initAutoComplate();
+        // initAutoComplate();
         initMainIconMenu();
         initTopbarMenu();
         Waves.init();

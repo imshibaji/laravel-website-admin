@@ -4,19 +4,18 @@ namespace Shibaji\Admin\Components;
 
 use Illuminate\View\Component;
 
-class Alert extends Component
+class Search extends Component
 {
-    public $type;
-    public $message;
+
+    public $datas;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($type=null, $message=null)
+    public function __construct($data = null)
     {
-        $this->type = $type;
-        $this->message = $message;
+        $this->datas = $data;
     }
 
     /**
@@ -26,6 +25,6 @@ class Alert extends Component
      */
     public function render()
     {
-        return view('admin::components.alert');
+        return view('admin::components.search');
     }
 }

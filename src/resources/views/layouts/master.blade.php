@@ -36,6 +36,7 @@
         <style>.leftbar-tab-menu .main-icon-menu {background-color: #0f4069;}</style>
 
         @yield('headerStyle')
+        @yield('styles')
     </head>
 
     <body>
@@ -85,5 +86,6 @@
 
         <!-- footerScript -->
         @yield('footerScript')
+        @yield('scripts')
     </body>
 </html>

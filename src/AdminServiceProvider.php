@@ -1,9 +1,14 @@
 <?php
 namespace Shibaji\Admin;
 
+
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Shibaji\Admin\Components\Alert;
+use Shibaji\Admin\Components\Notification;
+use Shibaji\Admin\Components\Search;
+use Shibaji\Admin\Components\Shortcuts;
+use Shibaji\Admin\Components\Translate;
 use Shibaji\Admin\Console\Commands\Admin;
 use Shibaji\Admin\Console\Commands\AdminPub;
 
@@ -42,11 +47,15 @@ class AdminServiceProvider extends ServiceProvider{
         $this->loadTranslationsFrom(__DIR__.'/resources/translations', 'admin');
         $this->loadViewComponentsAs('admin', [
             Alert::class,
+            Search::class,
+            Shortcuts::class,
+            Translate::class,
+            Notification::class
         ]);
         if ($this->app->runningInConsole()) {
             $this->commands([
                 Admin::class,
-                AdminPub::class
+                AdminPub::class,
             ]);
         }
         // Template Variables
@@ -87,5 +96,18 @@ class AdminServiceProvider extends ServiceProvider{
         $this->publishes([
             __DIR__.'/resources/views' => resource_path('views/vendor/admin'),
         ], 'admin-views');
+
+        // Partial Discover Resources
+        $this->publishes([
+            __DIR__.'/resources/views/dashboard' => resource_path('views/vendor/admin/dashboard'),
+        ], 'admin-views-dashboard');
+
+        $this->publishes([
+            __DIR__.'/resources/views/pages' => resource_path('views/vendor/admin/pages'),
+        ], 'admin-views-page');
+
+        $this->publishes([
+            __DIR__.'/resources/views/seo' => resource_path('views/vendor/admin/seo'),
+        ], 'admin-views-seo');
     }
 }

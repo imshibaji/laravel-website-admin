@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use Shibaji\Admin\Http\Controllers\Dashboard;
 
 /* -------------------------------------------------------------------------- */
 /*                          This is the routing file                          */
@@ -14,7 +15,7 @@ Route::prefix($prefix)
 ->name('admin.')
 ->group(function(){
 
-    Route::get('/', 'Dashboard@index')->name('home');
+    Route::get('/', [Dashboard::class, 'index'])->name('home');
     Route::resource('/page', 'PageController')->names([
         'index' => 'page'
     ]);

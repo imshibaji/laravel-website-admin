@@ -2,6 +2,7 @@
 namespace Database\Seeds;
 
 use Illuminate\Database\Seeder;
+use Shibaji\Admin\Models\Page;
 
 class PageSeeder extends Seeder
 {
@@ -13,5 +14,6 @@ class PageSeeder extends Seeder
     public function run()
     {
         //
+        // Page::factory(10)->create();
     }
 }
