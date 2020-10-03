@@ -1,5 +1,6 @@
 
 # Laravel Website Admin
+[![Latest Stable Version](https://poser.pugx.org/shibaji/admin/v)](//packagist.org/packages/shibaji/admin) [![Total Downloads](https://poser.pugx.org/shibaji/admin/downloads)](//packagist.org/packages/shibaji/admin) [![Latest Unstable Version](https://poser.pugx.org/shibaji/admin/v/unstable)](//packagist.org/packages/shibaji/admin) [![License](https://poser.pugx.org/shibaji/admin/license)](//packagist.org/packages/shibaji/admin)[![Monthly Downloads](https://poser.pugx.org/shibaji/admin/d/monthly)](//packagist.org/packages/shibaji/admin)[![Daily Downloads](https://poser.pugx.org/shibaji/admin/d/daily)](//packagist.org/packages/shibaji/admin)
 
 ## This Web Admin panel usable for the Enterprise application develop with Laravel 8
 
