@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Shibaji\Admin\Http\Middleware\VerifyCsrfToken;
-use Shibaji\Admin\Models\Page;
+use Shibaji\Admin\Models\Post;
 
-class PageController extends Controller
+class PostController extends Controller
 {
     public function __construct(){
         $this->middleware(VerifyCsrfToken::class);
@@ -20,8 +20,8 @@ class PageController extends Controller
      */
     public function index()
     {
-        $pages = Page::all();
-        return view('admin::pages.list', compact('pages'));
+        $posts = Post::all();
+        return view('admin::posts.list', compact('posts'));
     }
 
     /**
@@ -31,7 +31,7 @@ class PageController extends Controller
      */
     public function create()
     {
-        return view('admin::pages.add');
+        return view('admin::posts.add');
     }
 
     /**
@@ -44,50 +44,50 @@ class PageController extends Controller
     {
         $seo = new SeoController();
 
-        $p = new Page();
-        $p->seo_optimization_id = $seo->store($req);
+        $p = new Post();
+        $p->seo_optimization_id = $seo->storeBy($req);
         $p->title = $req->title;
         $p->slag = Str::slug($req->title);
         $p->content = $req->content;
         $p->status = $req->status;
         $p->save();
 
-        return redirect(route('admin.page'));
+        return redirect(route('admin.post'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Model\Page  $page
+     * @param  \App\Model\Post  $page
      * @return \Illuminate\Http\Response
      */
-    public function show(Page $page)
+    public function show(Post $post)
     {
-        $page['seo'] = $page->seo;
-        return $page;
+        $post['seo'] = $post->seo;
+        return $post;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\Page  $page
+     * @param  \App\Model\Post  $page
      * @return \Illuminate\Http\Response
      */
-    public function edit(Page $page)
+    public function edit(Post $post)
     {
-        return view('admin::pages.edit', compact('page'));
+        return view('admin::posts.edit', compact('post'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\Page  $page
+     * @param  \App\Model\Post  $page
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $req, Page $page)
+    public function update(Request $req, Post $post)
     {
-        $p = $page;
+        $p = $post;
         $p->title = $req->title;
         $p->slag = Str::slug($req->title);
         $p->content = $req->content;
@@ -95,27 +95,23 @@ class PageController extends Controller
         $p->save();
 
         $seo = new SeoController();
-        $seo->update($p->seo_optimization_id, $req);
+        $seo->updateById($req, $p->seo_optimization_id);
 
-        return redirect(route('admin.page'));;
+        return redirect(route('admin.post'));;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\Page  $page
+     * @param  \App\Model\Post  $page
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Page $page)
+    public function destroy(Post $post)
     {
         $seo = new SeoController();
-        $seo->delete($page->seo_optimization_id);
+        $seo->delete($post->seo_optimization_id);
 
-        $page->delete();
-        return redirect(route('admin.page'));
-    }
-
-    public static function route(){
-
+        $post->delete();
+        return redirect(route('admin.post'));
     }
 }

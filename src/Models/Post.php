@@ -4,7 +4,7 @@ namespace Shibaji\Admin\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Page extends Model
+class Post extends Model
 {
 
     public function seo(){

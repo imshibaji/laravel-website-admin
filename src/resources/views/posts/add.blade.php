@@ -1,6 +1,6 @@
 @extends('admin::layouts.master')
 
-@section('title', 'Shibaji Debnath - Admin & Dashboard')
+@section('title', 'Post Add')
 
 
 
@@ -11,11 +11,11 @@
         <div class="col-sm-12">
 
             @component('admin::common-components.breadcrumb')
-                @slot('title') Add Page @endslot
+                @slot('title') Add Post @endslot
                 @slot('item1') Admin @endslot
                 @slot('item1_link') /admin @endslot
-                @slot('item2') Pages @endslot
-                @slot('item2_link') /admin/page @endslot
+                @slot('item2') Posts @endslot
+                @slot('item2_link') /admin/post @endslot
             @endcomponent
 
         </div><!--end col-->
@@ -35,7 +35,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                <form action="{{route('admin.page.store')}}" method="POST">
+                <form action="{{route('admin.post.store')}}" method="POST">
                 {{-- <form action="{{url('test')}}" method="POST"> --}}
                     @csrf
                     {{-- @method('PUT') --}}
@@ -43,7 +43,7 @@
                     <input type="hidden" name="id" value="">
                     <div class="row">
                         <div class="col-8 py-2">
-                            Website URL: {{env('APP_URL')}}/<span id="inline-url" >page-title</span>
+                            Website URL: {{env('APP_URL')}}/<span id="inline-url" >poge-title</span>
                             <input type="hidden" id="slag" name="slag" value="">
                         </div>
                         <div class="col-2 py-2">
@@ -57,11 +57,12 @@
                             <button type="submit" class="btn btn-secondary btn-block">Save</button>
                         </div>
                     </div>
-                    <input type="text" id="title" class="form-control form-control-lg" name="title" placeholder="Page Title">
+                    <input type="text" id="title" class="form-control form-control-lg" name="title" placeholder="Post Title">
                     <textarea id="elm1" class="form-control content" name="content"></textarea>
                     <hr>
                     {{-- seo additional --}}
-                    @include('admin::seo.add')
+                    {{-- @include('admin::seo.add') --}}
+                    <x-admin-seo />
 
                     <div class="row">
                         <div class="col-12 text-right py-2">

@@ -28,15 +28,8 @@
 
     {{-- {!! $form->render() !!} --}}
 
-    <livewire:admin-counter />
-
-    @include('admin::dashboards.main')
+    @include('admin::dashboards.ecommerce')
 
 <!-- container -->
 @stop
-
-@php
-    $color_scheme = isset($_COOKIE["color_scheme"]) ? $_COOKIE["color_scheme"] : false;
-    // if ($color_scheme === false) $color_scheme = 'light';
-@endphp
 

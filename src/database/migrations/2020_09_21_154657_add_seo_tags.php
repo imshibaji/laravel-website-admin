@@ -13,7 +13,7 @@ class AddSeoTags extends Migration
      */
     public function up()
     {
-        Schema::table('pages', function (Blueprint $table) {
+        Schema::table('posts', function (Blueprint $table) {
             // SEO Optimization Id
             $table->string('seo_optimization_id')->nullable();
         });
@@ -26,7 +26,7 @@ class AddSeoTags extends Migration
      */
     public function down()
     {
-        Schema::table('pages', function (Blueprint $table) {
+        Schema::table('posts', function (Blueprint $table) {
             // SEO Optimization Id
             $table->dropColumn('seo_optimization_id');
         });

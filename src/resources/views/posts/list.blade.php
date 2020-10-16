@@ -1,24 +1,24 @@
 @extends('admin::layouts.master')
 
-@section('title', 'Shibaji Debnath - Admin & Dashboard')
+@section('title', 'posts List')
 
 @section('content')
   <div class="container-fluid">
-    <!-- Page-Title -->
+    <!-- post-Title -->
     <div class="row">
         <div class="col-sm-12">
 
             @component('admin::common-components.breadcrumb')
-                @slot('title') Pages @endslot
+                @slot('title') Posts @endslot
                 @slot('item1') Admin @endslot
                 @slot('item1_link') /admin @endslot
-                {{-- @slot('item2') Pages @endslot
-                @slot('item2_link') /admin/page @endslot --}}
+                {{-- @slot('item2') posts @endslot
+                @slot('item2_link') /admin/post @endslot --}}
             @endcomponent
 
         </div><!--end col-->
     </div>
-    <!-- end page title end breadcrumb -->
+    <!-- end post title end breadcrumb -->
 
     @if (session('status'))
         <div class="alert alert-success" role="alert">
@@ -35,14 +35,12 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-10">
-                            <h4 class="mt-0 header-title">Default Datatable</h4>
-                            <p class="text-muted mb-3">DataTables has most features enabled by
-                                default, so all you need to do to use it with your own tables is to call
-                                the construction function: <code>$().DataTable();</code>.
+                            <h4 class="mt-0 header-title">posts List</h4>
+                            <p class="text-muted mb-3">DataTables function: <code>$().DataTable();</code>.
                             </p>
                         </div>
                         <div class="col-md-2 text-center text-md-right py-md-3">
-                            <a href="{{ route('admin.page.create') }}" class="btn btn-secondary mb-2 mb-lg-0">Add Page</a>
+                            <a href="{{ route('admin.post.create') }}" class="btn btn-secondary mb-2 mb-lg-0">Add post</a>
                         </div>
                     </div>
 
@@ -60,27 +58,27 @@
                         </thead>
 
                         <tbody>
-                        @foreach ($pages as $page)
+                        @foreach ($posts as $post)
                         <tr>
-                            <td>{{ $page->title }}</td>
-                            <td>{{ $page->seo->meta_description ?? '' }}</td>
-                            <td>{{ $page->status }}</td>
-                            <td>{{ $page->created_at}}</td>
-                            <td>{{ $page->updated_at}}</td>
+                            <td>{{ $post->title }}</td>
+                            <td>{{ $post->seo->meta_description ?? '' }}</td>
+                            <td>{{ $post->status }}</td>
+                            <td>{{ $post->created_at}}</td>
+                            <td>{{ $post->updated_at}}</td>
                             <td class="text-center">
                                 <div class="btn-group btn-group-sm" role="group">
-                                    <a href="{{ route('admin.page.show', [$page])}}" class="text-info footable-edit mr-2">
+                                    <a href="{{ route('admin.post.show', [$post])}}" class="text-info footable-edit mr-2">
                                         <i class="fa far fa-eye" aria-hidden="true"></i>
                                         {{-- <i data-feather="eye"></i> --}}
                                     </a>
-                                    <a href="{{ route('admin.page.edit', [$page])}}" class="text-info footable-edit mr-2">
+                                    <a href="{{ route('admin.post.edit', [$post])}}" class="text-info footable-edit mr-2">
                                         <span class="fooicon fooicon-pencil" aria-hidden="true"></span>
                                     </a>
-                                    <a href="{{route('admin.page.destroy', [$page])}}"
+                                    <a href="{{route('admin.post.destroy', [$post])}}"
                                     class="text-danger footable-delete"
                                     onclick="event.preventDefault();
-                                    document.getElementById('page-delete').submit();">
-                                        <form id="page-delete" action="{{route('admin.page.destroy', [$page])}}" method="POST">
+                                    document.getElementById('post-delete').submit();">
+                                        <form id="post-delete" action="{{route('admin.post.destroy', [$post])}}" method="POST">
                                             @csrf
                                             @method('delete')
                                         <span class="fooicon fooicon-trash" aria-hidden="true"></span>
@@ -161,5 +159,5 @@
     <!-- Responsive examples -->
     <script src="{{ URL::asset( $assetLink . '/plugins/datatables/dataTables.responsive.min.js')}}"></script>
     <script src="{{ URL::asset( $assetLink . '/plugins/datatables/responsive.bootstrap4.min.js')}}"></script>
-    <script src="{{ URL::asset( $assetLink . '/pages/jquery.datatable.init.js')}}"></script>
+    <script src="{{ URL::asset( $assetLink . '/posts/jquery.datatable.init.js')}}"></script>
 @stop

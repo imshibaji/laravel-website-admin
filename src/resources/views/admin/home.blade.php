@@ -26,15 +26,6 @@
 
     {{ __('You are logged in!') }}
 
-    {{-- {!! $form->render() !!} --}}
-
-    @include('admin::dashboard.home')
 
 <!-- container -->
 @stop
-
-@php
-    $color_scheme = isset($_COOKIE["color_scheme"]) ? $_COOKIE["color_scheme"] : false;
-    // if ($color_scheme === false) $color_scheme = 'light';
-@endphp
-

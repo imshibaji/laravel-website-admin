@@ -1,16 +1,20 @@
 <?php
 namespace Shibaji\Admin;
 
-
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
+use Shibaji\Admin\Classes\MetaBuilder;
 use Shibaji\Admin\Components\Alert;
 use Shibaji\Admin\Components\Notification;
 use Shibaji\Admin\Components\Search;
+use Shibaji\Admin\Components\Seo;
 use Shibaji\Admin\Components\Shortcuts;
 use Shibaji\Admin\Components\Translate;
 use Shibaji\Admin\Console\Commands\Admin;
 use Shibaji\Admin\Console\Commands\AdminPub;
+use Shibaji\Admin\Http\Livewire\Counter;
 
 // require_once( __DIR__ . '/helpers/utilities.php');
 
@@ -45,12 +49,15 @@ class AdminServiceProvider extends ServiceProvider{
         $this->loadRoutesFrom(__DIR__.'/routes/web.php');
         $this->loadViewsFrom(__DIR__.'/resources/views', 'admin');
         $this->loadTranslationsFrom(__DIR__.'/resources/translations', 'admin');
+
+
         $this->loadViewComponentsAs('admin', [
             Alert::class,
             Search::class,
             Shortcuts::class,
             Translate::class,
-            Notification::class
+            Notification::class,
+            Seo::class,
         ]);
         if ($this->app->runningInConsole()) {
             $this->commands([
@@ -58,15 +65,26 @@ class AdminServiceProvider extends ServiceProvider{
                 AdminPub::class,
             ]);
         }
+
+        Blade::directive('meta', function () {
+            $url = $_SERVER['PATH_INFO'];
+            return MetaBuilder::render($url);
+        });
+
         // Template Variables
         view()->share('assetLink', config('admin.assets', 'assets'));
         // view()->share('user', Auth::user()); // Not working
 
-        $this->resources();
+        $this->loadResources();
+        $this->loadLivewares();
 
     }
 
-    private function resources(){
+    private function loadLivewares(){
+        Livewire::component('admin-counter', Counter::class);
+    }
+
+    private function loadResources(){
         // Resource Shareing to the public
         $this->publishes([
             // __DIR__.'/resources' => public_path(config('admin.assets', 'assets')),
@@ -94,12 +112,12 @@ class AdminServiceProvider extends ServiceProvider{
         ], 'admin-trans');
 
         $this->publishes([
-            __DIR__.'/resources/views' => resource_path('views/vendor/admin'),
+            __DIR__.'/resources/views/admin' => resource_path('views/vendor/admin'),
         ], 'admin-views');
 
         // Partial Discover Resources
         $this->publishes([
-            __DIR__.'/resources/views/dashboard' => resource_path('views/vendor/admin/dashboard'),
+            __DIR__.'/resources/views/dashboards' => resource_path('views/vendor/admin/dashboards'),
         ], 'admin-views-dashboard');
 
         $this->publishes([

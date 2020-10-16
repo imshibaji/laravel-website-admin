@@ -69,8 +69,12 @@ return [
                 'label' => 'Dashboard'
             ],
             [
-                'link' => '/admin/page',
-                'label' => 'Pages'
+                'link' => '/admin/post',
+                'label' => 'Posts'
+            ],
+            [
+                'link' => '/admin/seo',
+                'label' => 'Seo Area'
             ]
         ],
         'app' => [],

@@ -16,6 +16,8 @@ class CreateSeoOptimizationsTable extends Migration
         Schema::create('seo_optimizations', function (Blueprint $table) {
             $table->id();
 
+            $table->string('url')->nullable();
+
             // Search Engine Tags
             $table->string('meta_title')->nullable();
             $table->string('meta_keywords')->nullable();

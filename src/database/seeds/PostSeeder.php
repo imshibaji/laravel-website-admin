@@ -4,7 +4,7 @@ namespace Database\Seeds;
 use Illuminate\Database\Seeder;
 use Shibaji\Admin\Models\Page;
 
-class PageSeeder extends Seeder
+class PostSeeder extends Seeder
 {
     /**
      * Run the database seeds.

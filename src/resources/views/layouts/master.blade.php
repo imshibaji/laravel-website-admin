@@ -34,7 +34,8 @@
             <link href="{{ URL::asset( $assetLink . '/css/app-dark.min.css')}}" rel="stylesheet" type="text/css" />
         @endIf
         <style>.leftbar-tab-menu .main-icon-menu {background-color: #0f4069;}</style>
-
+        <!-- Liveware -->
+        @livewireStyles
         @yield('headerStyle')
         @yield('styles')
     </head>
@@ -83,6 +84,9 @@
 
         <!-- App js -->
         <script src="{{ URL::asset( $assetLink . '/js/app.js') }}"></script>
+
+        <!-- Liveware -->
+        @livewireScripts
 
         <!-- footerScript -->
         @yield('footerScript')

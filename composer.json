@@ -28,6 +28,14 @@
     },
     "minimum-stability": "dev",
     "require": {
-        "doctrine/dbal": "^2.11"
+        "doctrine/dbal": "^2.11",
+        "livewire/livewire": "^2.2"
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi",
+            "@php artisan vendor:publish --force --tag=livewire:assets --ansi"
+        ]
     }
 }

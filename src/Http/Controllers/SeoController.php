@@ -5,13 +5,36 @@ use Illuminate\Http\Request;
 use Shibaji\Admin\Models\SeoOptimization;
 
 class SeoController{
-    public function show($id){
-        $seo = SeoOptimization::find($id);;
+    protected $isComponent;
+
+    public function __construct()
+    {
+        $this->isComponent = false;
+    }
+
+    public function index(){
+        $seos = SeoOptimization::all();
+        return view('admin::seo.list', compact('seos'));
+    }
+
+    public function show(SeoOptimization $seo){
         return $seo;
+    }
+
+    public function create(){
+        return view('admin::seo.add');
+    }
+
+    public function storeBy(Request $req){
+
+        $this->isComponent = true;
+        return $this->store($req);
     }
 
     public function store(Request $req){
         $seo = new SeoOptimization();
+
+        $seo->url = $req->url;
         $seo->meta_title = $req->meta_title;
         $seo->meta_keywords = $req->meta_keywords;
         $seo->meta_description = $req->meta_description;
@@ -43,11 +66,26 @@ class SeoController{
         $seo->meta_twitter_player = $req->meta_twitter_player;
         $seo->save();
 
-        return $seo->id;
+        if($this->isComponent){
+            return $seo->id;
+        }else{
+            return redirect(route('admin.seo'));
+        }
     }
 
-    public function update($id, Request $req){
-        $seo = SeoOptimization::find($id);
+    public function edit(SeoOptimization $seo){
+        return view('admin::seo.edit', compact('seo'));
+    }
+
+    public function updateById(Request $req, $id){
+        $this->isComponent = true;
+
+        return $this->update($req, SeoOptimization::find($id));
+    }
+
+    public function update(Request $req, SeoOptimization $seo){
+
+        $seo->url = $req->url;
         $seo->meta_title = $req->meta_title;
         $seo->meta_keywords = $req->meta_keywords;
         $seo->meta_description = $req->meta_description;
@@ -81,14 +119,24 @@ class SeoController{
 
         $seo->save();
 
-        return $seo->id;
+        if($this->isComponent){
+            return $seo->id;
+        }else{
+            return redirect(route('admin.seo'));
+        }
+
     }
 
     public function delete($id){
-
         $seo = SeoOptimization::find($id);
+        if($seo){
+            return $seo->delete();
+        }else{
+            return true;
+        }
+    }
+    public function destroy(SeoOptimization $seo){
         $seo->delete();
-
-        return $seo->id;
+        return redirect(route('admin.seo'));
     }
 }
