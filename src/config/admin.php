@@ -69,10 +69,6 @@ return [
                 'label' => 'Dashboard'
             ],
             [
-                'link' => '/admin/post',
-                'label' => 'Posts'
-            ],
-            [
                 'link' => '/admin/seo',
                 'label' => 'Seo Area'
             ]
@@ -89,6 +85,31 @@ return [
 
     // Right Panel bar Area
     'right_panel_show' => true,
+
+
+    // Admin Auth Part
+    'guards' => [
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins'
+        ],
+    ],
+
+    'providers' => [
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => Shibaji\Admin\Models\Admin::class,
+        ],
+    ],
+
+    'passwords' => [
+        'admins' => [
+            'provider' => 'admins',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+    ],
 
     // Plugins
     'plugins' => [],

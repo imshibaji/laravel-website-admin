@@ -29,7 +29,9 @@
     "minimum-stability": "dev",
     "require": {
         "doctrine/dbal": "^2.11",
-        "livewire/livewire": "^2.2"
+        "nwidart/laravel-modules": "^8.0",
+        "spatie/laravel-permission": "^3.17",
+        "spatie/laravel-searchable": "^1.7"
     },
     "scripts": {
         "post-autoload-dump": [

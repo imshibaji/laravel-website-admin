@@ -28,8 +28,6 @@
 
     {{-- {!! $form->render() !!} --}}
 
-    <livewire:admin-counter />
-
     @include('admin::dashboards.main')
 
 <!-- container -->

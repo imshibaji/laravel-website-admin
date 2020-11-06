@@ -4,7 +4,7 @@ namespace Shibaji\Admin\Http\Controllers;
 use Illuminate\Http\Request;
 use Shibaji\Admin\Models\SeoOptimization;
 
-class SeoController{
+class SeoController extends Controller{
     protected $isComponent;
 
     public function __construct()

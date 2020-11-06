@@ -42,7 +42,7 @@ class Admin extends Command
         $clear = Artisan::call('clear-compiled');
         $this->info("Pre-Compiled Data cleared.");
 
-        $opt = Artisan::call('optimize');
+        $opt = Artisan::call('optimize:clear');
         $this->info("Optimized Systems resources.");
 
         $opt1 = Artisan::call('vendor:publish --tag=admin-config');

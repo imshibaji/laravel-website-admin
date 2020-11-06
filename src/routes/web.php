@@ -16,9 +16,6 @@ Route::prefix($prefix)
 ->group(function(){
 
     Route::get('/', [Dashboard::class, 'index'])->name('home');
-    Route::resource('/post', 'PostController')->names([
-        'index' => 'post'
-    ]);
 
     Route::resource('/seo', 'SeoController')->names([
         'index' => 'seo'

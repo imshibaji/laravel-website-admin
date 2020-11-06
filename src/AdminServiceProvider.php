@@ -4,7 +4,6 @@ namespace Shibaji\Admin;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
-use Livewire\Livewire;
 use Shibaji\Admin\Classes\MetaBuilder;
 use Shibaji\Admin\Components\Alert;
 use Shibaji\Admin\Components\Notification;
@@ -14,7 +13,6 @@ use Shibaji\Admin\Components\Shortcuts;
 use Shibaji\Admin\Components\Translate;
 use Shibaji\Admin\Console\Commands\Admin;
 use Shibaji\Admin\Console\Commands\AdminPub;
-use Shibaji\Admin\Http\Livewire\Counter;
 
 // require_once( __DIR__ . '/helpers/utilities.php');
 
@@ -44,9 +42,13 @@ class AdminServiceProvider extends ServiceProvider{
         //     ]
         // ]);
 
-        // $this->loadFactoriesFrom(__DIR__.'/database/factories');
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+
+        // Routes
+        $this->loadRoutesFrom(__DIR__.'/routes/api.php');
         $this->loadRoutesFrom(__DIR__.'/routes/web.php');
+
+        // Resources
         $this->loadViewsFrom(__DIR__.'/resources/views', 'admin');
         $this->loadTranslationsFrom(__DIR__.'/resources/translations', 'admin');
 
@@ -73,15 +75,9 @@ class AdminServiceProvider extends ServiceProvider{
 
         // Template Variables
         view()->share('assetLink', config('admin.assets', 'assets'));
-        // view()->share('user', Auth::user()); // Not working
 
         $this->loadResources();
-        $this->loadLivewares();
 
-    }
-
-    private function loadLivewares(){
-        Livewire::component('admin-counter', Counter::class);
     }
 
     private function loadResources(){
