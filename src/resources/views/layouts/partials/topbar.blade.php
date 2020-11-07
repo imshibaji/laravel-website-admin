@@ -3,9 +3,14 @@
     <!-- Navbar -->
     <nav class="navbar-custom">
         <ul class="list-unstyled topbar-nav float-right mb-0">
-            <x-admin-translate />
 
-            <x-admin-notification />
+            @if (config('admin.top_right_menu.lang.isView', false))
+                <x-admin-translate />
+            @endif
+
+            @if (config('admin.top_right_menu.notify', false))
+                <x-admin-notification />
+            @endif
 
             <li class="dropdown">
                 <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
@@ -14,10 +19,16 @@
                     <span class="ml-1 nav-user-name hidden-sm">{{Auth::user()->name}} <i class="mdi mdi-chevron-down"></i> </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
+                    @foreach (config('admin.top_right_menu.profile_sub_menus', []) as $item)
+                        <a class="dropdown-item" href="{{$item['link']}}"><i class="{{$item['icon']}} text-muted mr-2"></i> {{$item['label']}}</a>
+                    @endforeach
+                    {{--
                     <a class="dropdown-item" href="#"><i class="dripicons-user text-muted mr-2"></i> Profile</a>
                     <a class="dropdown-item" href="#"><i class="dripicons-wallet text-muted mr-2"></i> My Wallet</a>
                     <a class="dropdown-item" href="#"><i class="dripicons-gear text-muted mr-2"></i> Settings</a>
                     <a class="dropdown-item" href="#"><i class="dripicons-lock text-muted mr-2"></i> Lock screen</a>
+                    --}}
+
                     <div class="dropdown-divider"></div>
                     {{-- <a class="dropdown-item" href="/logout"><i class="dripicons-exit text-muted mr-2"></i> Logout</a> --}}
                     <a class="dropdown-item" href="{{ route('logout') }}"
@@ -45,7 +56,7 @@
             <li>
                 <a href="{{config('admin.prefix', '/')}}">
                     <span class="responsive-logo">
-                        <img src="{{ URL::asset( $assetLink . '/images/logo-sm.png')}}" alt="logo-small" class="logo-sm align-self-center" height="34">
+                        <img src="{{ config('admin.logo', URL::asset( $assetLink . '/images/logo-sm.png')) }}" alt="logo-small" class="logo-sm align-self-center" height="34">
                     </span>
                 </a>
             </li>
@@ -55,23 +66,18 @@
                 </button>
             </li>
 
-            <x-admin-shortcuts />
+            @if (config('admin.top_left_menu.isView', false))
+                <x-admin-shortcuts />
+            @endif
 
-            @php
-                $data = [
-                    'One',
-                    'Two',
-                    'Three',
-                    'Four',
-                    'Five',
-                    'Six',
-                    'Seven',
-                    'Eight',
-                    'Nine',
-                    'Ten'
-                ];
-            @endphp
-            <x-admin-search :data="$data" />
+            @if (config('admin.searchbar.isView', false))
+                <x-admin-search
+                :action="config('admin.searchbar.action', '#')"
+                :method="config('admin.searchbar.method', 'GET')"
+                :data="config('admin.searchbar.suggestions', [])"
+                />
+            @endif
+
         </ul>
     </nav>
     <!-- end navbar-->

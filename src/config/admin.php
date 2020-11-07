@@ -3,17 +3,21 @@
 return [
     'title' => 'Web Admin',
 
+    //Admin Logo
+    'logo' => '/assets/images/web-admin-logo.png',
+
     // URL Prefix for Application
-    'prefix' => 'admin',
+    'prefix' => '/admin',
 
     // Public Assets Path
     'assets' => 'assets',
 
     // Set Left Sidebar (leftbar and leftbar2)
-    'sidebar' => 'leftbar',
+    'sidebar' => 'leftbar2',
 
     //Top Menu Left and Submenu
     'top_left_menu' => [
+        'isView' => false,
         'label' => 'Shortcuts',
         'dashboard' => [
             'title' => 'The Poworfull Dashboard',
@@ -32,7 +36,7 @@ return [
             ],
             [
                 'link' => './',
-                'label' => 'Another1'
+                'label' => 'Test Nav'
             ],
             [
                 'link' => './',
@@ -57,8 +61,38 @@ return [
         ]
     ],
 
+    // Searchbar
+    'searchbar' => [
+        'isView' => true,
+        'action' => '#',
+        'method' => 'GET',
+        'suggestions' => [
+            'One',
+            'Two'
+        ],
+    ],
+
     //Top Menu Right and Submenu
-    'top_right_menu' => [],
+    'top_right_menu' => [
+        'lang' => [
+            'isView' => false,
+            'sub_menus' => [
+                [ 'link' => '#', 'label' => 'English', 'icon' => 'us', 'selected' => true ],
+                [ 'link' => '#', 'label' => 'Genman', 'icon' => 'germany' ],
+                [ 'link' => '#', 'label' => 'Italian', 'icon' => 'italy' ],
+                [ 'link' => '#', 'label' => 'French', 'icon' => 'french' ],
+                [ 'link' => '#', 'label' => 'Spanish', 'icon' => 'spain' ],
+                [ 'link' => '#', 'label' => 'Russian', 'icon' => 'russia' ],
+            ],
+        ],
+        'notify' => false,
+        'profile_sub_menus' => [
+            ['link' => '#', 'label'=> 'Profile', 'icon' => 'dripicons-user'],
+            ['link' => '#', 'label'=> 'My Wallet', 'icon' => 'dripicons-wallet'],
+            ['link' => '#', 'label'=> 'Settings', 'icon' => 'dripicons-gear'],
+            ['link' => '#', 'label'=> 'Lock Screen', 'icon' => 'dripicons-lock'],
+        ]
+    ],
 
 
     // LeftSide Menu and Submenu
@@ -77,14 +111,20 @@ return [
         'shop' => [],
         'settings' => [],
         'users' => [],
+    ],
 
-        // Lower Menu
-        'help' => '',
-        'profile' => ''
+    // Lower Menu
+    'help' => '',
+    'profile' => [
+        'image' => '',
+        'name' => 'Website Admin',
+        'type' => 'admin',
+        'link' => '#',
+        'status' => true,
     ],
 
     // Right Panel bar Area
-    'right_panel_show' => true,
+    'right_panel_show' => false,
 
 
     // Admin Auth Part

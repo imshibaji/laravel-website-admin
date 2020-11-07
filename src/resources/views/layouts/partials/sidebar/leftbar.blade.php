@@ -3,37 +3,47 @@
             <div class="main-icon-menu">
                 <a href="/admin" class="logo logo-metrica d-block text-center">
                     <span>
-                        <img src="{{ URL::asset( $assetLink . '/images/web-admin-logo.png')}}" alt="logo-small" class="logo-sm">
+                        <img src="{{ config('admin.logo', URL::asset( $assetLink . '/images/logo-sm.png')) }}" alt="logo-small" class="logo-sm">
                     </span>
                 </a>
                 <nav class="nav">
+                    @if (count(config('admin.left_side_menu.dashboard')) > 0)
                     <a href="#MetricaDashboard" class="nav-link" data-toggle="tooltip-custom" data-placement="right"  data-trigger="hover" title="" data-original-title="Dashboard">
                         <i data-feather="monitor" class="align-self-center menu-icon icon-dual"></i>
                     </a><!--end MetricaDashboards-->
+                    @endif
 
+                    @if (count(config('admin.left_side_menu.app')) > 0)
                     <a href="#MetricaApps" class="nav-link" data-toggle="tooltip-custom" data-placement="right"  data-trigger="hover" title="" data-original-title="Apps">
                         <i data-feather="grid" class="align-self-center menu-icon icon-dual"></i>
                     </a><!--end MetricaApps-->
+                    @endif
 
+                    @if (count(config('admin.left_side_menu.shop')) > 0)
                     <a href="#MetricaOnlineShop" class="nav-link" data-toggle="tooltip-custom" data-placement="right"  data-trigger="hover" title="" data-original-title="Online Shop">
                         <i data-feather="package" class="align-self-center menu-icon icon-dual"></i>
                     </a><!--end MetricaUikit-->
+                    @endif
 
+                    @if (count(config('admin.left_side_menu.users')) > 0)
                     <a href="#MetricaAuthentication" class="nav-link" data-toggle="tooltip-custom" data-placement="right"  data-trigger="hover" title="" data-original-title="Users">
                         <i data-feather="users" class="align-self-center menu-icon icon-dual"></i>
                     </a> <!--end MetricaAuthentication-->
+                    @endif
 
+                    @if (count(config('admin.left_side_menu.settings')) > 0)
                     <a href="#MetricaSettings" class="nav-link" data-toggle="tooltip-custom" data-placement="right"  data-trigger="hover" title="" data-original-title="Settings">
                         <i data-feather="settings" class="align-self-center menu-icon icon-dual"></i>
                     </a><!--end MetricaPages-->
+                    @endif
 
                 </nav><!--end nav-->
                 <div class="pro-metrica-end">
                     <a href="{{config('admin.left_side_menu.help')}}" class="help" data-toggle="tooltip-custom" data-placement="right"  data-trigger="hover" title="" data-original-title="Help">
                         <i data-feather="message-circle" class="align-self-center menu-icon icon-md icon-dual mb-4"></i>
                     </a>
-                    <a href="{{config('admin.left_side_menu.profile')}}" class="profile">
-                        <img src="{{ 'https://www.gravatar.com/avatar/'.md5(Auth::user()->email) ?? URL::asset( $assetLink . '/images/users/user-4.jpg')}}" alt="profile-user" class="rounded-circle thumb-sm">
+                    <a href="{{config('admin.profile.link')}}" class="profile">
+                        <img src="{{ 'https://www.gravatar.com/avatar/'.md5(Auth::user()->email) ?? URL::asset( $assetLink . '/images/users/user-4.jpg')}}" alt="{{config('admin.profile.label')}}" class="rounded-circle thumb-sm">
                     </a>
                 </div>
             </div><!--end main-icon-menu-->

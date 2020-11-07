@@ -6,6 +6,7 @@ use Illuminate\View\Component;
 
 class Translate extends Component
 {
+    public $trans;
     /**
      * Create a new component instance.
      *
@@ -13,7 +14,7 @@ class Translate extends Component
      */
     public function __construct()
     {
-        //
+        $this->trans = config('admin.top_right_menu.lang.sub_menus');
     }
 
     /**
