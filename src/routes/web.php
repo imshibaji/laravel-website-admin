@@ -21,4 +21,8 @@ Route::prefix($prefix)
         'index' => 'seo'
     ]);
 
+    Route::get('/help', function(){
+        return view('admin::document');
+    });
+
 });

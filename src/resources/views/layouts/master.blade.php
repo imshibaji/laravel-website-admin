@@ -3,10 +3,10 @@
     <head>
         <meta charset="utf-8" />
         <title>@yield('title', config('admin.title'))</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
         <meta content="Shibaji Debnath" name="author" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
         <!-- App favicon -->
         <link rel="shortcut icon" href="{{ asset( $assetLink . '/images/favicon.ico') }}">
@@ -28,7 +28,7 @@
     <body>
 
          <!-- leftbar -->
-        {{-- @include('admin::layouts/partials/sidebar/leftbar') --}}
+        {{-- @include('admin::layouts/vertical-2-partials/sidebar') --}}
         @include('admin::layouts/partials/sidebar/'. config('admin.sidebar', 'leftbar'))
 
          <!-- toptbar -->

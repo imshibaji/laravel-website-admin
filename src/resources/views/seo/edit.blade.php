@@ -96,7 +96,7 @@
                 <textarea id="meta-twitter-description" class="form-control form-control-lg" name="meta_twitter_description" placeholder="Meta Twitter Description">{{ $seo->meta_twitter_description }}</textarea>
                 <input type="text" id="meta-twitter-site" class="form-control form-control-lg" name="meta_twitter_site" placeholder="Meta Twitter Site" value="{{ $seo->meta_twitter_site }}">
                 <input type="text" id="meta-twitter-creator" class="form-control form-control-lg" name="meta_twitter_creator" placeholder="Meta Twitter Creator" value="{{ $seo->meta_twitter_creator }}">
-                <input type="text" id="meta-twitter-creator" class="form-control form-control-lg" name="meta_twitter_image_src" placeholder="Meta Twitter Image Source" value="{{ $seo->meta_twitter_image_src }}">
+                <input type="text" id="meta-twitter-creator-src" class="form-control form-control-lg" name="meta_twitter_image_src" placeholder="Meta Twitter Image Source" value="{{ $seo->meta_twitter_image_src }}">
                 <input type="text" id="meta-twitter-player" class="form-control form-control-lg" name="meta_twitter_player" placeholder="Meta Twitter Player" value="{{ $seo->meta_twitter_player }}">
             </p>
         </div>
@@ -142,5 +142,12 @@ window.addEventListener('DOMContentLoaded', () => {
         $('#meta-twitter-description').val(this.value);
     });
 });
+</script>
+@endsection
+
+@section('scripts')
+@parent
+<script>
+$('body').addClass('enlarge-menu');
 </script>
 @endsection

@@ -95,7 +95,7 @@
                 <textarea id="meta-twitter-description" class="form-control form-control-lg" name="meta_twitter_description" placeholder="Meta Twitter Description"></textarea>
                 <input type="text" id="meta-twitter-site" class="form-control form-control-lg" name="meta_twitter_site" placeholder="Meta Twitter Site">
                 <input type="text" id="meta-twitter-creator" class="form-control form-control-lg" name="meta_twitter_creator" placeholder="Meta Twitter Creator">
-                <input type="text" id="meta-twitter-creator" class="form-control form-control-lg" name="meta_twitter_image_src" placeholder="Meta Twitter Image Source">
+                <input type="text" id="meta-twitter-creator-src" class="form-control form-control-lg" name="meta_twitter_image_src" placeholder="Meta Twitter Image Source">
                 <input type="text" id="meta-twitter-player" class="form-control form-control-lg" name="meta_twitter_player" placeholder="Meta Twitter Player">
             </p>
         </div>

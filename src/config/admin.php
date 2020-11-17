@@ -103,8 +103,18 @@ return [
                 'label' => 'Dashboard'
             ],
             [
-                'link' => '/admin/seo',
-                'label' => 'Seo Area'
+                'link' => '',
+                'label' => 'Seo Area',
+                'child' => [
+                    [
+                        'link' => '/admin/seo',
+                        'label' => 'All SEOs'
+                    ],
+                    [
+                        'link' => '/admin/seo/create',
+                        'label' => 'Add SEO'
+                    ]
+                ]
             ]
         ],
         'app' => [],
@@ -114,7 +124,7 @@ return [
     ],
 
     // Lower Menu
-    'help' => '',
+    'help' => '/admin/help',
     'profile' => [
         'image' => '',
         'name' => 'Website Admin',

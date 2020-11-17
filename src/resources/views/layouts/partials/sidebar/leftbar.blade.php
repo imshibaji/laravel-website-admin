@@ -39,7 +39,7 @@
 
                 </nav><!--end nav-->
                 <div class="pro-metrica-end">
-                    <a href="{{config('admin.left_side_menu.help')}}" class="help" data-toggle="tooltip-custom" data-placement="right"  data-trigger="hover" title="" data-original-title="Help">
+                    <a href="{{config('admin.help')}}" class="help" data-toggle="tooltip-custom" data-placement="right"  data-trigger="hover" title="" data-original-title="Help">
                         <i data-feather="message-circle" class="align-self-center menu-icon icon-md icon-dual mb-4"></i>
                     </a>
                     <a href="{{config('admin.profile.link')}}" class="profile">
@@ -62,7 +62,7 @@
                 </div>
                 <!--end logo-->
                 <div class="menu-body slimscroll">
-                    <div id="MetricaDashboard" class="main-icon-menu-pane active">
+                    <div id="MetricaDashboard" class="main-icon-menu-pane">
                         <div class="title-box">
                             <h6 class="menu-title">Dashboard</h6>
                         </div>

@@ -31,7 +31,8 @@
         "doctrine/dbal": "^2.11",
         "nwidart/laravel-modules": "^8.0",
         "spatie/laravel-permission": "^3.17",
-        "spatie/laravel-searchable": "^1.7"
+        "spatie/laravel-searchable": "^1.7",
+        "bkwld/laravel-pug": "^2.2"
     },
     "scripts": {
         "post-autoload-dump": [
