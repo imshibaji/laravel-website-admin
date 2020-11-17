@@ -15,7 +15,7 @@
 
 
 // Test Color Mode
-console.log(get_color_scheme());
+// console.log(get_color_scheme());
 
 
 
@@ -29,7 +29,7 @@ function updateColorMode(){
     $('#color-switch').prop('checked', (Cookies.get("color_switch") == 'true')? true : false );
     Cookies.set("color_scheme", getColorMode());
 }
-$('#color-switch').click(function(){
+$('#color-switch, #night_mode').click(function(){
     var dark = Cookies.get("color_switch");
     dark = (dark === 'true')? 'false' : 'true';
     Cookies.set("color_switch", dark);
@@ -41,7 +41,7 @@ $('#color-switch').click(function(){
 
     // Reload browser after color mode setting
     window.location.reload();
-    console.log(getColorMode());
+    // console.log(getColorMode());
 });
 
 if (window.matchMedia){
@@ -83,4 +83,4 @@ $('#auto-color-switch').click(function(){
     window.location.reload();
 });
 
-console.log(getAutoColor());
+// console.log(getAutoColor());

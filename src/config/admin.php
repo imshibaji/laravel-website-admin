@@ -13,7 +13,7 @@ return [
     'assets' => 'assets',
 
     // Set Left Sidebar (leftbar and leftbar2)
-    'sidebar' => 'leftbar2',
+    'sidebar' => 'leftbar',
 
     //Top Menu Left and Submenu
     'top_left_menu' => [
@@ -63,7 +63,7 @@ return [
 
     // Searchbar
     'searchbar' => [
-        'isView' => true,
+        'isView' => false,
         'action' => '#',
         'method' => 'GET',
         'suggestions' => [

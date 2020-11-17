@@ -3,12 +3,22 @@
     <!-- Navbar -->
     <nav class="navbar-custom">
         <ul class="list-unstyled topbar-nav float-right mb-0">
+            <li class="mr-2">
+                <a href="#" id="night_mode" class="nav-link">
+                    @if($color_scheme == 'light')
+                        <i data-feather="moon" title="Night Mode" class="align-self-center"></i>
+                    @else
+                        <i data-feather="sun" title="Day Mode" class="align-self-center"></i>
+                    @endIf
+                </a>
+            </li>
 
-            @if (config('admin.top_right_menu.lang.isView', false))
+
+            @if (config('admin.top_right_menu.lang.isView', true))
                 <x-admin-translate />
             @endif
 
-            @if (config('admin.top_right_menu.notify', false))
+            @if (config('admin.top_right_menu.notify', true))
                 <x-admin-notification />
             @endif
 
