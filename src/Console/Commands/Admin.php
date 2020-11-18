@@ -54,7 +54,7 @@ class Admin extends Command
         $opt3 = Artisan::call('vendor:publish --tag=admin-config');
         $this->info("Admin Systems Config published.");
 
-        $opt4 = Artisan::call('ui:auth');
-        $this->info("Admin Auth Scafold published.");
+        // $opt4 = Artisan::call('ui:auth');
+        // $this->info("Admin Auth Scafold published.");
     }
 }

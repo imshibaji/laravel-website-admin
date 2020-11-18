@@ -13,36 +13,58 @@ This A beutiful web admin develop for **Laravel** Framework. It's have so many s
 # It's a simply used for your own laravel project
 
 1. Installation process
-    * First initiate the Laravel Project
-    * Open the terminal from the project
+    * First initiate or Create New Laravel Project
+    * Then Open the project in terminal.
     * then put the command
 
 ```php
 composer require shibaji/admin
 ```
 
-2. Setup the database connection in your new laravel project.
-3. Install Laravel UI package in your Application.
+1. Setup the database connection in your new laravel project.
+2. Install Laravel UI package is already included with this Admin Panel.
+3. Setup Admin panel by Admin Command
 
 ```php
-composer require laravel/ui
+php artisan admin:install
 ```
 
-4. Migrate the project for tables creations.
+5. Create Auth scaffold using the artisan command
 
+```php
+php artisan ui:auth
+```
+
+6. Don't replace any preloaded resources.
+
+```shell
+The [auth/login.blade.php] view already exists. Do you want to replace it? (yes/no) [no]: no
+```
+```shell
+The [auth/passwords/confirm.blade.php] view already exists. Do you want to replace it? (yes/no) [no]: no
+```
+```shell
+The [auth/passwords/email.blade.php] view already exists. Do you want to replace it? (yes/no) [no]: no
+```
+Like this put `no` every required questions.
+
+6. Now Setup the database connection in `.env` file
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=<DB_NAME>
+DB_USERNAME=<DB_USER>
+DB_PASSWORD=<DB_PASSWORD>
+```
+7. Open Terminal from the project. And write the Codes.
 ```php
 php artisan migrate
 ```
-
-5. Start the development environment
-
-```php
-php artisan serve
-```
-
-6. Open browser tab with this url `http://localhost:8000`.
-7. After open register an user.
-8. After login go to `http://localhost:8000/admin`.
+8. Open browser tab with this url `http://localhost:8000`.
+9.  After open register an user.
+10. After login go to `http://localhost:8000/admin`.
 
 Now you can see this admin. <br>
 **Lets Enjoy!** :)
