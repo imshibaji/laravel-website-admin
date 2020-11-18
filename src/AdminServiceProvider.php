@@ -112,7 +112,7 @@ class AdminServiceProvider extends ServiceProvider{
 
         $this->publishes([
             __DIR__.'/resources/views/auth' => resource_path('views/auth'),
-        ], 'admin-views');
+        ], 'admin-auth');
 
         // Partial Discover Resources
         $this->publishes([
