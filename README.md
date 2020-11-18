@@ -48,7 +48,7 @@ The [auth/passwords/email.blade.php] view already exists. Do you want to replace
 ```
 Like this put `no` every required questions.
 
-6. Now Setup the database connection in `.env` file
+7. Now Setup the database connection in `.env` file
 
 ```env
 DB_CONNECTION=mysql
@@ -58,13 +58,13 @@ DB_DATABASE=<DB_NAME>
 DB_USERNAME=<DB_USER>
 DB_PASSWORD=<DB_PASSWORD>
 ```
-7. Open Terminal from the project. And write the Codes.
+8. Open Terminal from the project. And write the Codes.
 ```php
 php artisan migrate
 ```
-8. Open browser tab with this url `http://localhost:8000`.
-9.  After open register an user.
-10. After login go to `http://localhost:8000/admin`.
+9. Open browser tab with this url `http://localhost:8000`.
+10.  After open register an user.
+11. After login go to `http://localhost:8000/admin`.
 
 Now you can see this admin. <br>
 **Lets Enjoy!** :)
