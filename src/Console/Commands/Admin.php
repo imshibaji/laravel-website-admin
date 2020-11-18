@@ -45,7 +45,13 @@ class Admin extends Command
         $opt = Artisan::call('optimize:clear');
         $this->info("Optimized Systems resources.");
 
-        $opt1 = Artisan::call('vendor:publish --tag=admin-config');
+        $opt1 = Artisan::call('vendor:publish --tag=admin-assets');
+        $this->info("Admin Auth View Config published.");
+
+        $opt2 = Artisan::call('vendor:publish --tag=admin-auth');
+        $this->info("Admin Auth View Config published.");
+
+        $opt3 = Artisan::call('vendor:publish --tag=admin-config');
         $this->info("Admin Systems Config published.");
     }
 }

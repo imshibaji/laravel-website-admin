@@ -2,6 +2,11 @@
 
 @section('title', 'Shibaji Debnath - Admin & Dashboard')
 
+@section('js_plugins')
+<!-- Plugins Test -->
+<script src="{{ URL::asset( $assetLink . '/plugins/apexcharts/apexcharts.min.js') }}"></script>
+@endsection
+
 @section('content')
   <div class="container-fluid">
     <!-- Page-Title -->
