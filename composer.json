@@ -1,5 +1,5 @@
 {
-    "name": "shibaji/admin",
+    "name": "shibaji/laravel-admin",
     "description": "This is the basic admin controll panel",
     "type": "library",
     "license": "MIT",
@@ -31,8 +31,6 @@
         "doctrine/dbal": "^2.11",
         "laravel/ui": "^3.1",
         "nwidart/laravel-modules": "^8.2",
-        "spatie/laravel-permission": "^3.17",
-        "spatie/laravel-searchable": "^1.7",
         "bkwld/laravel-pug": "^2.2"
     },
     "scripts": {

@@ -21,8 +21,11 @@ Route::prefix($prefix)
         'index' => 'seo'
     ]);
 
+    Route::resource('/user', 'UserController')->names([
+        'index' => 'users'
+    ]);
+
     Route::get('/help', function(){
         return view('admin::document');
     });
-
 });

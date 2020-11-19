@@ -1,6 +1,6 @@
 @extends('admin::layouts.master')
 
-@section('title', 'Seo List')
+@section('title', 'Users List')
 
 @section('content')
   <div class="container-fluid">
@@ -9,7 +9,7 @@
         <div class="col-sm-12">
 
             @component('admin::common-components.breadcrumb')
-                @slot('title') Seo List @endslot
+                @slot('title') Users List @endslot
                 @slot('item1') Admin @endslot
                 {{-- @slot('item1_link') /admin @endslot --}}
                 {{-- @slot('item2') posts @endslot
@@ -35,11 +35,11 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-10">
-                            <h4 class="mt-0 header-title">Seo List</h4>
+                            <h4 class="mt-0 header-title">Users List</h4>
                             <p class="text-muted mb-3">This is importent for site page optimizations.</p>
                         </div>
                         <div class="col-md-2 text-center text-md-right py-md-3">
-                            <a href="{{ route('admin.seo.create') }}" class="btn btn-secondary mb-2 mb-lg-0">Add SEO</a>
+                            <a href="{{ route('admin.user.create') }}" class="btn btn-secondary mb-2 mb-lg-0">Add User</a>
                         </div>
                     </div>
 
@@ -47,9 +47,8 @@
                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                         <tr>
-                            <th>Title</th>
-                            <th>Description</th>
-                            <th>Site URL</th>
+                            <th>Name</th>
+                            <th>Email</th>
                             <th>Created At</th>
                             <th>Updated At</th>
                             <th>Actions</th>
@@ -57,27 +56,26 @@
                         </thead>
 
                         <tbody>
-                        @foreach ($seos as $seo)
+                        @foreach ($users as $user)
                         <tr>
-                            <td>{{ $seo->meta_title ?? '' }}</td>
-                            <td>{{ $seo->meta_keywords ?? '' }}</td>
-                            <td>{{ $seo->url }}</td>
-                            <td>{{ $seo->created_at}}</td>
-                            <td>{{ $seo->updated_at}}</td>
+                            <td>{{ $user->name ?? '' }}</td>
+                            <td>{{ $user->email ?? '' }}</td>
+                            <td>{{ $user->created_at}}</td>
+                            <td>{{ $user->updated_at}}</td>
                             <td class="text-center">
                                 <div class="btn-group btn-group-sm" role="group">
-                                    <a href="{{ route('admin.seo.show', [$seo])}}" class="text-info footable-edit mr-2">
+                                    <a href="{{ route('admin.user.show', [$user])}}" class="text-info footable-edit mr-2">
                                         <i class="fa far fa-eye" aria-hidden="true"></i>
                                         {{-- <i data-feather="eye"></i> --}}
                                     </a>
-                                    <a href="{{ route('admin.seo.edit', [$seo])}}" class="text-info footable-edit mr-2">
+                                    <a href="{{ route('admin.user.edit', [$user])}}" class="text-info footable-edit mr-2">
                                         <span class="fooicon fooicon-pencil" aria-hidden="true"></span>
                                     </a>
-                                    <a href="{{route('admin.seo.destroy', [$seo])}}"
+                                    <a href="{{route('admin.user.destroy', [$user])}}"
                                     class="text-danger footable-delete"
                                     onclick="event.preventDefault();
                                     document.querySelector('.seo-delete').submit();">
-                                        <form class="seo-delete" action="{{route('admin.seo.destroy', [$seo])}}" method="POST">
+                                        <form class="seo-delete" action="{{route('admin.user.destroy', [$user])}}" method="POST">
                                             @csrf
                                             @method('delete')
                                         <span class="fooicon fooicon-trash" aria-hidden="true"></span>

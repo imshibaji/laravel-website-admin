@@ -88,9 +88,9 @@ return [
         'notify' => false,
         'profile_sub_menus' => [
             ['link' => '#', 'label'=> 'Profile', 'icon' => 'dripicons-user'],
-            ['link' => '#', 'label'=> 'My Wallet', 'icon' => 'dripicons-wallet'],
-            ['link' => '#', 'label'=> 'Settings', 'icon' => 'dripicons-gear'],
-            ['link' => '#', 'label'=> 'Lock Screen', 'icon' => 'dripicons-lock'],
+            // ['link' => '#', 'label'=> 'My Wallet', 'icon' => 'dripicons-wallet'],
+            // ['link' => '#', 'label'=> 'Settings', 'icon' => 'dripicons-gear'],
+            // ['link' => '#', 'label'=> 'Lock Screen', 'icon' => 'dripicons-lock'],
         ]
     ],
 
@@ -120,7 +120,22 @@ return [
         'app' => [],
         'shop' => [],
         'settings' => [],
-        'users' => [],
+        'users' => [
+            [
+                'link' => '',
+                'label' => 'User Area',
+                'child' => [
+                    [
+                        'link' => '/admin/user',
+                        'label' => 'All Users'
+                    ],
+                    [
+                        'link' => '/admin/user/create',
+                        'label' => 'Add User'
+                    ],
+                ],
+            ],
+        ],
     ],
 
     // Lower Menu

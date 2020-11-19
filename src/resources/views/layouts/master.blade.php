@@ -20,7 +20,7 @@
         @endphp
         @include('admin::layouts/partials/css')
         <!-- Liveware -->
-        @livewireStyles
+        {{-- @livewireStyles --}}
         @yield('headerStyle')
         @yield('styles')
     </head>
@@ -56,7 +56,7 @@
         @include('admin::layouts/partials/js')
 
         <!-- Liveware -->
-        @livewireScripts
+        {{-- @livewireScripts --}}
 
         <!-- footerScript -->
         @yield('footerScript')
