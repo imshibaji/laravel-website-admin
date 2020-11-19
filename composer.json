@@ -29,6 +29,7 @@
     "minimum-stability": "dev",
     "require": {
         "doctrine/dbal": "^2.11",
+        "laravel/ui": "^3.1",
         "nwidart/laravel-modules": "^8.2",
         "bkwld/laravel-pug": "^2.2"
     },
