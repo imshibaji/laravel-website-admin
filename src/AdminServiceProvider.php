@@ -111,6 +111,7 @@ class AdminServiceProvider extends ServiceProvider{
         ], 'admin-views');
 
         $this->publishes([
+            __DIR__.'/Http/Controllers/Auth' => resource_path('app/Http/Controllers/Auth'),
             __DIR__.'/resources/views/auth' => resource_path('views/auth'),
         ], 'admin-auth');
 
