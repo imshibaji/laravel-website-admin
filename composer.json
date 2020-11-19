@@ -1,6 +1,6 @@
 {
     "name": "shibaji/laravel-admin",
-    "description": "This is the basic admin controll panel",
+    "description": "Laravel Admin Panel for laravel developers. You can create Quick Admin Panel with essential requirement.",
     "type": "library",
     "license": "MIT",
     "authors": [
