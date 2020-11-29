@@ -54,6 +54,12 @@ class Admin extends Command
         $opt3 = Artisan::call('vendor:publish --tag=admin-config');
         $this->info("Admin Systems Config published.");
 
+        $opt4 = Artisan::call('vendor:publish --provider="Nwidart\Modules\LaravelModulesServiceProvider"');
+        $this->info("Admin Modules Config published.");
+
+        $opt5 = Artisan::call('module:setup');
+        $this->info("Admin Modules Setup completed.");
+
         // $opt4 = Artisan::call('ui:auth');
         // $this->info("Admin Auth Scafold published.");
     }
