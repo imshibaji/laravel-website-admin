@@ -80,7 +80,7 @@ By default, the module classes are not loaded automatically. You can autoload yo
   }
 }
 ```
-**Tip: don't forget to run composer dump-autoload afterwards.**
+**Tip: don't forget to run `composer dump-autoload` afterwards.**
 
 Now you can see this admin. <br>
 **Lets Enjoy!** :)
