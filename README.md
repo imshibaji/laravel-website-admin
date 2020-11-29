@@ -66,6 +66,8 @@ php artisan migrate
 10.  After open register an user.
 11. After login go to `http://localhost:8000/admin`.
 
+------------------
+------------------
 
 ### If you can to create Module for Admin then doing this.
 # Autoloading
