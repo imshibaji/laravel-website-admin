@@ -66,6 +66,22 @@ php artisan migrate
 10.  After open register an user.
 11. After login go to `http://localhost:8000/admin`.
 
+
+### If you can to create Module for Admin then doing this.
+# Autoloading
+By default, the module classes are not loaded automatically. You can autoload your modules using psr-4. For example:
+```
+{
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/",
+      "Modules\\": "Modules/"
+    }
+  }
+}
+```
+**Tip: don't forget to run composer dump-autoload afterwards.**
+
 Now you can see this admin. <br>
 **Lets Enjoy!** :)
 
