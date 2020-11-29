@@ -67,7 +67,6 @@ php artisan migrate
 11. After login go to `http://localhost:8000/admin`.
 
 ------------------
-------------------
 
 ### If you can to create Module for Admin then doing this.
 # Autoloading
