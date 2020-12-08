@@ -60,6 +60,16 @@ class Admin extends Command
         $opt5 = Artisan::call('module:setup');
         $this->info("Admin Modules Setup completed.");
 
+        $opt6 = Artisan::call('vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"');
+        $this->info("Admin Permission Package published.");
+
+
+        $opt = Artisan::call('optimize:clear');
+        $this->info("Optimized Systems resources.");
+
+        $clear = Artisan::call('config:clear');
+        $this->info("Pre-Configuration Data cleared.");
+
         // $opt4 = Artisan::call('ui:auth');
         // $this->info("Admin Auth Scafold published.");
     }
