@@ -101,40 +101,37 @@ return [
             [
                 'link' => '/admin',
                 'label' => 'Dashboard'
-            ],
-            [
-                'link' => '',
-                'label' => 'Seo Area',
-                'child' => [
-                    [
-                        'link' => '/admin/seo',
-                        'label' => 'All SEOs'
-                    ],
-                    [
-                        'link' => '/admin/seo/create',
-                        'label' => 'Add SEO'
-                    ]
-                ]
             ]
         ],
         'app' => [],
         'shop' => [],
-        'settings' => [],
-        'users' => [
+        'settings' => [
             [
-                'link' => '',
-                'label' => 'User Area',
-                'child' => [
-                    [
-                        'link' => '/admin/user',
-                        'label' => 'All Users'
-                    ],
-                    [
-                        'link' => '/admin/user/create',
-                        'label' => 'Add User'
-                    ],
-                ],
+                'link' => '/'.config('admin.prefix', 'admin').'/seo',
+                'label' => 'Page SEOs'
             ],
+            [
+                'link' => '/'.config('admin.prefix', 'admin').'/settings',
+                'label' => 'All Settings'
+            ],
+            [
+                'link' => '#',
+                'label' => 'My Profile'
+            ]
+        ],
+        'users' =>  [
+            [
+                'link' => '/'.config('admin.prefix', 'admin').'/user',
+                'label' => 'All Users'
+            ],
+            [
+                'link' => '/'.config('admin.prefix', 'admin').'/role',
+                'label' => 'Roles'
+            ],
+            [
+                'link' => '/'.config('admin.prefix', 'admin').'/permission',
+                'label' => 'Permissions'
+            ]
         ],
     ],
 

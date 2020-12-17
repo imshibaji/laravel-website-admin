@@ -8,16 +8,6 @@
 <script src="{{ URL::asset( $assetLink . '/js/jquery.slimscroll.min.js') }}"></script>
 <script src="{{ URL::asset( $assetLink . '/js/js.cookie.min.js') }}"></script>
 <script src="{{ URL::asset( $assetLink . '/js/js.osColorMode.js') }}"></script>
+<script src="{{ URL::asset( $assetLink . '/plugins/apexcharts/apexcharts.min.js') }}"></script>
+<script src="{{ URL::asset( $assetLink . '/js/formio.full.min.js') }}"></script>
 @yield('js_plugins')
-<!-- App js -->
-<script src="{{ URL::asset( $assetLink . '/js/app.js') }}"></script>
-<script>
-    function darkCssLink(){
-        $('#css-link').attr("href","{{ URL::asset( $assetLink . '/css/bootstrap-dark.min.css')}}");
-        $('#css-theme').attr("href","{{ URL::asset( $assetLink . '/css/app-dark.min.css')}}");
-    }
-    function lightCssLink(){
-        $('#css-link').attr("href","{{ URL::asset( $assetLink . '/css/bootstrap.min.css')}}");
-        $('#css-theme').attr("href","{{ URL::asset( $assetLink . '/css/app-material.min.css')}}");
-    }
-</script>

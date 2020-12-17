@@ -7,7 +7,6 @@
     <!-- post-Title -->
     <div class="row">
         <div class="col-sm-12">
-
             @component('admin::common-components.breadcrumb')
                 @slot('title') Users List @endslot
                 @slot('item1') Admin @endslot
@@ -15,7 +14,6 @@
                 {{-- @slot('item2') posts @endslot
                 @slot('item2_link') /admin/post @endslot --}}
             @endcomponent
-
         </div><!--end col-->
     </div>
     <!-- end post title end breadcrumb -->
@@ -39,86 +37,44 @@
                             <p class="text-muted mb-3">This is importent for site page optimizations.</p>
                         </div>
                         <div class="col-md-2 text-center text-md-right py-md-3">
-                            <a href="{{ route('admin.user.create') }}" class="btn btn-secondary mb-2 mb-lg-0">Add User</a>
+                            @include('admin::user.modals.add')
+                            {{-- <a href="{{ route('admin.user.create') }}" class="btn btn-secondary mb-2 mb-lg-0">Add User</a> --}}
                         </div>
                     </div>
-
-
                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                         <tr>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Created At</th>
-                            <th>Updated At</th>
+                            <th>Roles</th>
+                            <th>Permissions</th>
                             <th>Actions</th>
                         </tr>
                         </thead>
-
                         <tbody>
                         @foreach ($users as $user)
                         <tr>
                             <td>{{ $user->name ?? '' }}</td>
                             <td>{{ $user->email ?? '' }}</td>
-                            <td>{{ $user->created_at}}</td>
-                            <td>{{ $user->updated_at}}</td>
+                            <td>
+                                @foreach ($user->getRoleNames() as $role)
+                                    <div class="badge badge-secondary">{{$role}}</div>
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach ($user->getAllPermissions() as $permission)
+                                    <div class="badge badge-primary">{{$permission->name}}</div>
+                                @endforeach
+                            </td>
                             <td class="text-center">
                                 <div class="btn-group btn-group-sm" role="group">
-                                    <a href="{{ route('admin.user.show', [$user])}}" class="text-info footable-edit mr-2">
-                                        <i class="fa far fa-eye" aria-hidden="true"></i>
-                                        {{-- <i data-feather="eye"></i> --}}
-                                    </a>
-                                    <a href="{{ route('admin.user.edit', [$user])}}" class="text-info footable-edit mr-2">
-                                        <span class="fooicon fooicon-pencil" aria-hidden="true"></span>
-                                    </a>
-                                    <a href="{{route('admin.user.destroy', [$user])}}"
-                                    class="text-danger footable-delete"
-                                    onclick="event.preventDefault();
-                                    document.querySelector('.seo-delete').submit();">
-                                        <form class="seo-delete" action="{{route('admin.user.destroy', [$user])}}" method="POST">
-                                            @csrf
-                                            @method('delete')
-                                        <span class="fooicon fooicon-trash" aria-hidden="true"></span>
-                                        </form>
-                                    </a>
+                                    @include('admin::user.modals.view')
+                                    @include('admin::user.modals.edit')
+                                    @include('admin::user.modals.delete')
                                 </div>
                             </td>
                         </tr>
                         @endforeach
-                        {{-- <tr>
-                            <td>Garrett Winters</td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                            <td>2011/07/25</td>
-                            <td>2011/04/25</td>
-                            <td class="text-center">
-                                <div class="btn-group btn-group-sm" role="group">
-                                    <a href="" class="text-info footable-edit mr-2">
-                                        <span class="fooicon fooicon-pencil" aria-hidden="true"></span>
-                                    </a>
-                                    <a href="" class="text-danger footable-delete">
-                                        <span class="fooicon fooicon-trash" aria-hidden="true"></span>
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Ashton Cox</td>
-                            <td>Junior Technical Author</td>
-                            <td>San Francisco</td>
-                            <td>2009/01/12</td>
-                            <td>2011/04/25</td>
-                            <td class="text-center">
-                                <div class="btn-group btn-group-sm" role="group">
-                                    <a href="" class="text-info footable-edit mr-2">
-                                        <span class="fooicon fooicon-pencil" aria-hidden="true"></span>
-                                    </a>
-                                    <a href="" class="text-danger footable-delete">
-                                        <span class="fooicon fooicon-trash" aria-hidden="true"></span>
-                                    </a>
-                                </div>
-                            </td>
-                        </tr> --}}
                         </tbody>
                     </table>
 
@@ -131,4 +87,20 @@
 </div><!-- container -->
 @stop
 
-@include('admin::layouts.partials.extra-list')
+@section('headers')
+@parent
+<link href="{{ URL::asset($assetLink .'/plugins/select2/select2.min.css')}}" rel="stylesheet" type="text/css" />
+@endsection
+
+@section('js_plugins')
+@parent
+<script src="{{ URL::asset($assetLink .'/plugins/select2/select2.min.js')}}"></script>
+<script>
+$(function(){
+    $(".select2").select2({
+        width: '100%',
+        // theme: "classic"
+    });
+});
+</script>
+@endsection

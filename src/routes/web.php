@@ -25,6 +25,16 @@ Route::prefix($prefix)
         'index' => 'users'
     ]);
 
+    Route::resource('/role', 'RoleController')->names([
+        'index' => 'roles'
+    ]);
+
+    Route::resource('/permission', 'PermissionController')->names([
+        'index' => 'permissions'
+    ]);
+
+    Route::resource('/settings', 'SettingsController');
+
     Route::get('/help', function(){
         return view('admin::document');
     });

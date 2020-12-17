@@ -26,6 +26,8 @@
 
     {{ __('You are logged in!') }}
 
+    {{-- <x-admin-modal></x-admin-modal> --}}
+
     {{-- {!! $form->render() !!} --}}
 
     @include('admin::dashboards.main')

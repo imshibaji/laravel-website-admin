@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Shibaji\Admin\Classes\MetaBuilder;
 use Shibaji\Admin\Components\Alert;
+use Shibaji\Admin\Components\Modal;
 use Shibaji\Admin\Components\Notification;
 use Shibaji\Admin\Components\Search;
 use Shibaji\Admin\Components\Seo;
@@ -14,7 +15,7 @@ use Shibaji\Admin\Components\Translate;
 use Shibaji\Admin\Console\Commands\Admin;
 use Shibaji\Admin\Console\Commands\AdminPub;
 
-// require_once( __DIR__ . '/helpers/utilities.php');
+require_once( __DIR__ . '/helpers/utilities.php');
 
 class AdminServiceProvider extends ServiceProvider{
 
@@ -45,6 +46,7 @@ class AdminServiceProvider extends ServiceProvider{
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
 
         // Routes
+        $this->loadRoutesFrom(__DIR__.'/routes/api.php');
         $this->loadRoutesFrom(__DIR__.'/routes/web.php');
 
         // Resources
@@ -54,6 +56,7 @@ class AdminServiceProvider extends ServiceProvider{
 
         $this->loadViewComponentsAs('admin', [
             Alert::class,
+            Modal::class,
             Search::class,
             Shortcuts::class,
             Translate::class,
@@ -90,17 +93,17 @@ class AdminServiceProvider extends ServiceProvider{
             __DIR__.'/config/admin.php' => config_path('admin.php'),
         ], 'admin-config');
 
-        $this->publishes([
-            __DIR__.'/database/migrations/' => database_path('migrations'),
-        ], 'admin-migration');
+        // $this->publishes([
+            // __DIR__.'/database/migrations/' => database_path('migrations'),
+        // ], 'admin-migration');
 
-        $this->publishes([
-            __DIR__.'/database/factories/' => database_path('factories'),
-        ], 'admin-migration');
+        // $this->publishes([
+            // __DIR__.'/database/factories/' => database_path('factories'),
+        // ], 'admin-migration');
 
-        $this->publishes([
-            __DIR__.'/database/seeds/' => database_path('seeds'),
-        ], 'admin-seeds');
+        // $this->publishes([
+            // __DIR__.'/database/seeds/' => database_path('seeds'),
+        // ], 'admin-seeds');
 
         $this->publishes([
             __DIR__.'/resources/translations' => resource_path('lang/vendor/courier'),

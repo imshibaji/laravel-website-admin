@@ -1,47 +1,4 @@
-@extends('admin::layouts.master')
-
-@section('title', 'Post Add')
-
-
-
-@section('content')
-  <div class="container-fluid">
-    <!-- Page-Title -->
-    <div class="row">
-        <div class="col-sm-12">
-
-            @component('admin::common-components.breadcrumb')
-                @slot('title') Add SEO @endslot
-                @slot('item1') Admin @endslot
-                @slot('item1_link') /admin @endslot
-                @slot('item2') SEO List @endslot
-                @slot('item2_link') /admin/seo @endslot
-            @endcomponent
-
-        </div><!--end col-->
-    </div>
-    <!-- end page title end breadcrumb -->
-
-    @if (session('status'))
-        <div class="alert alert-success" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true"><i class="mdi mdi-close"></i></span>
-            </button>
-            {{ session('status') }}
-        </div>
-    @endif
-
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-<div class="card-body">
-    <div class="col-md-12">
-        <h4 class="mt-0 header-title">Seo Add</h4>
-        <p class="text-muted mb-3">Use url link for which site page connect with seo</p>
-    </div>
-
-    <form action="{{route('admin.seo.store')}}" method="post">
-        @csrf
+<x-admin-modal btnname="Add SEO" size="lg" type="secondary" title="Add Page Optimization" action="{{route('admin.seo.store')}}" method="POST">
     <!-- Nav tabs -->
     <ul class="nav nav-pills nav-justified" role="tablist">
         <li class="nav-item waves-effect waves-light">
@@ -54,7 +11,6 @@
             <a class="nav-link" data-toggle="tab" href="#twitter" role="tab" aria-selected="false">Twitter Tags</a>
         </li>
     </ul>
-
     <!-- Tab panes -->
     <div class="tab-content">
         <div class="tab-pane p-3 active" id="home-1" role="tabpanel">
@@ -100,47 +56,8 @@
             </p>
         </div>
     </div>
-    <div class="col-12 text-right py-2">
-        <button type="submit" class="btn btn-secondary btn-block">Save</button>
-    </div>
-    </form>
-</div>
-</div>
-</div>
-</div>
-</div><!-- container -->
-@stop
-
-
-@section('headerStyle')
-@endsection
-
-@section('footerScript')
-@parent
-<script src="{{ URL::asset( $assetLink . '/plugins/tinymce/tinymce.min.js')}}"></script>
-<script src="{{ URL::asset( $assetLink . '/pages/jquery.form-editor.init.js')}}"></script>
-<script>
-    window.addEventListener('DOMContentLoaded', () => {
-        $('#title').on('keyup', function(){
-            var slag = this.value.replace(/ /g, "-").toLocaleLowerCase();
-            $('#slag').val(slag);
-            $('#inline-url').html(slag);
-            $('#meta-title').val(this.value);
-            $('#meta-og-title').val(this.value);
-            $('#meta-twitter-title').val(this.value);
-        });
-        $('#meta-title').on('keyup', function(){
-            $('#meta-og-title').val(this.value);
-            $('#meta-twitter-title').val(this.value);
-        });
-        $('#meta-keyword').on('keyup', function(){
-            $('#meta-og-keyword').val(this.value);
-            $('#meta-twitter-keyword').val(this.value);
-        });
-        $('#meta-description').on('keyup', function(){
-            $('#meta-og-description').val(this.value);
-            $('#meta-twitter-description').val(this.value);
-        });
-    });
-</script>
-@endsection
+    <x-slot name="footer">
+        <button class="btn btn-success" type="submit">Submit</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    </x-slot>
+</x-admin-modal>

@@ -39,11 +39,10 @@
                             <p class="text-muted mb-3">This is importent for site page optimizations.</p>
                         </div>
                         <div class="col-md-2 text-center text-md-right py-md-3">
-                            <a href="{{ route('admin.seo.create') }}" class="btn btn-secondary mb-2 mb-lg-0">Add SEO</a>
+                            @include('admin::seo.add')
+                            {{-- <a href="{{ route('admin.seo.create') }}" class="btn btn-secondary mb-2 mb-lg-0">Add SEO</a> --}}
                         </div>
                     </div>
-
-
                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                         <tr>
@@ -87,50 +86,40 @@
                             </td>
                         </tr>
                         @endforeach
-                        {{-- <tr>
-                            <td>Garrett Winters</td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                            <td>2011/07/25</td>
-                            <td>2011/04/25</td>
-                            <td class="text-center">
-                                <div class="btn-group btn-group-sm" role="group">
-                                    <a href="" class="text-info footable-edit mr-2">
-                                        <span class="fooicon fooicon-pencil" aria-hidden="true"></span>
-                                    </a>
-                                    <a href="" class="text-danger footable-delete">
-                                        <span class="fooicon fooicon-trash" aria-hidden="true"></span>
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Ashton Cox</td>
-                            <td>Junior Technical Author</td>
-                            <td>San Francisco</td>
-                            <td>2009/01/12</td>
-                            <td>2011/04/25</td>
-                            <td class="text-center">
-                                <div class="btn-group btn-group-sm" role="group">
-                                    <a href="" class="text-info footable-edit mr-2">
-                                        <span class="fooicon fooicon-pencil" aria-hidden="true"></span>
-                                    </a>
-                                    <a href="" class="text-danger footable-delete">
-                                        <span class="fooicon fooicon-trash" aria-hidden="true"></span>
-                                    </a>
-                                </div>
-                            </td>
-                        </tr> --}}
                         </tbody>
                     </table>
-
                 </div>
             </div>
         </div>
     </div>
-
-
 </div><!-- container -->
 @stop
 
-@include('admin::layouts.partials.extra-list')
+
+@section('footerScript')
+@parent
+<script>
+$(function(){
+    $('#title').on('keyup', function(){
+        var slag = this.value.replace(/ /g, "-").toLocaleLowerCase();
+        $('#slag').val(slag);
+        $('#inline-url').html(slag);
+        $('#meta-title').val(this.value);
+        $('#meta-og-title').val(this.value);
+        $('#meta-twitter-title').val(this.value);
+    });
+    $('#meta-title').on('keyup', function(){
+        $('#meta-og-title').val(this.value);
+        $('#meta-twitter-title').val(this.value);
+    });
+    $('#meta-keyword').on('keyup', function(){
+        $('#meta-og-keyword').val(this.value);
+        $('#meta-twitter-keyword').val(this.value);
+    });
+    $('#meta-description').on('keyup', function(){
+        $('#meta-og-description').val(this.value);
+        $('#meta-twitter-description').val(this.value);
+    });
+});
+</script>
+@endsection

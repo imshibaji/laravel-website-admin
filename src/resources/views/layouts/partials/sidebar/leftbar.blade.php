@@ -117,18 +117,18 @@
                         <ul class="nav metismenu">
                             @if(config('admin.left_side_menu.shop'))
                             @foreach (config('admin.left_side_menu.shop', '[]') as $menu)
-                            @if (isset($menu['child']))
-                                <li class="nav-item">
-                                  <a class="nav-link" href="javascript: void(0);"><span class="w-100">{{ $menu['label'] }}</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
-                                    <ul class="nav-second-level" aria-expanded="false">
-                                        @foreach ($menu['child'] as $item)
-                                         <li><a href="{{ $item['link']}}">{{ $item['label'] }}</a></li>
-                                        @endforeach
-                                    </ul>
-                                </li>
-                            @else
-                                <li class="nav-item"><a class="nav-link" href="{{ $menu['link']}}">{{ $menu['label'] }}</a></li>
-                            @endif
+                                @if (isset($menu['child']))
+                                    <li class="nav-item">
+                                    <a class="nav-link" href="javascript: void(0);"><span class="w-100">{{ $menu['label'] }}</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                                        <ul class="nav-second-level" aria-expanded="false">
+                                            @foreach ($menu['child'] as $item)
+                                            <li><a href="{{ $item['link']}}">{{ $item['label'] }}</a></li>
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                @else
+                                    <li class="nav-item"><a class="nav-link" href="{{ $menu['link']}}">{{ $menu['label'] }}</a></li>
+                                @endif
                             @endforeach
                             @endif
                     </div><!-- end Others -->

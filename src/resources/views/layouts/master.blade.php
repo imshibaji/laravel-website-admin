@@ -19,14 +19,10 @@
             // echo $color_scheme;
         @endphp
         @include('admin::layouts/partials/css')
-        <!-- Liveware -->
-        {{-- @livewireStyles --}}
         @yield('headerStyle')
         @yield('styles')
     </head>
-
     <body>
-
          <!-- leftbar -->
         {{-- @include('admin::layouts/vertical-2-partials/sidebar') --}}
         @include('admin::layouts/partials/sidebar/'. config('admin.sidebar', 'leftbar'))
@@ -35,16 +31,12 @@
         @include('admin::layouts/partials/topbar')
 
         <div class="page-wrapper">
-
             <!-- Page Content-->
             <div class="page-content-tab">
-
              <!-- content -->
              @yield('content')
-
              <!-- extra Modal -->
              @include('admin::layouts/partials/extra-modal')
-
               <!-- Footer -->
               @include('admin::layouts/partials/footer')
 
@@ -52,12 +44,8 @@
             <!-- end page content -->
         </div>
         <!-- end page-wrapper -->
-
         @include('admin::layouts/partials/js')
-
-        <!-- Liveware -->
-        {{-- @livewireScripts --}}
-
+        @include('admin::layouts.partials.extra-list')
         <!-- footerScript -->
         @yield('footerScript')
         @yield('scripts')

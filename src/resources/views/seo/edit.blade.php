@@ -117,10 +117,8 @@
 
 @section('footerScript')
 @parent
-<script src="{{ URL::asset( $assetLink . '/plugins/tinymce/tinymce.min.js')}}"></script>
-<script src="{{ URL::asset( $assetLink . '/pages/jquery.form-editor.init.js')}}"></script>
 <script>
-window.addEventListener('DOMContentLoaded', () => {
+$(function(){
     $('#title').on('keyup', function(){
         var slag = this.value.replace(/ /g, "-").toLocaleLowerCase();
         $('#slag').val(slag);

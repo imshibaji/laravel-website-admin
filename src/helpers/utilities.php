@@ -21,3 +21,27 @@ function console_log($data) {
 
 	echo $output;
 }
+
+function checkRole($data, $user){
+    $out = false;
+    $items = $user->getRoleNames();
+    foreach ($items as $item) {
+        if($item == $data){
+            $out = true;
+            break;
+        }
+    }
+    return $out;
+}
+
+function checkPermission($data, $role){
+    $out = false;
+    $items = $role->getPermissionNames();
+    foreach ($items as $item) {
+        if($item == $data){
+            $out = true;
+            break;
+        }
+    }
+    return $out;
+}
