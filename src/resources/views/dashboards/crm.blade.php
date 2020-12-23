@@ -7,18 +7,19 @@
                     <!-- Page-Title -->
                     <div class="row">
                         <div class="col-sm-12">
-
-                             @component('admin::common-components.breadcrumb')
-                                 @slot('title') Dashboard @endslot
-                                 {{-- @slot('item1') Metrica @endslot --}}
-                                 {{-- @slot('item2') CRM @endslot --}}
-                              @endcomponent
-
+                            <x-admin-breadcrumb
+                            title="Dashboard"
+                            item1="Admin"
+                            :link1="config('admin.prefix', 'admin')"
+                            />
                         </div><!--end col-->
                     </div>
                     <!-- end page title end breadcrumb -->
-                    <div class="row">
+                    @if (session('status'))
+                        <x-admin-alert type="success" message="{{ session('status') }}" />
+                    @endif
 
+                    <div class="row">
  @component('admin::common-components.crm-widget')
      @slot('iconClass') align-self-center icon-lg icon-dual-warning  @endslot
      @slot('title') Happy Customers  @endslot
@@ -392,14 +393,15 @@
                 </div><!-- container -->
 @stop
 
-@section('footerScript')
-<script>
-/**
- * Theme: Metrica - Responsive Bootstrap 4 Admin Dashboard
- * Author: Mannatthemes
- * CRM Dashboard Js
- */
 
+@section('js_plugins')
+@parent
+<script src="{{ URL::asset( $assetLink . '/plugins/apexcharts/apexcharts.min.js') }}"></script>
+@endsection
+
+@section('footerScript')
+@parent
+<script>
  var options = {
   chart: {
       height: 380,

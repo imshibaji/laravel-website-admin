@@ -1,7 +1,8 @@
 <?php
 
-namespace Shibaji\Admin\Models;
+namespace App\Models;
 
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -9,9 +10,8 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
+    use HasFactory, Notifiable;
     use HasRoles;
-    use HasFactory;
-    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -19,10 +19,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'password',
     ];
-
-    protected $guard_name = 'web';
 
     /**
      * The attributes that should be hidden for arrays.
@@ -42,13 +42,4 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array
-     */
-    // protected $appends = [
-        // 'profile_photo_url',
-    // ];
 }

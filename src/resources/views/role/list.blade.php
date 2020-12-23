@@ -7,26 +7,17 @@
     <!-- post-Title -->
     <div class="row">
         <div class="col-sm-12">
-
-            @component('admin::common-components.breadcrumb')
-                @slot('title') Roles List @endslot
-                @slot('item1') Admin @endslot
-                {{-- @slot('item1_link') /admin @endslot --}}
-                {{-- @slot('item2') posts @endslot
-                @slot('item2_link') /admin/post @endslot --}}
-            @endcomponent
-
+            <x-admin-breadcrumb
+            title="Roles"
+            item1="Admin"
+            :link1="config('admin.prefix', 'admin')"
+            />
         </div><!--end col-->
     </div>
     <!-- end post title end breadcrumb -->
 
     @if (session('status'))
-        <div class="alert alert-success" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true"><i class="mdi mdi-close"></i></span>
-            </button>
-            {{ session('status') }}
-        </div>
+        <x-admin-alert type="success" :message="session('status')"></x-admin-alert>
     @endif
 
     <div class="row">
@@ -39,22 +30,24 @@
                             <p class="text-muted mb-3">This is importent for site page optimizations.</p>
                         </div>
                         <div class="col-md-2 text-center text-md-right py-md-3">
-                            @include('admin::role.modals.add')
-                            {{-- <a href="{{ route('admin.user.create') }}" class="btn btn-secondary mb-2 mb-lg-0">Add User</a> --}}
+                            @can('add role')
+                                @include('admin::role.modals.add')
+                                {{-- <a href="{{ route('admin.user.create') }}" class="btn btn-secondary mb-2 mb-lg-0">Add User</a> --}}
+                            @endcan
                         </div>
                     </div>
-                    <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                        <thead>
+                    <x-admin-datatable>
+                        <x-slot name="thead">
                         <tr>
                             <th>Name</th>
                             <th>Guard Name</th>
-                            <th class="col-6">Permissions</th>
+                            <th class="col-4">Permissions</th>
                             {{-- <th>Created At</th> --}}
                             {{-- <th>Updated At</th> --}}
                             <th>Actions</th>
                         </tr>
-                        </thead>
-                        <tbody>
+                        </x-slot>
+                        <x-slot name="tbody">
                         @foreach ($roles as $role)
                         <tr>
                             <td>{{ $role->name ?? '' }}</td>
@@ -69,14 +62,18 @@
                             <td class="text-center">
                                 <div class="btn-group btn-group-sm" role="group">
                                     @include('admin::role.modals.view')
-                                    @include('admin::role.modals.edit')
-                                    @include('admin::role.modals.delete')
+                                    @can('edit role')
+                                        @include('admin::role.modals.edit')
+                                    @endcan
+                                    @can('delete role')
+                                        @include('admin::role.modals.delete')
+                                    @endcan
                                 </div>
                             </td>
                         </tr>
                         @endforeach
-                        </tbody>
-                    </table>
+                        </x-slot>
+                    </x-admin-datatable>
                 </div>
             </div>
         </div>
@@ -86,7 +83,7 @@
 </div><!-- container -->
 @stop
 
-@section('headers')
+@section('css_plugins')
 @parent
 <link href="{{ URL::asset($assetLink .'/plugins/select2/select2.min.css')}}" rel="stylesheet" type="text/css" />
 @endsection

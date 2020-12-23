@@ -5,7 +5,9 @@ namespace Shibaji\Admin\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
-use Shibaji\Admin\Models\User;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Shibaji\Admin\Models\UserDetail;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -18,7 +20,50 @@ class UserController extends Controller
      */
     public function index()
     {
+        if(auth()->user()->can('view user') == false && auth()->user()->id != 1){
+            session()->flash('status', ['type' => 'danger', 'message' =>'You have no permission.']);
+            return back();
+        }
+
         return view('admin::user.list', ['users' => User::all(), 'roles' => Role::all(), 'permissions' => Permission::all() ]);
+    }
+
+    public function profile(){
+        $user = Auth::user();
+        return view('admin::profile', compact('user'));
+    }
+
+    public function profilePost(Request $req){
+
+        $user = User::find($req->id);
+        $user->name = $req->name;
+        $user->email = $req->email;
+        if($req->password != null){
+            if($req->password && $req->confirm_password){
+                $user->password = Hash::make($req->password);
+            }else{
+                $req->session()->flash('status', 'Password not matched');
+                return redirect(Config::get('admin.prefix', 'admin').'/profile');
+            }
+        }
+        $user->save();
+
+        // new user detail
+        $ud = UserDetail::firstOrCreate(['user_id' => $user->id]);
+        $ud->is_active = $req->is_active;
+        $ud->address = $req->address;
+        $ud->contact_no = $req->contact_no;
+        $ud->whatsapp_no = $req->whatsapp_no;
+        $ud->skype_id = $req->skype_id;
+        $ud->save();
+
+        if($user){
+            $req->session()->flash('status', 'Profile Updated Successfully');
+        }else{
+            $req->session()->flash('status', 'Profile Not Updated Successfully');
+        }
+
+        return redirect(Config::get('admin.prefix', 'admin').'/profile');
     }
 
     /**
@@ -39,6 +84,11 @@ class UserController extends Controller
      */
     public function store(Request $req)
     {
+        if(auth()->user()->can('add user') == false && auth()->user()->id != 1){
+            session()->flash('status', ['type' => 'danger', 'message' =>'You have no permission.']);
+            return back();
+        }
+
         $user = User::create(
             [
                 'name' => $req->name,
@@ -89,6 +139,11 @@ class UserController extends Controller
      */
     public function update(Request $req, $id)
     {
+        if(auth()->user()->can('edit user') == false && auth()->user()->id != 1){
+            session()->flash('status', ['type' => 'danger', 'message' =>'You have no permission.']);
+            return back();
+        }
+
         $user = User::find($id);
         $user->name = $req->name;
         $user->email = $req->email;
@@ -121,6 +176,14 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        if(auth()->user()->can('delete user') == false && auth()->user()->id != 1){
+            session()->flash('status', ['type' => 'danger', 'message' =>'You have no permission.']);
+            return back();
+        }
+
+        $user = User::find($id);
+        $user->delete();
+        session()->flash('status', 'User Deleted Successfully');
 
         return redirect(Config::get('admin.prefix', 'admin').'/user');
     }

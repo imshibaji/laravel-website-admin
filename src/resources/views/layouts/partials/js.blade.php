@@ -8,6 +8,9 @@
 <script src="{{ URL::asset( $assetLink . '/js/jquery.slimscroll.min.js') }}"></script>
 <script src="{{ URL::asset( $assetLink . '/js/js.cookie.min.js') }}"></script>
 <script src="{{ URL::asset( $assetLink . '/js/js.osColorMode.js') }}"></script>
-<script src="{{ URL::asset( $assetLink . '/plugins/apexcharts/apexcharts.min.js') }}"></script>
-<script src="{{ URL::asset( $assetLink . '/js/formio.full.min.js') }}"></script>
+{{-- <script src="{{ URL::asset( $assetLink . '/plugins/apexcharts/apexcharts.min.js') }}"></script> --}}
+{{-- <script src="{{ URL::asset( $assetLink . '/plugins/formio/formio.full.min.js') }}"></script> --}}
 @yield('js_plugins')
+<!-- footerScript -->
+@yield('footerScript')
+@yield('scripts')

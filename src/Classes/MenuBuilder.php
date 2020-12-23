@@ -7,8 +7,6 @@ class MenuBuilder extends Config{
     protected $key = '';
     protected $value = '';
 
-
-
     protected function setKey($key){
         $this->key = $key;
     }

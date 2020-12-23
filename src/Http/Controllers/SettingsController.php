@@ -14,6 +14,11 @@ class SettingsController extends Controller
      */
     public function index()
     {
+        if(auth()->user()->can('view setting') == false && auth()->user()->id != 1){
+            session()->flash('status', ['type' => 'danger', 'message' =>'You have no permission.']);
+            return back();
+        }
+
         return view('admin::settings.list', ['settings' => Setting::all()]);
     }
 
@@ -35,6 +40,10 @@ class SettingsController extends Controller
      */
     public function store(Request $req)
     {
+        if(auth()->user()->can('add setting') == false && auth()->user()->id != 1){
+            session()->flash('status', ['type' => 'danger', 'message' =>'You have no permission.']);
+            return back();
+        }
 
         $setting = new Setting();
         $setting->name = $req->name;
@@ -79,6 +88,10 @@ class SettingsController extends Controller
      */
     public function update(Request $req, Setting $setting)
     {
+        if(auth()->user()->can('edit setting') == false && auth()->user()->id != 1){
+            session()->flash('status', ['type' => 'danger', 'message' =>'You have no permission.']);
+            return back();
+        }
         // $setting = new Setting();
         $setting->name = $req->name;
         $setting->type = $req->type;
@@ -97,6 +110,11 @@ class SettingsController extends Controller
      */
     public function destroy(Setting $setting)
     {
+        if(auth()->user()->can('delete setting') == false && auth()->user()->id != 1){
+            session()->flash('status', ['type' => 'danger', 'message' =>'You have no permission.']);
+            return back();
+        }
+
         $setting->delete();
         session()->flash('status', 'Settings Deleted Successfully');
         return redirect(config('admin.prefix', 'admin'). '/settings');

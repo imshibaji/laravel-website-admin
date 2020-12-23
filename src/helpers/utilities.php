@@ -45,3 +45,15 @@ function checkPermission($data, $role){
     }
     return $out;
 }
+
+function json_to_object($json, $assoc=false){
+    return json_decode($json, $assoc);
+}
+
+function object_to_json($object){
+    return json_encode($object);
+}
+
+function array_to_object($items){
+    return json_decode(json_encode($items));
+}

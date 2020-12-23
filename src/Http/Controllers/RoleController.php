@@ -16,6 +16,11 @@ class RoleController extends Controller
      */
     public function index()
     {
+        if(auth()->user()->can('view role') == false && auth()->user()->id != 1){
+            session()->flash('status', ['type' => 'danger', 'message' =>'You have no permission.']);
+            return back();
+        }
+
         return view('admin::role.list', [ 'roles' => Role::all(), 'permissions' => Permission::all() ]);
     }
 
@@ -37,6 +42,11 @@ class RoleController extends Controller
      */
     public function store(Request $req)
     {
+        if(auth()->user()->can('add role') == false && auth()->user()->id != 1){
+            session()->flash('status', ['type' => 'danger', 'message' =>'You have no permission.']);
+            return back();
+        }
+
         $role = Role::create([
             'name' => Str::lower($req->name),
             'guard_name' => Str::lower($req->guard_name)
@@ -79,6 +89,11 @@ class RoleController extends Controller
      */
     public function update(Request $req, $id)
     {
+        if(auth()->user()->can('edit role') == false && auth()->user()->id != 1){
+            session()->flash('status', ['type' => 'danger', 'message' =>'You have no permission.']);
+            return back();
+        }
+
         $role  = Role::findById($id);
         $role->name = Str::lower($req->name);
         $role->guard_name = Str::lower($req->guard_name);
@@ -96,6 +111,11 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
+        if(auth()->user()->can('delete role') == false && auth()->user()->id != 1){
+            session()->flash('status', ['type' => 'danger', 'message' =>'You have no permission.']);
+            return back();
+        }
+
         $role = Role::findById($id);
         $role->delete();
         session()->flash('status', 'Role is deleted');

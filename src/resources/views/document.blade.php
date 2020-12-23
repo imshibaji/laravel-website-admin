@@ -36,6 +36,6 @@ em img{
 @section('scripts')
 @parent
 <script>
-$('body').addClass('enlarge-menu');
+$(function(){$('body').addClass('enlarge-menu');});
 </script>
 @endsection

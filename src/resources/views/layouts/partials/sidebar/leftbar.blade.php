@@ -36,15 +36,18 @@
                         <i data-feather="settings" class="align-self-center menu-icon icon-dual"></i>
                     </a><!--end MetricaPages-->
                     @endif
-
                 </nav><!--end nav-->
                 <div class="pro-metrica-end">
-                    <a href="{{config('admin.help')}}" class="help" data-toggle="tooltip-custom" data-placement="right"  data-trigger="hover" title="" data-original-title="Help">
-                        <i data-feather="message-circle" class="align-self-center menu-icon icon-md icon-dual mb-4"></i>
-                    </a>
-                    <a href="{{config('admin.profile.link')}}" class="profile">
-                        <img src="{{ 'https://www.gravatar.com/avatar/'.md5(Auth::user()->email) ?? URL::asset( $assetLink . '/images/users/user-4.jpg')}}" alt="{{config('admin.profile.label')}}" class="rounded-circle thumb-sm">
-                    </a>
+                    @if(config('admin.help.view', true))
+                        <a href="{{ config('admin.prefix') . config('admin.help.link') }}" class="help" data-toggle="tooltip-custom" data-placement="right"  data-trigger="hover" title="" data-original-title="Help">
+                            <i data-feather="message-circle" class="align-self-center menu-icon icon-md icon-dual mb-4"></i>
+                        </a>
+                    @endif
+                    @if(config('admin.profile.view', true))
+                        <a href="{{ config('admin.prefix') . config('admin.profile.link') }}" class="profile" data-toggle="tooltip-custom" data-placement="right"  data-trigger="hover" title="{{auth()->user()->name }}" data-original-title="{{config('admin.profile.name')}}">
+                            <img src="{{ 'https://www.gravatar.com/avatar/'.md5(Auth::user()->email) ?? URL::asset( $assetLink . '/images/users/user-4.jpg')}}" alt="{{auth()->user()->name }}" class="rounded-circle thumb-sm">
+                        </a>
+                    @endif
                 </div>
             </div><!--end main-icon-menu-->
 
@@ -68,20 +71,20 @@
                         </div>
                         <ul class="nav metismenu">
                             @if(config('admin.left_side_menu.dashboard'))
-                            @foreach (config('admin.left_side_menu.dashboard', '[]') as $menu)
-                            @if (isset($menu['child']))
-                                <li class="nav-item">
-                                  <a class="nav-link" href="javascript: void(0);"><span class="w-100">{{ $menu['label'] }}</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
-                                    <ul class="nav-second-level" aria-expanded="false">
-                                        @foreach ($menu['child'] as $item)
-                                         <li><a href="{{ $item['link']}}">{{ $item['label'] }}</a></li>
-                                        @endforeach
-                                    </ul>
-                                </li>
-                            @else
-                                <li class="nav-item"><a class="nav-link" href="{{ $menu['link']}}">{{ $menu['label'] }}</a></li>
-                            @endif
-                            @endforeach
+                                @foreach (config('admin.left_side_menu.dashboard', '[]') as $menu)
+                                    @if (isset($menu['child']))
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="javascript: void(0);"><span class="w-100">{{ $menu['label'] }}</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                                            <ul class="nav-second-level" aria-expanded="false">
+                                                @foreach ($menu['child'] as $item)
+                                                <li><a href="{{ config('admin.prefix', 'admin') . $item['link']}}">{{ $item['label'] }}</a></li>
+                                                @endforeach
+                                            </ul>
+                                        </li>
+                                    @else
+                                        <li class="nav-item"><a class="nav-link" href="{{ config('admin.prefix', 'admin') . $menu['link']}}">{{ $menu['label'] }}</a></li>
+                                    @endif
+                                @endforeach
                             @endif
                         </ul>
                     </div><!-- end Dashboards -->
@@ -93,18 +96,18 @@
                         <ul class="nav metismenu">
                             @if(config('admin.left_side_menu.app'))
                             @foreach (config('admin.left_side_menu.app', '[]') as $menu)
-                            @if (isset($menu['child']))
-                                <li class="nav-item">
-                                  <a class="nav-link" href="javascript: void(0);"><span class="w-100">{{ $menu['label'] }}</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
-                                    <ul class="nav-second-level" aria-expanded="false">
-                                        @foreach ($menu['child'] as $item)
-                                         <li><a href="{{ $item['link']}}">{{ $item['label'] }}</a></li>
-                                        @endforeach
-                                    </ul>
-                                </li>
-                            @else
-                                <li class="nav-item"><a class="nav-link" href="{{ $menu['link']}}">{{ $menu['label'] }}</a></li>
-                            @endif
+                                @if (isset($menu['child']))
+                                    <li class="nav-item">
+                                    <a class="nav-link" href="javascript: void(0);"><span class="w-100">{{ $menu['label'] }}</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                                        <ul class="nav-second-level" aria-expanded="false">
+                                            @foreach ($menu['child'] as $item)
+                                            <li><a href="{{ config('admin.prefix', 'admin') . $item['link']}}">{{ $item['label'] }}</a></li>
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                @else
+                                    <li class="nav-item"><a class="nav-link" href="{{ config('admin.prefix', 'admin') . $menu['link']}}">{{ $menu['label'] }}</a></li>
+                                @endif
                             @endforeach
                             @endif
                         </ul>
@@ -118,16 +121,20 @@
                             @if(config('admin.left_side_menu.shop'))
                             @foreach (config('admin.left_side_menu.shop', '[]') as $menu)
                                 @if (isset($menu['child']))
+                                    @if(isset($menu['view']) && $menu['view'] == true)
                                     <li class="nav-item">
-                                    <a class="nav-link" href="javascript: void(0);"><span class="w-100">{{ $menu['label'] }}</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                                        <a class="nav-link" href="javascript: void(0);"><span class="w-100">{{ $menu['label'] }}</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                                         <ul class="nav-second-level" aria-expanded="false">
                                             @foreach ($menu['child'] as $item)
-                                            <li><a href="{{ $item['link']}}">{{ $item['label'] }}</a></li>
+                                            <li><a href="{{ config('admin.prefix', 'admin') . $item['link']}}">{{ $item['label'] }}</a></li>
                                             @endforeach
                                         </ul>
                                     </li>
+                                    @endif
                                 @else
-                                    <li class="nav-item"><a class="nav-link" href="{{ $menu['link']}}">{{ $menu['label'] }}</a></li>
+                                    @if(isset($menu['view']) && $menu['view'] == true)
+                                        <li class="nav-item"><a class="nav-link" href="{{ config('admin.prefix', 'admin') . $menu['link']}}">{{ $menu['label'] }}</a></li>
+                                    @endif
                                 @endif
                             @endforeach
                             @endif
@@ -140,18 +147,22 @@
                         <ul class="nav metismenu">
                             @if(config('admin.left_side_menu.users'))
                             @foreach (config('admin.left_side_menu.users', '[]') as $menu)
-                            @if (isset($menu['child']))
-                                <li class="nav-item">
-                                  <a class="nav-link" href="javascript: void(0);"><span class="w-100">{{ $menu['label'] }}</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
-                                    <ul class="nav-second-level" aria-expanded="false">
-                                        @foreach ($menu['child'] as $item)
-                                         <li><a href="{{ $item['link']}}">{{ $item['label'] }}</a></li>
-                                        @endforeach
-                                    </ul>
-                                </li>
-                            @else
-                                <li class="nav-item"><a class="nav-link" href="{{ $menu['link']}}">{{ $menu['label'] }}</a></li>
-                            @endif
+                                @if (isset($menu['child']))
+                                    @if(isset($menu['view']) && $menu['view'] == true)
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="javascript: void(0);"><span class="w-100">{{ $menu['label'] }}</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                                        <ul class="nav-second-level" aria-expanded="false">
+                                            @foreach ($menu['child'] as $item)
+                                            <li><a href="{{ config('admin.prefix', 'admin') . $item['link']}}">{{ $item['label'] }}</a></li>
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                    @endif
+                                @else
+                                    @if(isset($menu['view']) && $menu['view'] == true)
+                                        <li class="nav-item"><a class="nav-link" href="{{ config('admin.prefix', 'admin') . $menu['link']}}">{{ $menu['label'] }}</a></li>
+                                    @endif
+                                @endif
                             @endforeach
                             @endif
                         </ul>
@@ -164,23 +175,28 @@
                         <ul class="nav metismenu">
                             @if(config('admin.left_side_menu.settings'))
                             @foreach (config('admin.left_side_menu.settings', '[]') as $menu)
-                            @if (isset($menu['child']))
-                                <li class="nav-item">
-                                  <a class="nav-link" href="javascript: void(0);"><span class="w-100">{{ $menu['label'] }}</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
-                                    <ul class="nav-second-level" aria-expanded="false">
-                                        @foreach ($menu['child'] as $item)
-                                         <li><a href="{{ $item['link']}}">{{ $item['label'] }}</a></li>
-                                        @endforeach
-                                    </ul>
-                                </li>
-                            @else
-                                <li class="nav-item"><a class="nav-link" href="{{ $menu['link']}}">{{ $menu['label'] }}</a></li>
-                            @endif
+                                @if (isset($menu['child']))
+                                    @if(isset($menu['view']) && $menu['view'] == true)
+                                        <li class="nav-item">
+                                        <a class="nav-link" href="javascript: void(0);"><span class="w-100">{{ $menu['label'] }}</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                                            <ul class="nav-second-level" aria-expanded="false">
+                                                @foreach ($menu['child'] as $item)
+                                                    @if(isset($item['view']))
+                                                        <li><a href="{{ config('admin.prefix', 'admin') . $item['link']}}">{{ $item['label'] }}</a></li>
+                                                    @endif
+                                                @endforeach
+                                            </ul>
+                                        </li>
+                                    @endif
+                                @else
+                                    @if(isset($menu['view']) && $menu['view'] == true)
+                                        <li class="nav-item"><a class="nav-link" href="{{ config('admin.prefix', 'admin') . $menu['link']}}">{{ $menu['label'] }}</a></li>
+                                    @endif
+                                @endif
                             @endforeach
                             @endif
                         </ul>
                     </div><!-- end Pages -->
-
 
                 </div><!--end menu-body-->
             </div><!-- end main-menu-inner-->

@@ -19,8 +19,6 @@
             // echo $color_scheme;
         @endphp
         @include('admin::layouts/partials/css')
-        @yield('headerStyle')
-        @yield('styles')
     </head>
     <body>
          <!-- leftbar -->
@@ -44,10 +42,20 @@
             <!-- end page content -->
         </div>
         <!-- end page-wrapper -->
+
         @include('admin::layouts/partials/js')
-        @include('admin::layouts.partials.extra-list')
-        <!-- footerScript -->
-        @yield('footerScript')
-        @yield('scripts')
+<!-- App js -->
+<script src="{{ URL::asset( $assetLink . '/js/app.js') }}"></script>
+<script>
+function darkCssLink(){
+    $('#css-link').attr("href","{{ URL::asset( $assetLink . '/css/bootstrap-dark.min.css')}}");
+    $('#css-theme').attr("href","{{ URL::asset( $assetLink . '/css/app-dark.min.css')}}");
+}
+function lightCssLink(){
+    $('#css-link').attr("href","{{ URL::asset( $assetLink . '/css/bootstrap.min.css')}}");
+    // $('#css-theme').attr("href","{{ URL::asset( $assetLink . '/css/app-material.min.css')}}");
+    $('#css-theme').attr("href","{{ URL::asset( $assetLink . '/css/app.min.css')}}");
+}
+</script>
     </body>
 </html>

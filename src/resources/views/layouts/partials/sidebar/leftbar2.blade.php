@@ -1,7 +1,7 @@
    <!-- Left Sidenav -->
         <div class="left-sidenav">
             <!-- LOGO -->
-            <div class="topbar-left" style="background-color: var(--classic)">
+            <div class="topbar-left">
                 <a href="{{config('admin.prefix', '/')}}" class="logo">
                     <span>
                     <img src="{{  config('admin.logo', URL::asset( $assetLink . '/images/logo-sm.png')) }}" alt="{{ config('admin.title', 'Admin') }}" class="logo-sm">
@@ -11,18 +11,18 @@
                         <img src="{{ URL::asset( $assetLink . '/images/logo-dark.png')}}" alt="logo-large" class="logo-lg logo-dark">
                     </span> --}}
                     <h4 class="logo-lg logo-light">{{ config('admin.title', 'Admin') }}</h4>
-                    <h4 class="logo-lg logo-dark" style="color: var(--light)">{{ config('admin.title', 'Admin') }}</h4>
+                    <h4 class="logo-lg logo-dark">{{ config('admin.title', 'Admin') }}</h4>
                 </a>
             </div>
             <!--end logo-->
             <div class="leftbar-profile p-3 w-100">
                 <div class="media position-relative">
                     <div class="leftbar-user online">
-                        <img src="{{ URL::asset( $assetLink . '/images/users/user-9.jpg')}}" alt="" class="thumb-md rounded-circle">
+                        <img src="{{'https://www.gravatar.com/avatar/'.md5(Auth::user()->email) ?? URL::asset( $assetLink . '/images/users/user-9.jpg')}}" alt="" class="thumb-md rounded-circle">
                     </div>
                     <div class="media-body align-self-center text-truncate ml-3">
-                        <h5 class="mt-0 mb-1 font-weight-semibold">Hyman M. Cross</h5>
-                        <p class="text-uppercase mb-0 font-12">Admin</p>
+                        <h5 class="mt-0 mb-1 font-weight-semibold">{{auth()->user()->name}}</h5>
+                        <p class="text-uppercase mb-0 font-12">{{ Str::upper(auth()->user()->roles[0]->name) }}</p>
                     </div><!--end media-body-->
                 </div>
             </div>
@@ -48,12 +48,12 @@
                                     <a href="javascript: void(0);"><i class="ti-control-record"></i>{{ $menu['label'] }} <span class="menu-arrow left-has-menu"><i class="mdi mdi-chevron-right"></i></span></a>
                                     <ul class="nav-second-level" aria-expanded="false">
                                         @foreach ($menu['child'] as $item)
-                                            <li><a href="{{ $item['link']}}">{{ $item['label'] }}</a></li>
+                                            <li><a href="{{ config('admin.prefix', 'admin') . $item['link']}}">{{ $item['label'] }}</a></li>
                                         @endforeach
                                     </ul>
                                 </li>
                                 @else
-                                    <li class="nav-item"><a class="nav-link" href="{{ $menu['link']}}">{{ $menu['label'] }}</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{{ config('admin.prefix', 'admin') . $menu['link']}}">{{ $menu['label'] }}</a></li>
                                 @endif
                                 @endforeach
                             @endif
@@ -74,16 +74,22 @@
                             @if(config('admin.left_side_menu.app'))
                                 @foreach (config('admin.left_side_menu.app', '[]') as $menu)
                                 @if (isset($menu['child']))
-                                <li>
-                                    <a href="javascript: void(0);"><i class="ti-control-record"></i>{{ $menu['label'] }} <span class="menu-arrow left-has-menu"><i class="mdi mdi-chevron-right"></i></span></a>
-                                    <ul class="nav-second-level" aria-expanded="false">
-                                        @foreach ($menu['child'] as $item)
-                                            <li><a href="{{ $item['link']}}">{{ $item['label'] }}</a></li>
-                                        @endforeach
-                                    </ul>
-                                </li>
+                                    @if(isset($menu['view']) && $menu['view'] == true)
+                                        <li>
+                                            <a href="javascript: void(0);"><i class="ti-control-record"></i>{{ $menu['label'] }} <span class="menu-arrow left-has-menu"><i class="mdi mdi-chevron-right"></i></span></a>
+                                            <ul class="nav-second-level" aria-expanded="false">
+                                                @foreach ($menu['child'] as $item)
+                                                    @isset($item['view'])
+                                                        <li><a href="{{ config('admin.prefix', 'admin') . $item['link']}}">{{ $item['label'] }}</a></li>
+                                                    @endisset
+                                                @endforeach
+                                            </ul>
+                                        </li>
+                                    @endif
                                 @else
-                                    <li class="nav-item"><a class="nav-link" href="{{ $menu['link']}}">{{ $menu['label'] }}</a></li>
+                                    @if(isset($menu['view']) && $menu['view'] == true)
+                                        <li class="nav-item"><a class="nav-link" href="{{ config('admin.prefix', 'admin') . $menu['link']}}">{{ $menu['label'] }}</a></li>
+                                    @endif
                                 @endif
                                 @endforeach
                             @endif
@@ -106,20 +112,25 @@
                             @if(config('admin.left_side_menu.shop'))
                                 @foreach (config('admin.left_side_menu.shop', '[]') as $menu)
                                 @if (isset($menu['child']))
-                                <li>
-                                    <a href="javascript: void(0);"><i class="ti-control-record"></i>{{ $menu['label'] }} <span class="menu-arrow left-has-menu"><i class="mdi mdi-chevron-right"></i></span></a>
-                                    <ul class="nav-second-level" aria-expanded="false">
-                                        @foreach ($menu['child'] as $item)
-                                            <li><a href="{{ $item['link']}}">{{ $item['label'] }}</a></li>
-                                        @endforeach
-                                    </ul>
-                                </li>
+                                    @if(isset($menu['view']) && $menu['view'] == true)
+                                        <li>
+                                            <a href="javascript: void(0);"><i class="ti-control-record"></i>{{ $menu['label'] }} <span class="menu-arrow left-has-menu"><i class="mdi mdi-chevron-right"></i></span></a>
+                                            <ul class="nav-second-level" aria-expanded="false">
+                                                @foreach ($menu['child'] as $item)
+                                                    @isset($item['view'])
+                                                        <li><a href="{{ config('admin.prefix', 'admin') . $item['link']}}">{{ $item['label'] }}</a></li>
+                                                    @endisset
+                                                @endforeach
+                                            </ul>
+                                        </li>
+                                    @endif
                                 @else
-                                    <li class="nav-item"><a class="nav-link" href="{{ $menu['link']}}">{{ $menu['label'] }}</a></li>
+                                    @if(isset($menu['view']) && $menu['view'] == true)
+                                        <li class="nav-item"><a class="nav-link" href="{{ config('admin.prefix', 'admin') . $menu['link']}}">{{ $menu['label'] }}</a></li>
+                                    @endif
                                 @endif
                                 @endforeach
                             @endif
-
                         </ul>
                     </li>
                 @endif
@@ -137,16 +148,22 @@
                             @if(config('admin.left_side_menu.users'))
                                 @foreach (config('admin.left_side_menu.users', '[]') as $menu)
                                 @if (isset($menu['child']))
-                                <li>
-                                    <a href="javascript: void(0);"><i class="ti-control-record"></i>{{ $menu['label'] }} <span class="menu-arrow left-has-menu"><i class="mdi mdi-chevron-right"></i></span></a>
-                                    <ul class="nav-second-level" aria-expanded="false">
-                                        @foreach ($menu['child'] as $item)
-                                            <li><a href="{{ $item['link']}}">{{ $item['label'] }}</a></li>
-                                        @endforeach
-                                    </ul>
-                                </li>
+                                    @if(isset($menu['view']) && $menu['view'] == true)
+                                        <li>
+                                            <a href="javascript: void(0);"><i class="ti-control-record"></i>{{ $menu['label'] }} <span class="menu-arrow left-has-menu"><i class="mdi mdi-chevron-right"></i></span></a>
+                                            <ul class="nav-second-level" aria-expanded="false">
+                                                @foreach ($menu['child'] as $item)
+                                                    @isset($item['view'])
+                                                        <li><a href="{{ config('admin.prefix', 'admin') . $item['link']}}">{{ $item['label'] }}</a></li>
+                                                    @endisset
+                                                @endforeach
+                                            </ul>
+                                        </li>
+                                    @endif
                                 @else
-                                    <li class="nav-item"><a class="nav-link" href="{{ $menu['link']}}">{{ $menu['label'] }}</a></li>
+                                    @if(isset($menu['view']) && $menu['view'] == true)
+                                        <li class="nav-item"><a class="nav-link" href="{{ config('admin.prefix', 'admin') . $menu['link']}}">{{ $menu['label'] }}</a></li>
+                                    @endif
                                 @endif
                                 @endforeach
                             @endif
@@ -167,16 +184,22 @@
                             @if(config('admin.left_side_menu.settings'))
                                 @foreach (config('admin.left_side_menu.settings', '[]') as $menu)
                                 @if (isset($menu['child']))
-                                <li>
-                                    <a href="javascript: void(0);"><i class="ti-control-record"></i>{{ $menu['label'] }} <span class="menu-arrow left-has-menu"><i class="mdi mdi-chevron-right"></i></span></a>
-                                    <ul class="nav-second-level" aria-expanded="false">
-                                        @foreach ($menu['child'] as $item)
-                                            <li><a href="{{ $item['link']}}">{{ $item['label'] }}</a></li>
-                                        @endforeach
-                                    </ul>
-                                </li>
+                                    @if(isset($menu['view']) && $menu['view'] == true)
+                                        <li>
+                                            <a href="javascript: void(0);"><i class="ti-control-record"></i>{{ $menu['label'] }} <span class="menu-arrow left-has-menu"><i class="mdi mdi-chevron-right"></i></span></a>
+                                            <ul class="nav-second-level" aria-expanded="false">
+                                                @foreach ($menu['child'] as $item)
+                                                    @isset($item['view'])
+                                                        <li><a href="{{ config('admin.prefix', 'admin') . $item['link']}}">{{ $item['label'] }}</a></li>
+                                                    @endisset
+                                                @endforeach
+                                            </ul>
+                                        </li>
+                                    @endif
                                 @else
-                                    <li class="nav-item"><a class="nav-link" href="{{ $menu['link']}}">{{ $menu['label'] }}</a></li>
+                                    @if(isset($menu['view']) && $menu['view'] == true)
+                                        <li class="nav-item"><a class="nav-link" href="{{ config('admin.prefix', 'admin') . $menu['link']}}">{{ $menu['label'] }}</a></li>
+                                    @endif
                                 @endif
                                 @endforeach
                             @endif
@@ -184,6 +207,5 @@
                     </li>
                 @endif
             </ul>
-
         </div>
         <!-- end left-sidenav-->

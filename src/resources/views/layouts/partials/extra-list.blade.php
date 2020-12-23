@@ -1,36 +1,17 @@
-<!-- Required datatable js -->
-<script src="{{ URL::asset( $assetLink . '/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-<script src="{{ URL::asset( $assetLink . '/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
-<!-- Buttons examples -->
-<script src="{{ URL::asset( $assetLink . '/plugins/datatables/dataTables.buttons.min.js')}}"></script>
-<script src="{{ URL::asset( $assetLink . '/plugins/datatables/buttons.bootstrap4.min.js')}}"></script>
-<script src="{{ URL::asset( $assetLink . '/plugins/datatables/jszip.min.js')}}"></script>
-<script src="{{ URL::asset( $assetLink . '/plugins/datatables/pdfmake.min.js')}}"></script>
-<script src="{{ URL::asset( $assetLink . '/plugins/datatables/vfs_fonts.js')}}"></script>
-<script src="{{ URL::asset( $assetLink . '/plugins/datatables/buttons.html5.min.js')}}"></script>
-<script src="{{ URL::asset( $assetLink . '/plugins/datatables/buttons.print.min.js')}}"></script>
-<script src="{{ URL::asset( $assetLink . '/plugins/datatables/buttons.colVis.min.js')}}"></script>
-<!-- Responsive examples -->
-<script src="{{ URL::asset( $assetLink . '/plugins/datatables/dataTables.responsive.min.js')}}"></script>
-<script src="{{ URL::asset( $assetLink . '/plugins/datatables/responsive.bootstrap4.min.js')}}"></script>
-<script src="{{ URL::asset( $assetLink . '/plugins/tinymce/tinymce.min.js')}}"></script>
-{{-- <script src="{{ URL::asset( $assetLink . '/pages/jquery.datatable.init.js')}}"></script> --}}
+@section('css_plugins')
+@parent
+@endsection
 
-<!-- App js -->
-<script src="{{ URL::asset( $assetLink . '/js/app.js') }}"></script>
-<script>
-function darkCssLink(){
-    $('#css-link').attr("href","{{ URL::asset( $assetLink . '/css/bootstrap-dark.min.css')}}");
-    $('#css-theme').attr("href","{{ URL::asset( $assetLink . '/css/app-dark.min.css')}}");
-}
-function lightCssLink(){
-    $('#css-link').attr("href","{{ URL::asset( $assetLink . '/css/bootstrap.min.css')}}");
-    $('#css-theme').attr("href","{{ URL::asset( $assetLink . '/css/app-material.min.css')}}");
-}
-</script>
+@section('js_plugins')
+@parent
+<script src="{{ URL::asset( $assetLink . '/plugins/tinymce/tinymce.min.js')}}"></script>
+@endsection
+
+@section('scripts')
+@parent
 <script>
     $(function(){
-        $('#datatable').DataTable();
+        // This is for editor
         if($("#elm1").length > 0){
             tinymce.init({
                 selector: "textarea#elm1",
@@ -55,4 +36,6 @@ function lightCssLink(){
         }
     });
 </script>
+@endsection
+
 

@@ -1,19 +1,27 @@
 <?php
 namespace Shibaji\Admin;
 
+use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Maatwebsite\Excel\ExcelServiceProvider;
+use Plank\Metable\MetableServiceProvider;
 use Shibaji\Admin\Classes\MetaBuilder;
-use Shibaji\Admin\Components\Alert;
-use Shibaji\Admin\Components\Modal;
-use Shibaji\Admin\Components\Notification;
-use Shibaji\Admin\Components\Search;
-use Shibaji\Admin\Components\Seo;
-use Shibaji\Admin\Components\Shortcuts;
-use Shibaji\Admin\Components\Translate;
-use Shibaji\Admin\Console\Commands\Admin;
-use Shibaji\Admin\Console\Commands\AdminPub;
+use Shibaji\Admin\Console\Admin;
+use Shibaji\Admin\Console\AdminPub;
+use Shibaji\Admin\Providers\MetaTagProvider;
+use Shibaji\Admin\View\Components\Alert;
+use Shibaji\Admin\View\Components\Breadcrumb;
+use Shibaji\Admin\View\Components\Datatable;
+use Shibaji\Admin\View\Components\Input;
+use Shibaji\Admin\View\Components\Modal;
+use Shibaji\Admin\View\Components\Notification;
+use Shibaji\Admin\View\Components\Search;
+use Shibaji\Admin\View\Components\Seo;
+use Shibaji\Admin\View\Components\Shortcuts;
+use Shibaji\Admin\View\Components\Translate;
+use Spatie\Permission\PermissionServiceProvider;
 
 require_once( __DIR__ . '/helpers/utilities.php');
 
@@ -24,24 +32,15 @@ class AdminServiceProvider extends ServiceProvider{
         $this->mergeConfigFrom(
             __DIR__.'/config/admin.php', 'admin'
         );
+        $this->bindProviders();
     }
 
     public function boot(){
         Schema::defaultStringLength(191);
 
-
-        // $lf = new LeftMenu();
-
-        // $lf->append('app', [
-        //     'link' => '',
-        //     'label' => 'App Test Menu',
-        //     'child' => [
-        //         [
-        //             'link' => '#Test',
-        //             'label' => 'Test Submenu'
-        //         ]
-        //     ]
-        // ]);
+        $this->app->bind('calculator', function($app) {
+            return new Calculator();
+        });
 
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
 
@@ -53,7 +52,23 @@ class AdminServiceProvider extends ServiceProvider{
         $this->loadViewsFrom(__DIR__.'/resources/views', 'admin');
         $this->loadTranslationsFrom(__DIR__.'/resources/translations', 'admin');
 
+        $this->bindComponents();
+        $this->bindConsoleCommands();
 
+        $this->loadResources();
+
+    }
+
+    private function bindConsoleCommands(){
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                Admin::class,
+                AdminPub::class,
+            ]);
+        }
+    }
+
+    private function bindComponents(){
         $this->loadViewComponentsAs('admin', [
             Alert::class,
             Modal::class,
@@ -62,24 +77,21 @@ class AdminServiceProvider extends ServiceProvider{
             Translate::class,
             Notification::class,
             Seo::class,
+            Datatable::class,
+            Breadcrumb::class,
+            Input::class
         ]);
-        if ($this->app->runningInConsole()) {
-            $this->commands([
-                Admin::class,
-                AdminPub::class,
-            ]);
-        }
+    }
 
-        Blade::directive('meta', function () {
-            $url = $_SERVER['PATH_INFO'];
-            return MetaBuilder::render($url);
-        });
+    private function bindProviders(){
+        $this->app->register(PermissionServiceProvider::class);
+        $this->app->register(ExcelServiceProvider::class);
+        $this->app->register(MetableServiceProvider::class);
+        $this->app->register(MetaTagProvider::class);
 
-        // Template Variables
-        view()->share('assetLink', config('admin.assets', 'assets'));
-
-        $this->loadResources();
-
+        $loader = AliasLoader::getInstance();
+        $loader->alias('Markdown', 'GrahamCampbell\Markdown\Facades\Markdown');
+        $loader->alias('Excel', 'Maatwebsite\Excel\Facades\Excel');
     }
 
     private function loadResources(){
@@ -93,17 +105,13 @@ class AdminServiceProvider extends ServiceProvider{
             __DIR__.'/config/admin.php' => config_path('admin.php'),
         ], 'admin-config');
 
-        // $this->publishes([
-            // __DIR__.'/database/migrations/' => database_path('migrations'),
-        // ], 'admin-migration');
+        $this->publishes([
+            __DIR__.'/database/seeders/DatabaseSeeder.php' => database_path('/seeders/DatabaseSeeder.php'),
+        ], 'admin-seeder');
 
-        // $this->publishes([
-            // __DIR__.'/database/factories/' => database_path('factories'),
-        // ], 'admin-migration');
-
-        // $this->publishes([
-            // __DIR__.'/database/seeds/' => database_path('seeds'),
-        // ], 'admin-seeds');
+        $this->publishes([
+            __DIR__.'/config/permission.php' => config_path('permission.php'),
+        ], 'admin-config-permission');
 
         $this->publishes([
             __DIR__.'/resources/translations' => resource_path('lang/vendor/courier'),

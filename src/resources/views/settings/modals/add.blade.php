@@ -1,7 +1,7 @@
 <x-admin-modal btnname="Add New Role" type="secondary" title="Add Role" action="/admin/settings" method="POST">
     <h5>Role Information</h5>
     <div class="form-row">
-        <div class="form-group col-12">
+        <div class="form-group col-6">
             <label for="userFullName">Setting Name</label>
             <input type="text" class="form-control" name="name" id="userFullName">
         </div>

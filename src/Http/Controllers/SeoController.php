@@ -13,6 +13,11 @@ class SeoController extends Controller{
     }
 
     public function index(){
+        if(auth()->user()->can('view seo') == false && auth()->user()->id != 1){
+            session()->flash('status', ['type' => 'danger', 'message' =>'You have no permission.']);
+            return back();
+        }
+
         $seos = SeoOptimization::all();
         return view('admin::seo.list', compact('seos'));
     }
@@ -32,8 +37,12 @@ class SeoController extends Controller{
     }
 
     public function store(Request $req){
-        $seo = new SeoOptimization();
+        if(auth()->user()->can('add view') == false && auth()->user()->id != 1){
+            session()->flash('status', ['type' => 'danger', 'message' =>'You have no permission.']);
+            return back();
+        }
 
+        $seo = new SeoOptimization();
         $seo->url = $req->url;
         $seo->meta_title = $req->meta_title;
         $seo->meta_keywords = $req->meta_keywords;
@@ -84,6 +93,10 @@ class SeoController extends Controller{
     }
 
     public function update(Request $req, SeoOptimization $seo){
+        if(auth()->user()->can('view edit') == false && auth()->user()->id != 1){
+            session()->flash('status', ['type' => 'danger', 'message' =>'You have no permission.']);
+            return back();
+        }
 
         $seo->url = $req->url;
         $seo->meta_title = $req->meta_title;
@@ -130,12 +143,17 @@ class SeoController extends Controller{
     public function delete($id){
         $seo = SeoOptimization::find($id);
         if($seo){
-            return $seo->delete();
+            return $this->destroy($seo);
         }else{
             return true;
         }
     }
     public function destroy(SeoOptimization $seo){
+        if(auth()->user()->can('delete seo') == false && auth()->user()->id != 1){
+            session()->flash('status', ['type' => 'danger', 'message' =>'You have no permission.']);
+            return back();
+        }
+
         $seo->delete();
         return redirect(route('admin.seo'));
     }

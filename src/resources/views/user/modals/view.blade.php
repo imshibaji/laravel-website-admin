@@ -8,11 +8,11 @@
         <div class="form-row">
             <div class="form-group col-12">
                 <label for="userFullName-{{$user->id}}">Full Name</label>
-                <input type="text" class="form-control" name="name" id="userFullName-{{$user->id}}" value="{{$user->name}}">
+                <input type="text" class="form-control" name="name" readonly id="userFullName-{{$user->id}}" value="{{$user->name}}">
             </div>
             <div class="form-group col-12">
                 <label for="exampleInputEmail-{{$user->id}}">Email address</label>
-                <input type="email" class="form-control" name="email" id="exampleInputEmail-{{$user->id}}" aria-describedby="emailHelp" value="{{$user->email}}">
+                <input type="email" class="form-control" name="email" readonly id="exampleInputEmail-{{$user->id}}" aria-describedby="emailHelp" value="{{$user->email}}">
                 {{-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> --}}
             </div>
         </div>

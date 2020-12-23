@@ -1,32 +1,23 @@
 @extends('admin::layouts.master')
 
-@section('title', 'Roles List')
+@section('title', 'Settings List')
 
 @section('content')
   <div class="container-fluid">
     <!-- post-Title -->
     <div class="row">
         <div class="col-sm-12">
-
-            @component('admin::common-components.breadcrumb')
-                @slot('title') Settings List @endslot
-                @slot('item1') Admin @endslot
-                {{-- @slot('item1_link') /admin @endslot --}}
-                {{-- @slot('item2') posts @endslot
-                @slot('item2_link') /admin/post @endslot --}}
-            @endcomponent
-
+            <x-admin-breadcrumb
+            title="Settings"
+            item1="Admin"
+            :link1="config('admin.prefix', 'admin')"
+            />
         </div><!--end col-->
     </div>
     <!-- end post title end breadcrumb -->
 
     @if (session('status'))
-        <div class="alert alert-success" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true"><i class="mdi mdi-close"></i></span>
-            </button>
-            {{ session('status') }}
-        </div>
+        <x-admin-alert type="success" :message="session('status')"></x-admin-alert>
     @endif
 
     <div class="row">
@@ -39,12 +30,14 @@
                             <p class="text-muted mb-3">This is importent for site page optimizations.</p>
                         </div>
                         <div class="col-md-2 text-center text-md-right py-md-3">
-                            @include('admin::settings.modals.add')
-                            {{-- <a href="{{ route('admin.user.create') }}" class="btn btn-secondary mb-2 mb-lg-0">Add User</a> --}}
+                            @can('add setting')
+                                @include('admin::settings.modals.add')
+                                {{-- <a href="{{ route('admin.user.create') }}" class="btn btn-secondary mb-2 mb-lg-0">Add User</a> --}}
+                            @endcan
                         </div>
                     </div>
-                    <table id="datatable" class="table table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                        <thead>
+                    <x-admin-datatable>
+                        <x-slot name="thead">
                         <tr>
                             <th>Name</th>
                             <th>Type</th>
@@ -53,8 +46,8 @@
                             {{-- <th>Updated At</th> --}}
                             <th>Actions</th>
                         </tr>
-                        </thead>
-                        <tbody>
+                        </x-slot>
+                        <x-slot name="tbody">
                         @foreach ($settings as $setting)
                         <tr>
                             <td>{{ $setting->name ?? '' }}</td>
@@ -67,14 +60,18 @@
                             <td class="text-center">
                                 <div class="btn-group btn-group-sm" role="group">
                                     @include('admin::settings.modals.view')
-                                    @include('admin::settings.modals.edit')
-                                    @include('admin::settings.modals.delete')
+                                    @can('edit setting')
+                                        @include('admin::settings.modals.edit')
+                                    @endcan
+                                    @can('delete setting')
+                                        @include('admin::settings.modals.delete')
+                                    @endcan
                                 </div>
                             </td>
                         </tr>
                         @endforeach
-                        </tbody>
-                    </table>
+                        </x-slot>
+                    </x-admin-datatable>
                 </div>
             </div>
         </div>
@@ -84,20 +81,4 @@
 </div><!-- container -->
 @stop
 
-@section('headers')
-@parent
-<link href="{{ URL::asset($assetLink .'/plugins/select2/select2.min.css')}}" rel="stylesheet" type="text/css" />
-@endsection
-
-@section('js_plugins')
-@parent
-<script src="{{ URL::asset($assetLink .'/plugins/select2/select2.min.js')}}"></script>
-<script>
-$(function(){
-    $(".select2").select2({
-        width: '100%',
-        // theme: "classic"
-    });
-});
-</script>
-@endsection
+{{-- @include('admin::layouts.partials.extra-list') --}}

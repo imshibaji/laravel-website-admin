@@ -1,13 +1,16 @@
 <?php
 
 return [
-    'title' => 'Web Admin',
+    'title' => 'Business ERP',
 
     //Admin Logo
     'logo' => '/assets/images/web-admin-logo.png',
 
     // URL Prefix for Application
     'prefix' => '/admin',
+
+    // API URL Prefix for Application
+    'api_prefix' => '/api',
 
     // Public Assets Path
     'assets' => 'assets',
@@ -17,77 +20,63 @@ return [
 
     //Top Menu Left and Submenu
     'top_left_menu' => [
-        'isView' => false,
-        'label' => 'Shortcuts',
+        'view' => true,
+        'label' => 'Quick Find',
         'dashboard' => [
             'title' => 'The Poworfull Dashboard',
             'subtitle' => 'See all the pages Metrica.',
-            'link' => './' ,
+            'link' => '',
             'btn_label' => 'See Dashboard'
         ],
         'hotmenus' => [
             [
-                'link' => '/admin',
-                'label' => 'Dashboard'
+                'link' => '/crm',
+                'label' => 'CRM Dashboard'
             ],
             [
-                'link' => './',
-                'label' => 'Another'
+                'link' => '/user',
+                'label' => 'Users'
             ],
             [
-                'link' => './',
-                'label' => 'Test Nav'
+                'link' => '/role',
+                'label' => 'Roles'
             ],
             [
-                'link' => './',
-                'label' => 'Another 2'
+                'link' => '/permission',
+                'label' => 'Permissions'
             ],
             [
-                'link' => './',
-                'label' => 'Another 3'
+                'link' => '/settings',
+                'label' => 'Settings'
             ],
-            // [
-            //     'link' => './',
-            //     'label' => 'Another 4'
-            // ],
-            // [
-            //     'link' => './',
-            //     'label' => 'Another 5'
-            // ],
-            // [
-            //     'link' => './',
-            //     'label' => 'Another 6'
-            // ],
         ]
     ],
 
     // Searchbar
     'searchbar' => [
-        'isView' => false,
-        'action' => '#',
+        'view' => true,
+        'action' => '/search',
         'method' => 'GET',
-        'suggestions' => [
-            'One',
-            'Two'
-        ],
+        'suggestions' => [],
     ],
 
     //Top Menu Right and Submenu
     'top_right_menu' => [
         'lang' => [
-            'isView' => false,
+            'view' => false,
             'sub_menus' => [
-                [ 'link' => '#', 'label' => 'English', 'icon' => 'us', 'selected' => true ],
+                [ 'link' => '#', 'label' => 'English', 'icon' => 'us' ],
                 [ 'link' => '#', 'label' => 'Genman', 'icon' => 'germany' ],
                 [ 'link' => '#', 'label' => 'Italian', 'icon' => 'italy' ],
                 [ 'link' => '#', 'label' => 'French', 'icon' => 'french' ],
                 [ 'link' => '#', 'label' => 'Spanish', 'icon' => 'spain' ],
                 [ 'link' => '#', 'label' => 'Russian', 'icon' => 'russia' ],
+                [ 'link' => '#', 'label' => 'India', 'icon' => 'india', 'selected' => true ],
             ],
         ],
-        'notify' => false,
+        'notify' => true,
         'profile_sub_menus' => [
-            ['link' => '#', 'label'=> 'Profile', 'icon' => 'dripicons-user'],
+            ['link' => '/profile', 'label'=> 'My Profile', 'icon' => 'dripicons-user'],
             // ['link' => '#', 'label'=> 'My Wallet', 'icon' => 'dripicons-wallet'],
             // ['link' => '#', 'label'=> 'Settings', 'icon' => 'dripicons-gear'],
             // ['link' => '#', 'label'=> 'Lock Screen', 'icon' => 'dripicons-lock'],
@@ -99,80 +88,73 @@ return [
     'left_side_menu' => [
         'dashboard' => [
             [
-                'link' => '/admin',
+                'link' => '',
                 'label' => 'Dashboard'
+            ],
+            [
+                'link' => '/crm',
+                'label' => 'CRM Dash'
             ]
         ],
         'app' => [],
         'shop' => [],
         'settings' => [
             [
-                'link' => '/'.config('admin.prefix', 'admin').'/seo',
-                'label' => 'Page SEOs'
+                'link' => '/settings',
+                'label' => 'All Settings',
+                'view' => true
             ],
             [
-                'link' => '/'.config('admin.prefix', 'admin').'/settings',
-                'label' => 'All Settings'
+                'link' => '/seo',
+                'label' => 'Page SEOs',
+                'view' => true
             ],
             [
-                'link' => '#',
-                'label' => 'My Profile'
+                'link' => '/profile',
+                'label' => 'My Profile',
+                'view' => true
             ]
         ],
         'users' =>  [
             [
-                'link' => '/'.config('admin.prefix', 'admin').'/user',
-                'label' => 'All Users'
+                'link' => '/user',
+                'label' => 'All Users',
+                'view' => true
             ],
             [
-                'link' => '/'.config('admin.prefix', 'admin').'/role',
-                'label' => 'Roles'
+                'link' => '/role',
+                'label' => 'Roles',
+                'view' => true
             ],
             [
-                'link' => '/'.config('admin.prefix', 'admin').'/permission',
-                'label' => 'Permissions'
+                'link' => '/permission',
+                'label' => 'Permissions',
+                'view' => true
             ]
         ],
     ],
 
     // Lower Menu
-    'help' => '/admin/help',
+    'help' => [
+        'link' => '/help',
+        'view' => true
+    ],
     'profile' => [
         'image' => '',
-        'name' => 'Website Admin',
+        'name' => 'My Profile',
         'type' => 'admin',
-        'link' => '#',
-        'status' => true,
+        'link' => '/profile',
+        'view' => true,
     ],
 
     // Right Panel bar Area
     'right_panel_show' => false,
 
 
-    // Admin Auth Part
-    'guards' => [
-        'admin' => [
-            'driver' => 'session',
-            'provider' => 'admins'
-        ],
-    ],
-
-    'providers' => [
-        'admins' => [
-            'driver' => 'eloquent',
-            'model' => Shibaji\Admin\Models\Admin::class,
-        ],
-    ],
-
-    'passwords' => [
-        'admins' => [
-            'provider' => 'admins',
-            'table' => 'password_resets',
-            'expire' => 60,
-            'throttle' => 60,
-        ],
-    ],
-
     // Plugins
-    'plugins' => [],
+    'plugins' => [
+        'css' => [],
+        'js' => [],
+        'images' => []
+    ],
 ];

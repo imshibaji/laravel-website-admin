@@ -256,3 +256,68 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+
+@section('scripts')
+<script src="{{ URL::asset( $assetLink . '/plugins/apexcharts/apexcharts.min.js') }}"></script>
+<script>
+function initRightbarChart() {
+    //Apex-radialbar2
+    var options = {
+        chart: {
+            height: 250,
+            type: 'radialBar',
+            dropShadow: {
+                enabled: true,
+                top: 10,
+                left: 0,
+                bottom: 0,
+                right: 0,
+                blur: 2,
+                color: '#45404a2e',
+                opacity: 0.35
+            },
+        },
+        colors: ['#6d81f5', '#fd3c97', '#1eca7b'],
+        plotOptions: {
+            radialBar: {
+                track: {
+                    background: '#b9c1d4',
+                    opacity: 0.5,
+                },
+                dataLabels: {
+                    name: {
+                        fontSize: '16px',
+                    },
+                    value: {
+                        fontSize: '13px',
+                        color: '#0f4069',
+                    },
+                    total: {
+                        show: true,
+                        label: 'Total Tasks',
+                        color: '#0f4069',
+                        formatter: function (w) {
+                            // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
+                            return 249
+                        }
+                    }
+                }
+            }
+        },
+        series: [44, 55, 67],
+        labels: ['Development', 'Backup Create', 'Admin Design'],
+
+    }
+    if (document.querySelector("#rightbar_chart")) {
+        var chart = new ApexCharts(
+            document.querySelector("#rightbar_chart"),
+            options
+        );
+
+        chart.render();
+    }
+}
+initRightbarChart();
+</script>
+@endsection

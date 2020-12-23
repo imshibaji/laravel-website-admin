@@ -7,26 +7,17 @@
     <!-- post-Title -->
     <div class="row">
         <div class="col-sm-12">
-
-            @component('admin::common-components.breadcrumb')
-                @slot('title') Seo List @endslot
-                @slot('item1') Admin @endslot
-                {{-- @slot('item1_link') /admin @endslot --}}
-                {{-- @slot('item2') posts @endslot
-                @slot('item2_link') /admin/post @endslot --}}
-            @endcomponent
-
+            <x-admin-breadcrumb
+            title="SEO List"
+            item1="Admin"
+            :link1="config('admin.prefix', 'admin')"
+            />
         </div><!--end col-->
     </div>
     <!-- end post title end breadcrumb -->
 
     @if (session('status'))
-        <div class="alert alert-success" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true"><i class="mdi mdi-close"></i></span>
-            </button>
-            {{ session('status') }}
-        </div>
+        <x-admin-alert type="success" :message="session('status')"></x-admin-alert>
     @endif
 
     <div class="row">
@@ -39,12 +30,14 @@
                             <p class="text-muted mb-3">This is importent for site page optimizations.</p>
                         </div>
                         <div class="col-md-2 text-center text-md-right py-md-3">
-                            @include('admin::seo.add')
-                            {{-- <a href="{{ route('admin.seo.create') }}" class="btn btn-secondary mb-2 mb-lg-0">Add SEO</a> --}}
+                            @can('add seo')
+                                @include('admin::seo.add')
+                                {{-- <a href="{{ route('admin.seo.create') }}" class="btn btn-secondary mb-2 mb-lg-0">Add SEO</a> --}}
+                            @endcan
                         </div>
                     </div>
-                    <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                        <thead>
+                    <x-admin-datatable>
+                        <x-slot name="thead">
                         <tr>
                             <th>Title</th>
                             <th>Description</th>
@@ -53,9 +46,9 @@
                             <th>Updated At</th>
                             <th>Actions</th>
                         </tr>
-                        </thead>
+                        </x-slot>
 
-                        <tbody>
+                        <x-slot name="tbody">
                         @foreach ($seos as $seo)
                         <tr>
                             <td>{{ $seo->meta_title ?? '' }}</td>
@@ -69,32 +62,35 @@
                                         <i class="fa far fa-eye" aria-hidden="true"></i>
                                         {{-- <i data-feather="eye"></i> --}}
                                     </a>
-                                    <a href="{{ route('admin.seo.edit', [$seo])}}" class="text-info footable-edit mr-2">
-                                        <span class="fooicon fooicon-pencil" aria-hidden="true"></span>
-                                    </a>
-                                    <a href="{{route('admin.seo.destroy', [$seo])}}"
-                                    class="text-danger footable-delete"
-                                    onclick="event.preventDefault();
-                                    document.querySelector('.seo-delete').submit();">
-                                        <form class="seo-delete" action="{{route('admin.seo.destroy', [$seo])}}" method="POST">
-                                            @csrf
-                                            @method('delete')
-                                        <span class="fooicon fooicon-trash" aria-hidden="true"></span>
-                                        </form>
-                                    </a>
+                                    @can('edit seo')
+                                        <a href="{{ route('admin.seo.edit', [$seo])}}" class="text-info footable-edit mr-2">
+                                            <span class="fooicon fooicon-pencil" aria-hidden="true"></span>
+                                        </a>
+                                    @endcan
+                                    @can('delete seo')
+                                        <a href="{{route('admin.seo.destroy', [$seo])}}"
+                                        class="text-danger footable-delete"
+                                        onclick="event.preventDefault();
+                                        document.querySelector('.seo-delete').submit();">
+                                            <form class="seo-delete" action="{{route('admin.seo.destroy', [$seo])}}" method="POST">
+                                                @csrf
+                                                @method('delete')
+                                            <span class="fooicon fooicon-trash" aria-hidden="true"></span>
+                                            </form>
+                                        </a>
+                                    @endcan
                                 </div>
                             </td>
                         </tr>
                         @endforeach
-                        </tbody>
-                    </table>
+                        </x-slot>
+                    </x-admin-datatable>
                 </div>
             </div>
         </div>
     </div>
 </div><!-- container -->
 @stop
-
 
 @section('footerScript')
 @parent

@@ -7,26 +7,17 @@
     <!-- post-Title -->
     <div class="row">
         <div class="col-sm-12">
-
-            @component('admin::common-components.breadcrumb')
-                @slot('title') Permission List @endslot
-                @slot('item1') Admin @endslot
-                {{-- @slot('item1_link') /admin @endslot --}}
-                {{-- @slot('item2') posts @endslot
-                @slot('item2_link') /admin/post @endslot --}}
-            @endcomponent
-
+            <x-admin-breadcrumb
+            title="Permissions"
+            item1="Admin"
+            :link1="config('admin.prefix', 'admin')"
+            />
         </div><!--end col-->
     </div>
     <!-- end post title end breadcrumb -->
 
     @if (session('status'))
-        <div class="alert alert-success" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true"><i class="mdi mdi-close"></i></span>
-            </button>
-            {{ session('status') }}
-        </div>
+        <x-admin-alert type="success" :message="session('status')"></x-admin-alert>
     @endif
 
     <div class="row">
@@ -39,14 +30,15 @@
                             <p class="text-muted mb-3">This is importent for site page optimizations.</p>
                         </div>
                         <div class="col-md-2 text-center text-md-right py-md-3">
-                            @include('admin::permission.modals.add')
-                            {{-- <a href="{{ route('admin.user.create') }}" class="btn btn-secondary mb-2 mb-lg-0">Add User</a> --}}
+                            @can('add permission')
+                                @include('admin::permission.modals.add')
+                                {{-- <a href="{{ route('admin.user.create') }}" class="btn btn-secondary mb-2 mb-lg-0">Add User</a> --}}
+                            @endcan
                         </div>
                     </div>
 
-
-                    <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                        <thead>
+                    <x-admin-datatable>
+                        <x-slot name="thead">
                         <tr>
                             <th>Name</th>
                             <th>Guard Name</th>
@@ -54,9 +46,9 @@
                             <th>Updated At</th>
                             <th>Actions</th>
                         </tr>
-                        </thead>
+                        </x-slot>
 
-                        <tbody>
+                        <x-slot name="tbody">
                         @foreach ($permissions as $permission)
                         <tr>
                             <td>{{ $permission->name ?? '' }}</td>
@@ -66,20 +58,22 @@
                             <td class="text-center">
                                 <div class="btn-group btn-group-sm" role="group">
                                     @include('admin::permission.modals.view')
-                                    @include('admin::permission.modals.edit')
-                                    @include('admin::permission.modals.delete')
+                                    @can('edit permission')
+                                        @include('admin::permission.modals.edit')
+                                    @endcan
+                                    @can('delete permission')
+                                        @include('admin::permission.modals.delete')
+                                    @endcan
                                 </div>
                             </td>
                         </tr>
                         @endforeach
-                        </tbody>
-                    </table>
+                        </x-slot>
+                    </x-admin-datatable>
 
                 </div>
             </div>
         </div>
     </div>
-
-
 </div><!-- container -->
 @stop

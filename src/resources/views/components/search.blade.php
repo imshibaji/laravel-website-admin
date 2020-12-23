@@ -1,5 +1,5 @@
 <li class="hide-phone app-search">
-    <form action="{{$action}}" method="{{$method}}" role="search" class="">
+    <form action="{{ config('admin.prefix', 'admin') .$action}}" method="{{$method}}" role="search" class="">
         <input type="text" name="q" id="AllCompo" placeholder="Search..." class="form-control">
         <button class="light" type="submit"><i class="fas fa-search"></i></button>
     </form>
@@ -7,6 +7,7 @@
 
 
 @section('scripts')
+@parent
 <script>
 var data = {!! json_encode($datas ?? []) !!};
 (function($){

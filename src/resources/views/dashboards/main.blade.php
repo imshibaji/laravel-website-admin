@@ -3,6 +3,7 @@
 @section('title', 'Shibaji Debnath - Admin & Dashboard')
 
 @section('js_plugins')
+@parent
 <!-- Plugins Test -->
 <script src="{{ URL::asset( $assetLink . '/plugins/apexcharts/apexcharts.min.js') }}"></script>
 @endsection
@@ -12,15 +13,11 @@
     <!-- Page-Title -->
     <div class="row">
         <div class="col-sm-12">
-
-            @component('admin::common-components.breadcrumb')
-                @slot('title') Dashboard @endslot
-                {{-- @slot('item1') Metrica @endslot
-                @slot('item1_link') #Metrica @endslot
-                @slot('item2') Pages @endslot
-                @slot('item2_link') #Pages @endslot --}}
-            @endcomponent
-
+            <x-admin-breadcrumb
+            title="Dashboard"
+            item1="Admin"
+            :link1="config('admin.prefix', 'admin')"
+            />
         </div><!--end col-->
     </div>
     <!-- end page title end breadcrumb -->

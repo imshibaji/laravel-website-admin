@@ -15,7 +15,10 @@ class PermissionController extends Controller
      */
     public function index()
     {
-
+        if(auth()->user()->can('view permission') == false && auth()->user()->id != 1){
+            session()->flash('status', ['type' => 'danger', 'message' =>'You have no permission.']);
+            return back();
+        }
         // return view('admin::permission.list');
         return view('admin::permission.list', ['permissions' => Permission::all() ]);
     }
@@ -38,6 +41,11 @@ class PermissionController extends Controller
      */
     public function store(Request $req)
     {
+        if(auth()->user()->can('add permission') == false && auth()->user()->id != 1){
+            session()->flash('status', ['type' => 'danger', 'message' =>'You have no permission.']);
+            return back();
+        }
+
         $permission = Permission::create([
             'name' => Str::lower($req->name),
             'guard_name' => Str::lower($req->guard_name)
@@ -79,6 +87,11 @@ class PermissionController extends Controller
      */
     public function update(Request $req, $id)
     {
+        if(auth()->user()->can('edit permission') == false && auth()->user()->id != 1){
+            session()->flash('status', ['type' => 'danger', 'message' =>'You have no permission.']);
+            return back();
+        }
+
         $permission = Permission::findById($id);
         $permission->name = Str::lower($req->name);
         $permission->guard_name = Str::lower($req->guard_name);
@@ -96,6 +109,11 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
+        if(auth()->user()->can('delete permission') == false && auth()->user()->id != 1){
+            session()->flash('status', ['type' => 'danger', 'message' =>'You have no permission.']);
+            return back();
+        }
+
         $permission = Permission::findById($id);
         $permission->delete();
         session()->flash('status', 'Permission is deleted');

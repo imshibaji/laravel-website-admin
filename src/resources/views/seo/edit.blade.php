@@ -9,26 +9,17 @@
     <!-- Page-Title -->
     <div class="row">
         <div class="col-sm-12">
-
-            @component('admin::common-components.breadcrumb')
-                @slot('title') Edit SEO @endslot
-                @slot('item1') Admin @endslot
-                @slot('item1_link') /admin @endslot
-                @slot('item2') SEO List @endslot
-                @slot('item2_link') /admin/seo @endslot
-            @endcomponent
-
+            <x-admin-breadcrumb
+            title="Edit SEO"
+            item1="Admin"
+            :link1="config('admin.prefix', 'admin')"
+            />
         </div><!--end col-->
     </div>
     <!-- end page title end breadcrumb -->
 
     @if (session('status'))
-        <div class="alert alert-success" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true"><i class="mdi mdi-close"></i></span>
-            </button>
-            {{ session('status') }}
-        </div>
+        <x-admin-alert type="success" :message="session('status')"></x-admin-alert>
     @endif
 
     <div class="row">
@@ -111,9 +102,7 @@
 </div><!-- container -->
 @stop
 
-
-@section('headerStyle')
-@endsection
+@include('admin::layouts.partials.extra-list')
 
 @section('footerScript')
 @parent
@@ -146,6 +135,6 @@ $(function(){
 @section('scripts')
 @parent
 <script>
-$('body').addClass('enlarge-menu');
+$(function(){$('body').addClass('enlarge-menu'); });
 </script>
 @endsection

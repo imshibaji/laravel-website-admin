@@ -12,26 +12,43 @@
     "autoload": {
         "psr-4": {
             "Shibaji\\Admin\\": "src/",
-            "Database\\Factories\\": "src/database/factories/",
-            "Database\\Seeders\\": "src/database/seeders/"
+            "Shibaji\\Admin\\Database\\Factories\\": "src/database/factories/",
+            "Shibaji\\Admin\\Database\\Seeders\\": "src/database/seeders/"
         },
         "files": [
             "src/helpers/utilities.php"
         ]
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Shibaji\\Admin\\Tests\\": "tests"
+        }
+    },
     "extra": {
         "laravel": {
             "providers": [
                 "Shibaji\\Admin\\AdminServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "Calculator": "Shibaji\\Admin\\Facades\\Calculator",
+                "Admin": "Shibaji\\Admin\\Facades\\Admin"
+            }
         }
     },
     "minimum-stability": "dev",
     "require": {
         "doctrine/dbal": "^2.11",
         "laravel/ui": "^3.1",
+        "livewire/livewire": "^2.3",
         "nwidart/laravel-modules": "^8.2",
-        "spatie/laravel-permission": "^3.17"
+        "spatie/laravel-permission": "^3.17",
+        "spatie/laravel-searchable": "^1.9",
+        "plank/laravel-metable": "^4.1",
+        "simshaun/recurr": "^4.0",
+        "nesbot/carbon": "^2.43",
+        "graham-campbell/markdown": "^13.1",
+        "barryvdh/laravel-dompdf": "^0.8.7",
+        "maatwebsite/excel": "^3.1"
     },
     "scripts": {
         "post-autoload-dump": [

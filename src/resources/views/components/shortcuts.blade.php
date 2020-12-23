@@ -36,7 +36,7 @@
                         @for ($i = 0; $i < count($items); $i++)
                         @if($i<8)
                             <div class="col-6">
-                                <a class="dropdown-item mb-2" href="{{ $items[$i]['link'] }}">{{ $items[$i]['label'] }}</a>
+                                <a class="dropdown-item mb-2" href="{{ config('admin.prefix', 'admin') . $items[$i]['link'] }}">{{ $items[$i]['label'] }}</a>
                             </div>
                         @endif
                         @endfor

@@ -61,27 +61,27 @@
 @section('footerScript')
 @parent
 <script>
-    window.addEventListener('DOMContentLoaded', () => {
-        $('#title').on('keyup', function(){
-            var slag = this.value.replace(/ /g, "-").toLocaleLowerCase();
-            $('#slag').val(slag);
-            $('#inline-url').html(slag);
-            $('#meta-title').val(this.value);
-            $('#meta-og-title').val(this.value);
-            $('#meta-twitter-title').val(this.value);
-        });
-        $('#meta-title').on('keyup', function(){
-            $('#meta-og-title').val(this.value);
-            $('#meta-twitter-title').val(this.value);
-        });
-        $('#meta-keyword').on('keyup', function(){
-            $('#meta-og-keyword').val(this.value);
-            $('#meta-twitter-keyword').val(this.value);
-        });
-        $('#meta-description').on('keyup', function(){
-            $('#meta-og-description').val(this.value);
-            $('#meta-twitter-description').val(this.value);
-        });
+window.addEventListener('DOMContentLoaded', () => {
+    $('#title').on('keyup', function(){
+        var slag = this.value.replace(/ /g, "-").toLocaleLowerCase();
+        $('#slag').val(slag);
+        $('#inline-url').html(slag);
+        $('#meta-title').val(this.value);
+        $('#meta-og-title').val(this.value);
+        $('#meta-twitter-title').val(this.value);
     });
+    $('#meta-title').on('keyup', function(){
+        $('#meta-og-title').val(this.value);
+        $('#meta-twitter-title').val(this.value);
+    });
+    $('#meta-keyword').on('keyup', function(){
+        $('#meta-og-keyword').val(this.value);
+        $('#meta-twitter-keyword').val(this.value);
+    });
+    $('#meta-description').on('keyup', function(){
+        $('#meta-og-description').val(this.value);
+        $('#meta-twitter-description').val(this.value);
+    });
+});
 </script>
 @endsection

@@ -14,7 +14,7 @@
             </li>
 
 
-            @if (config('admin.top_right_menu.lang.isView', true))
+            @if (config('admin.top_right_menu.lang.view', true))
                 <x-admin-translate />
             @endif
 
@@ -30,7 +30,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     @foreach (config('admin.top_right_menu.profile_sub_menus', []) as $item)
-                        <a class="dropdown-item" href="{{$item['link']}}"><i class="{{$item['icon']}} text-muted mr-2"></i> {{$item['label']}}</a>
+                        <a class="dropdown-item" href="{{ config('admin.prefix', 'admin') . $item['link']}}"><i class="{{$item['icon']}} text-muted mr-2"></i> {{$item['label']}}</a>
                     @endforeach
                     {{--
                     <a class="dropdown-item" href="#"><i class="dripicons-user text-muted mr-2"></i> Profile</a>
@@ -76,11 +76,11 @@
                 </button>
             </li>
 
-            @if (config('admin.top_left_menu.isView', false))
+            @if (config('admin.top_left_menu.view', false))
                 <x-admin-shortcuts />
             @endif
 
-            @if (config('admin.searchbar.isView', false))
+            @if (config('admin.searchbar.view', false))
                 <x-admin-search
                 :action="config('admin.searchbar.action', '#')"
                 :method="config('admin.searchbar.method', 'GET')"

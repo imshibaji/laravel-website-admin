@@ -267,7 +267,7 @@
         initTopbarMenu();
         Waves.init();
         initnavbarMenu();
-        initRightbarChart();
+        // initRightbarChart();
         initstickyTabText();
     }
 
