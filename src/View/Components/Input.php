@@ -9,6 +9,7 @@ class Input extends Component
     public $name;
     public $fname;
     public $col;
+    public $required;
     public $readonly;
     public $disabled;
     public $type;
@@ -22,8 +23,10 @@ class Input extends Component
      */
     public function __construct(
         $name,
+        $fname = null,
         $type = 'text',
         $col = 12,
+        $required = null,
         $readonly = null,
         $disabled = null,
         $placeholder = null,
@@ -31,8 +34,10 @@ class Input extends Component
     )
     {
         $this->name = $name;
+        $this->fname = $fname ?? $name;
         $this->type = $type;
         $this->col = $col;
+        $this->required = $required;
         $this->readonly = $readonly;
         $this->disabled = $disabled;
         $this->placeholder = $placeholder;
@@ -46,6 +51,6 @@ class Input extends Component
      */
     public function render()
     {
-        return view('components.input');
+        return view('admin::components.input');
     }
 }

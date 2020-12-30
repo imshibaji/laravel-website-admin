@@ -1,14 +1,34 @@
 <div class="table-responsive">
 <table id="datatable-buttons" class="table table-bordered dt-responsive dataTables_wrapper dt-bootstrap4 no-footer" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
     <thead>
-    @isset($thead)
+    @if(isset($thead))
         {{ $thead }}
-    @endisset
+    @else
+        <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th>City</th>
+            <th>Satus</th>
+        </tr>
+    @endif
     </thead>
 
     <tbody>
-    @isset($tbody)
+    @if(isset($tbody))
         {!! $tbody !!}
+    @else
+        <tr>
+            <td>Shibaji Debnath</td>
+            <td>Dum Dum Cantoment</td>
+            <td>Kolkata</td>
+            <td>Active</td>
+        </tr>
+        <tr>
+            <td>Shibaji Debnath</td>
+            <td>Dum Dum Cantoment</td>
+            <td>Kolkata</td>
+            <td>Active</td>
+        </tr>
     @endisset
     </tbody>
 </table>
@@ -48,13 +68,13 @@
 {{-- <!-- Responsive examples --> --}}
 {{-- <script src="{{ URL::asset( $assetLink . '/plugins/datatables/dataTables.responsive.min.js')}}"></script> --}}
 {{-- <script src="{{ URL::asset( $assetLink . '/plugins/datatables/responsive.bootstrap4.min.js')}}"></script> --}}
-{{-- <script src="{{ URL::asset( $assetLink . '/plugins/tinymce/tinymce.min.js')}}"></script> --}}
 <script>
+var want_export = @json($export);
 $(document).ready(function() {
   //Buttons examples
   var table = $('#datatable-buttons').DataTable({
       lengthChange: true,
-      buttons: ['excel', 'pdf', 'colvis']
+      buttons: want_export ? ['excel', 'pdf', 'colvis'] : []
   });
 
   table.buttons().container()

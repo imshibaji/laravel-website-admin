@@ -1,14 +1,8 @@
 <x-admin-modal btnname="Add Permission" type="secondary" title="Add Permission" action="/admin/permission" method="POST">
     <h5>Permission Information</h5>
     <div class="form-row">
-        <div class="form-group col-12">
-            <label for="userFullName">Permission Name</label>
-            <input type="text" class="form-control" name="name" id="userFullName">
-        </div>
-        <div class="form-group col-12">
-            <label for="guardName">Guard Name</label>
-            <input type="text" class="form-control" readonly name="guard_name" id="guardName" value="web">
-        </div>
+        <x-admin-input name="Permission Name" fname="name" placeholder="Permission name" />
+        <x-admin-input name="Guard Name" readonly name="guard_name" value="web" />
     </div>
     <x-slot name="footer">
         <button class="btn btn-success" type="submit">Submit</button>

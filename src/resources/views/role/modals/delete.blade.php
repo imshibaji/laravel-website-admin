@@ -1,4 +1,4 @@
-<a href="#" class="text-danger footable-delete">
+<a href="javascript:void(0);" class="text-danger footable-delete">
     <span class="fooicon fooicon-trash" data-toggle="modal" data-target="#delete-role-{{$role->id}}" aria-hidden="true"></span>
 </a>
 <x-admin-modal nobtn modalId="delete-role-{{$role->id}}" title="Delete Role" action="{{ route('admin.role.destroy', [$role])}}" method="POST">

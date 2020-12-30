@@ -25,6 +25,7 @@ class CreateNotifiesTable extends Migration
             $table->string('role_name')->nullable();
             $table->json('seens')->nullable();
 
+            $table->string('notify_for')->default('all');
             $table->timestamps();
         });
     }

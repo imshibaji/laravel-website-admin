@@ -13,16 +13,16 @@
                     </a><!--end MetricaDashboards-->
                     @endif
 
-                    @if (count(config('admin.left_side_menu.app')) > 0)
-                    <a href="#MetricaApps" class="nav-link" data-toggle="tooltip-custom" data-placement="right"  data-trigger="hover" title="" data-original-title="Apps">
-                        <i data-feather="grid" class="align-self-center menu-icon icon-dual"></i>
-                    </a><!--end MetricaApps-->
-                    @endif
-
                     @if (count(config('admin.left_side_menu.shop')) > 0)
                     <a href="#MetricaOnlineShop" class="nav-link" data-toggle="tooltip-custom" data-placement="right"  data-trigger="hover" title="" data-original-title="Online Shop">
                         <i data-feather="package" class="align-self-center menu-icon icon-dual"></i>
                     </a><!--end MetricaUikit-->
+                    @endif
+
+                    @if (count(config('admin.left_side_menu.app')) > 0)
+                    <a href="#MetricaApps" class="nav-link" data-toggle="tooltip-custom" data-placement="right"  data-trigger="hover" title="" data-original-title="Apps">
+                        <i data-feather="database" class="align-self-center menu-icon icon-dual"></i>
+                    </a><!--end MetricaApps-->
                     @endif
 
                     @if (count(config('admin.left_side_menu.users')) > 0)
@@ -89,30 +89,6 @@
                         </ul>
                     </div><!-- end Dashboards -->
 
-                    <div id="MetricaApps" class="main-icon-menu-pane">
-                        <div class="title-box">
-                            <h6 class="menu-title">Apps</h6>
-                        </div>
-                        <ul class="nav metismenu">
-                            @if(config('admin.left_side_menu.app'))
-                            @foreach (config('admin.left_side_menu.app', '[]') as $menu)
-                                @if (isset($menu['child']))
-                                    <li class="nav-item">
-                                    <a class="nav-link" href="javascript: void(0);"><span class="w-100">{{ $menu['label'] }}</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
-                                        <ul class="nav-second-level" aria-expanded="false">
-                                            @foreach ($menu['child'] as $item)
-                                            <li><a href="{{ config('admin.prefix', 'admin') . $item['link']}}">{{ $item['label'] }}</a></li>
-                                            @endforeach
-                                        </ul>
-                                    </li>
-                                @else
-                                    <li class="nav-item"><a class="nav-link" href="{{ config('admin.prefix', 'admin') . $menu['link']}}">{{ $menu['label'] }}</a></li>
-                                @endif
-                            @endforeach
-                            @endif
-                        </ul>
-                    </div><!-- end Crypto -->
-
                     <div id="MetricaOnlineShop" class="main-icon-menu-pane">
                         <div class="title-box">
                             <h6 class="menu-title">Online Shop</h6>
@@ -139,6 +115,32 @@
                             @endforeach
                             @endif
                     </div><!-- end Others -->
+
+                    <div id="MetricaApps" class="main-icon-menu-pane">
+                        <div class="title-box">
+                            <h6 class="menu-title">Apps</h6>
+                        </div>
+                        <ul class="nav metismenu">
+                            @if(config('admin.left_side_menu.app'))
+                            @foreach (config('admin.left_side_menu.app', '[]') as $menu)
+                                @if (isset($menu['child']))
+                                    <li class="nav-item">
+                                    <a class="nav-link" href="javascript: void(0);"><span class="w-100">{{ $menu['label'] }}</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                                        <ul class="nav-second-level" aria-expanded="false">
+                                            @foreach ($menu['child'] as $item)
+                                            <li><a href="{{ config('admin.prefix', 'admin') . $item['link']}}">{{ $item['label'] }}</a></li>
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                @else
+                                    <li class="nav-item"><a class="nav-link" href="{{ config('admin.prefix', 'admin') . $menu['link']}}">{{ $menu['label'] }}</a></li>
+                                @endif
+                            @endforeach
+                            @endif
+                        </ul>
+                    </div><!-- end Crypto -->
+
+
 
                     <div id="MetricaAuthentication" class="main-icon-menu-pane">
                         <div class="title-box">

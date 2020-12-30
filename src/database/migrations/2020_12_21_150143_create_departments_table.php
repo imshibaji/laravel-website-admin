@@ -16,9 +16,11 @@ class CreateDepartmentsTable extends Migration
         Schema::create('departments', function (Blueprint $table) {
             $table->id();
             $table->string('department_name');
-			$table->UnsignedBiginteger('business_id')->nullable();
-			$table->UnsignedBiginteger('department_head')->nullable();
-			$table->tinyInteger('is_active')->nullable();
+            $table->integer('business_id')->nullable();
+
+            // Department Head
+			$table->integer('user_id')->nullable();
+			$table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

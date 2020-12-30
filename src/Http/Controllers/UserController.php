@@ -46,16 +46,12 @@ class UserController extends Controller
                 return redirect(Config::get('admin.prefix', 'admin').'/profile');
             }
         }
+        $user->is_active = $req->is_active;
+        $user->address = $req->address;
+        $user->contact_no = $req->contact_no;
+        $user->whatsapp_no = $req->whatsapp_no;
+        $user->skype_id = $req->skype_id;
         $user->save();
-
-        // new user detail
-        $ud = UserDetail::firstOrCreate(['user_id' => $user->id]);
-        $ud->is_active = $req->is_active;
-        $ud->address = $req->address;
-        $ud->contact_no = $req->contact_no;
-        $ud->whatsapp_no = $req->whatsapp_no;
-        $ud->skype_id = $req->skype_id;
-        $ud->save();
 
         if($user){
             $req->session()->flash('status', 'Profile Updated Successfully');

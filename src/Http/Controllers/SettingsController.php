@@ -4,6 +4,7 @@ namespace Shibaji\Admin\Http\Controllers;
 
 use Shibaji\Admin\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class SettingsController extends Controller
 {
@@ -21,7 +22,6 @@ class SettingsController extends Controller
 
         return view('admin::settings.list', ['settings' => Setting::all()]);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -29,7 +29,12 @@ class SettingsController extends Controller
      */
     public function create()
     {
-        //
+        if(auth()->user()->can('view setting') == false && auth()->user()->id != 1){
+            session()->flash('status', ['type' => 'danger', 'message' =>'You have no permission.']);
+            return back();
+        }
+
+        return view('admin::settings.general');
     }
 
     /**
@@ -46,15 +51,22 @@ class SettingsController extends Controller
         }
 
         $setting = new Setting();
-        $setting->name = $req->name;
-        $setting->type = $req->type;
-        $setting->value =  json_encode($req->input());
+        $setting->website = $req->website;
+        $setting->analytics_id = $req->analytics_id;
+        $setting->business_id = $req->business_id;
+        $setting->site_title = $req->site_title;
+        $setting->site_meta_keywords = $req->site_meta_keywords;
+        $setting->site_meta_description = $req->site_meta_description;
+        $setting->site_logo = $req->file('site_logo')->store('public/websites');
         $setting->save();
 
-        // return $values;
-
-        $req->session()->flash('status', 'Settings Add Successfully');
-        return redirect(config('admin.prefix', 'admin'). '/settings');
+        if($setting){
+            $req->session()->flash('status', 'Settings Add Successfully');
+            return redirect(config('admin.prefix', 'admin'). '/settings');
+        }else{
+            $req->session()->flash('status', 'Settings Add Not Successfully');
+            return back();
+        }
     }
 
     /**
@@ -93,9 +105,19 @@ class SettingsController extends Controller
             return back();
         }
         // $setting = new Setting();
-        $setting->name = $req->name;
-        $setting->type = $req->type;
-        $setting->value = json_encode($req->value);
+        $setting->website = $req->website;
+        $setting->analytics_id = $req->analytics_id;
+        $setting->business_id = $req->business_id;
+        $setting->site_title = $req->site_title;
+        $setting->site_meta_keywords = $req->site_meta_keywords;
+        $setting->site_meta_description = $req->site_meta_description;
+
+        if($req->file('site_logo')->getClientOriginalName() && Storage::delete($setting->site_logo)){
+            $setting->site_logo = $req->file('site_logo')->store('public/websites');
+        }else if($req->file('site_logo')->getClientOriginalName()) {
+            $setting->site_logo = $req->file('site_logo')->store('public/websites');
+        }
+
         $setting->save();
 
         $req->session()->flash('status', 'Settings Updated Successfully');
@@ -115,7 +137,10 @@ class SettingsController extends Controller
             return back();
         }
 
-        $setting->delete();
+        if(Storage::delete($setting->site_logo)){
+            $setting->delete();
+        }
+
         session()->flash('status', 'Settings Deleted Successfully');
         return redirect(config('admin.prefix', 'admin'). '/settings');
     }

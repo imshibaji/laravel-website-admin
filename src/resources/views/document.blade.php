@@ -10,6 +10,7 @@
             <h3 class="text-center">Developer's Documentation</h3>
         </div>
         <div class="card-body">
+            @meta
             @include('admin::docs.index')
         </div>
     </div>

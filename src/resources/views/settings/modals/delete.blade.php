@@ -1,4 +1,4 @@
-<a href="#" class="text-danger footable-delete">
+<a href="javascript:void(0);" class="text-danger footable-delete">
     <span class="fooicon fooicon-trash" data-toggle="modal" data-target="#delete-setting-{{$setting->id}}" aria-hidden="true"></span>
 </a>
 <x-admin-modal nobtn modalId="delete-setting-{{$setting->id}}" title="Delete Setting" action="{{ route('admin.settings.destroy', [$setting])}}" method="POST">

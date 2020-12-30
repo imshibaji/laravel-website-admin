@@ -20,10 +20,17 @@ class CreateLocationsTable extends Migration
 			$table->string('address2')->nullable();
 			$table->string('city')->nullable();
 			$table->string('state')->nullable();
-			$table->unsignedInteger('country')->nullable();
+			$table->integer('country')->nullable();
             $table->integer('zip')->nullable();
-
+            // Location Head
+            $table->integer('user_id')->nullable();
             $table->integer('business_id')->nullable();
+
+            // Default Setup (Optional Use)
+            $table->integer('default_account_id')->nullable();
+            $table->integer('default_currency_id')->nullable();
+            $table->integer('default_tax_id')->nullable();
+            $table->integer('default_payment_mode_id')->nullable();
 
             $table->timestamps();
         });

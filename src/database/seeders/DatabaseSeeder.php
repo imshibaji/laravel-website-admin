@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Shibaji\Admin\Database\Seeders\BusinessSeeder;
 use Shibaji\Admin\Database\Seeders\PostSeeder;
 use Shibaji\Admin\Database\Seeders\RolesAndPermissionsSeeder;
 use Shibaji\Admin\Database\Seeders\SettingSeeder;
@@ -28,7 +29,8 @@ class DatabaseSeeder extends Seeder
             CountriesTableSeeder::class,
             RolesAndPermissionsSeeder::class,
             PostSeeder::class,
-            SettingSeeder::class
+            SettingSeeder::class,
+            BusinessSeeder::class
         ]);
     }
 }

@@ -1,22 +1,15 @@
 <x-admin-modal btnname="Add New Role" type="secondary" title="Add Role" action="/admin/role" method="POST">
     <h5>Role Information</h5>
     <div class="form-row">
-        <div class="form-group col-12">
-            <label for="userFullName">Role Name</label>
-            <input type="text" class="form-control" name="name" id="userFullName">
-        </div>
-        <div class="form-group col-12">
-            <label for="guardName">Guard Name</label>
-            <input type="text" class="form-control" readonly name="guard_name" id="guardName" value="web">
-        </div>
-        <div class="form-group col-12">
-            <label for="permission">Permissions Select</label>
-            <select id="permission" name="permission[]" class="select2 mb-3 select2-multiple" style="width: 100%"  multiple="multiple" data-placeholder="Choose">
+        <x-admin-input name="Role Name" fname="name" placeholder="Input A Role Name" />
+        <x-admin-input name="Guard Name" readonly fname="guard_name" placeholder="Input A Guard Name" value="web" />
+        <x-admin-select2 name="Permissions Select"  fname="permission[]" multiple>
+            <x-slot name="option">
                 @foreach ($permissions as $permission)
-                <option value="{{$permission->name}}">{{ Str::ucfirst($permission->name) }}</option>
+                    <option value="{{$permission->name}}">{{ Str::ucfirst($permission->name) }}</option>
                 @endforeach
-            </select>
-        </div>
+            </x-slot>
+        </x-admin-select2>
     </div>
     <x-slot name="footer">
         <button class="btn btn-success" type="submit">Submit</button>

@@ -49,6 +49,10 @@ return [
                 'link' => '/settings',
                 'label' => 'Settings'
             ],
+            [
+                'link' => '/widgets',
+                'label' => 'Widgets'
+            ],
         ]
     ],
 
@@ -96,13 +100,211 @@ return [
                 'label' => 'CRM Dash'
             ]
         ],
-        'app' => [],
-        'shop' => [],
+        'shop' => [
+            [
+                'link' => '/shop1',
+                'label' => 'Shop 1',
+                'view' => true
+            ],
+            [
+                'link' => '/shop2',
+                'label' => 'Shop 2',
+                'view' => true
+            ]
+        ],
+        'app' => [
+            [
+                'link' => '/widgets',
+                'label' => 'All Widgets',
+                'view' => true,
+            ],
+            [
+                'link' => '/items',
+                'label' => 'Items',
+                'view' => true,
+            ],
+            [
+                'link' => '',
+                'label' => 'Sales',
+                'view' => true,
+                'child' => [
+                    [
+                        'link' => '/invoices',
+                        'label' => 'Invoices',
+                        'view' => true
+                    ],
+                    [
+                        'link' => '/revenues',
+                        'label' => 'Revenues',
+                        'view' => true
+                    ],
+                    [
+                        'link' => '/customers',
+                        'label' => 'Customers',
+                        'view' => true
+                    ]
+                ]
+            ],
+            [
+                'link' => '',
+                'label' => 'Purchases',
+                'view' => true,
+                'child' => [
+                    [
+                        'link' => '/bills',
+                        'label' => 'Bills',
+                        'view' => true
+                    ],
+                    [
+                        'link' => '/payments',
+                        'label' => 'Payments',
+                        'view' => true
+                    ],
+                    [
+                        'link' => '/vendors',
+                        'label' => 'Customers',
+                        'view' => true
+                    ]
+                ]
+            ],
+            [
+                'link' => '',
+                'label' => 'Banking',
+                'view' => true,
+                'child' => [
+                    [
+                        'link' => '/accounts',
+                        'label' => 'Accounts',
+                        'view' => true
+                    ],
+                    [
+                        'link' => '/transfers',
+                        'label' => 'Transfers',
+                        'view' => true
+                    ],
+                    [
+                        'link' => '/transations',
+                        'label' => 'Transations',
+                        'view' => true
+                    ],
+                    [
+                        'link' => '/reconciliations',
+                        'label' => 'Reconciliations',
+                        'view' => true
+                    ]
+                ]
+            ],
+            [
+                'link' => '/reports',
+                'label' => 'Reports',
+                'view' => true
+            ]
+        ],
         'settings' => [
             [
-                'link' => '/settings',
+                'link' => '/all-settings',
+                'label' => 'General Settings',
+                'view' => true,
+            ],
+            [
+                'link' => 'javascript.void(0)',
                 'label' => 'All Settings',
-                'view' => true
+                'view' => true,
+                'child' => [
+                    // This is the Setting Views
+                    [
+                        'link' => '/setup/business',
+                        'label' => 'Business',
+                        'desc' => 'Business Name, Address, email, Register & Tax Number etc.',
+                        'icon' => 'home',
+                        'view' => true
+                    ],
+                    [
+                        'link' => '/setup/local',
+                        'label' => 'Localisation',
+                        'desc' => 'Set fiscal year, time zone, date format, more.',
+                        'icon' => 'map-pin',
+                        'view' => true
+                    ],
+                    [
+                        'link' => '/setup/invoice',
+                        'label' => 'Invoice',
+                        'desc' => 'Customize invoice prefix, number, terms, footer etc.',
+                        'icon' => 'layout',
+                        'view' => true
+                    ],
+                    [
+                        'link' => '/setup/default',
+                        'label' => 'Default',
+                        'desc' => 'Default account, currency, language of your company.',
+                        'icon' => 'layers',
+                        'view' => true
+                    ],
+                    [
+                        'link' => '/setup/email',
+                        'label' => 'Email',
+                        'desc' => 'Change the sending protocol and email templates.',
+                        'icon' => 'mail',
+                        'view' => true
+                    ],
+                    [
+                        'link' => '/setup/scheduling',
+                        'label' => 'Scheduling',
+                        'desc' => 'Automatic reminders and command for recurring',
+                        'icon' => 'clock',
+                        'view' => true
+                    ],
+                    [
+                        'link' => '/setup/categories',
+                        'label' => 'Categories',
+                        'desc' => 'Unlimited categories for income, expense, and item',
+                        'icon' => 'list',
+                        'view' => true
+                    ],
+                    [
+                        'link' => '/setup/currencies',
+                        'label' => 'Currencies',
+                        'desc' => 'Create and manage currencies and set their rates',
+                        'icon' => 'dollar-sign',
+                        'view' => true
+                    ],
+                    [
+                        'link' => '/setup/taxes',
+                        'label' => 'Taxes',
+                        'desc' => 'Fixed, normal, inclusive, and compound tax rates',
+                        'icon' => 'activity',
+                        'view' => true
+                    ],
+                    [
+                        'link' => '/setup/pay-mode',
+                        'label' => 'Payments Mode',
+                        'desc' => 'Choose the standard payment option Like PayPal',
+                        'icon' => 'credit-card',
+                        'view' => true
+                    ],
+                    [
+                        'link' => '/setup/sms',
+                        'label' => 'SMS Gateway',
+                        'desc' => 'Create SMS  Gateway options for admin usage',
+                        'icon' => 'smartphone',
+                        'view' => true
+                    ],
+                    [
+                        'link' => '/settings',
+                        'label' => 'Website Setting',
+                        'desc' => 'Website Link, logo, keywords, description etc.',
+                        'icon' => 'server',
+                        'view' => true
+                    ],
+                    // New Settings will be added here
+                    /*[
+                        'link' => '/settings/email',
+                        'label' => 'Email',
+                        'desc' => 'Change the sending protocol and email templates.',
+                        'icon' => 'mail',
+                        'view' => true
+                    ],*/
+                ]
             ],
             [
                 'link' => '/seo',
@@ -113,7 +315,12 @@ return [
                 'link' => '/profile',
                 'label' => 'My Profile',
                 'view' => true
-            ]
+            ],
+            [
+                'link' => '/reset-all',
+                'label' => 'Remove All Data',
+                'view' => true,
+            ],
         ],
         'users' =>  [
             [

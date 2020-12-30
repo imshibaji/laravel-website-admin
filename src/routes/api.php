@@ -11,6 +11,7 @@ Route::prefix($prefix.'/v1')
 ->namespace($namesapce)
 ->name('admin.api.')
 ->group(function(){
+
     Route::get('/', function(){
         return ['status' => 'ok', 'msg' => 'This is from API message testing.'];
     });

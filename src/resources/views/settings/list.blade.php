@@ -26,7 +26,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-10">
-                            <h4 class="mt-0 header-title">Settings List</h4>
+                            <h4 class="mt-0 header-title">Website List</h4>
                             <p class="text-muted mb-3">This is importent for site page optimizations.</p>
                         </div>
                         <div class="col-md-2 text-center text-md-right py-md-3">
@@ -39,9 +39,10 @@
                     <x-admin-datatable>
                         <x-slot name="thead">
                         <tr>
-                            <th>Name</th>
-                            <th>Type</th>
-                            <th>Settings Details</th>
+                            <th>Logo</th>
+                            <th>Website Title</th>
+                            <th>Website URL</th>
+                            <th>Link with</th>
                             {{-- <th>Created At</th> --}}
                             {{-- <th>Updated At</th> --}}
                             <th>Actions</th>
@@ -50,11 +51,10 @@
                         <x-slot name="tbody">
                         @foreach ($settings as $setting)
                         <tr>
-                            <td>{{ $setting->name ?? '' }}</td>
-                            <td>{{ $setting->type ?? '' }}</td>
-                            <td>
-                                <code>{{ $setting->value }}</code>
-                            </td>
+                            <td><img src="{{ ($setting->site_logo)? '/storage/websites/'.basename($setting->site_logo) : '' }}" height="50px" /></td>
+                            <td>{{ $setting->site_title ?? '' }}</td>
+                            <td>{{ $setting->website ?? '' }}</td>
+                            <td>{{ $setting->business_id }}</td>
                             {{-- <td>{{ $role->created_at}}</td> --}}
                             {{-- <td>{{ $role->updated_at}}</td> --}}
                             <td class="text-center">

@@ -15,17 +15,15 @@ class CreateSettingsTable extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
+            $table->string('website')->nullable();
+			$table->string('analytics_id')->nullable();
+            $table->integer('business_id')->nullable();
+
             $table->string('site_title');
             $table->string('site_meta_keywords')->nullable();
             $table->string('site_meta_description')->nullable();
             $table->string('site_logo')->nullable();
-			$table->string('time_zone')->nullable();
-			$table->string('currency')->nullable();
-			$table->string('currency_format')->nullable();
-			$table->string('website')->nullable();
-			$table->string('date_format')->nullable();
-            $table->string('theme')->nullable();
-            $table->integer('business_id')->nullable();
+
             $table->timestamps();
         });
     }

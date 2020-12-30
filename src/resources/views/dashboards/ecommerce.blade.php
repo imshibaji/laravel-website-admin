@@ -65,35 +65,33 @@
                         <div class="col-lg-4">
                             <div class="row">
 
- @component('admin::common-components.ecommerce-widget')
-     @slot('iconClass') align-self-center icon-lg icon-dual-pink  @endslot
-     @slot('price') 24K @endslot
-          @slot('dataF') users @endslot
-     @slot('title') Visits @endslot
- @endcomponent
- @component('admin::common-components.ecommerce-widget')
-     @slot('iconClass') align-self-center icon-lg icon-dual-secondary  @endslot
-     @slot('price') 10K @endslot
-     @slot('dataF') shopping-cart @endslot
-     @slot('title') New Orders @endslot
- @endcomponent
+                            <x-admin-ecommerce
+                            iconClass="align-self-center icon-lg icon-dual-pink"
+                            price="24K" dataF="users" title="Visits" />
+
+                            <x-admin-ecommerce>
+                                @slot('iconClass') align-self-center icon-lg icon-dual-secondary  @endslot
+                                @slot('price') 10K @endslot
+                                @slot('dataF') shopping-cart @endslot
+                                @slot('title') New Orders @endslot
+                            </x-admin-ecommerce>
 
                             </div><!--end row-->
                             <div class="row">
 
- @component('admin::common-components.ecommerce-widget')
-     @slot('iconClass') align-self-center icon-lg icon-dual-purple  @endslot
-     @slot('price') 1.5K @endslot
-     @slot('dataF') repeat @endslot
-     @slot('title') Return Orders @endslot
- @endcomponent
+                            <x-admin-ecommerce>
+                                @slot('iconClass') align-self-center icon-lg icon-dual-purple  @endslot
+                                @slot('price') 1.5K @endslot
+                                @slot('dataF') repeat @endslot
+                                @slot('title') Return Orders @endslot
+                            </x-admin-ecommerce>
 
- @component('admin::common-components.ecommerce-widget')
-     @slot('iconClass') align-self-center icon-lg icon-dual-warning  @endslot
-     @slot('price') +22.98% @endslot
-     @slot('dataF') layers @endslot
-     @slot('title') Growth @endslot
- @endcomponent
+                            <x-admin-ecommerce>
+                                @slot('iconClass') align-self-center icon-lg icon-dual-warning  @endslot
+                                @slot('price') +22.98% @endslot
+                                @slot('dataF') layers @endslot
+                                @slot('title') Growth @endslot
+                            </x-admin-ecommerce>
 
                             </div><!--end row-->
                             <div class="card">

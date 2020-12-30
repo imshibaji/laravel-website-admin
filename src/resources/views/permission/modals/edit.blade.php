@@ -5,14 +5,8 @@
     @method('PUT')
     <div>
         <h5>Permission Information</h5>
-        <div class="form-group col-12">
-            <label for="editFullName-{{$permission->id}}">Permission Name</label>
-            <input type="text" class="form-control" name="name" id="editFullName-{{$permission->id}}" value="{{$permission->name}}">
-        </div>
-        <div class="form-group col-12">
-            <label for="editGuardName-{{$permission->id}}">Guard Name</label>
-            <input type="text" class="form-control" readonly name="guard_name" id="editGuardName-{{$permission->id}}" value="{{$permission->guard_name}}">
-        </div>
+        <x-admin-input name="Permission Name" fname="name" value="{{$permission->name}}" />
+        <x-admin-input name="Guard Name" readonly name="guard_name" value="{{$permission->guard_name}}" />
     </div>
     <x-slot name="footer">
         <button class="btn btn-success" type="submit">Submit</button>

@@ -2,6 +2,7 @@
 namespace Shibaji\Admin\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Shibaji\Admin\Models\SeoOptimization;
 
 class SeoController extends Controller{
@@ -75,6 +76,9 @@ class SeoController extends Controller{
         $seo->meta_twitter_player = $req->meta_twitter_player;
         $seo->save();
 
+        Artisan::call('view:clear');
+        session()->flash('status', ['type' => 'success', 'message' =>'Seo Data Added.']);
+
         if($this->isComponent){
             return $seo->id;
         }else{
@@ -132,6 +136,9 @@ class SeoController extends Controller{
 
         $seo->save();
 
+        Artisan::call('view:clear');
+        session()->flash('status', ['type' => 'success', 'message' =>'Seo Data Updated.']);
+
         if($this->isComponent){
             return $seo->id;
         }else{
@@ -155,6 +162,9 @@ class SeoController extends Controller{
         }
 
         $seo->delete();
+        Artisan::call('view:clear');
+
+        session()->flash('status', ['type' => 'success', 'message' =>'Seo Data deleted.']);
         return redirect(route('admin.seo'));
     }
 }

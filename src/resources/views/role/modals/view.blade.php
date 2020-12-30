@@ -1,4 +1,4 @@
-<a href="#" class="text-info footable-edit mr-2">
+<a href="javascript:void(0);" class="text-info footable-edit mr-2">
     <i class="fa far fa-eye" data-toggle="modal" data-target="#view-user-{{$role->id}}" aria-hidden="true"></i>
     {{-- <i data-feather="eye"></i> --}}
 </a>

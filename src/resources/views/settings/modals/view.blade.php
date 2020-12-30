@@ -1,4 +1,4 @@
-<a href="#" class="text-info footable-edit mr-2">
+<a href="javascript:void(0);" class="text-info footable-edit mr-2">
     <i class="fa far fa-eye" data-toggle="modal" data-target="#view-user-{{$setting->id}}" aria-hidden="true"></i>
     {{-- <i data-feather="eye"></i> --}}
 </a>
@@ -6,16 +6,16 @@
     <div>
         <h5>Role Information</h5>
         <div class="form-group col-12">
-            <label for="userFullName">Settings Name</label>
-            <input type="text" class="form-control" readonly name="name" id="userFullName-{{$setting->id}}" value="{{ $setting->name }}">
+            <label for="userFullName">Website Name</label>
+            <input type="text" class="form-control" readonly name="name" id="userFullName-{{$setting->id}}" value="{{ $setting->site_title }}">
         </div>
         <div class="form-group col-12">
-            <label for="type">Type Name</label>
-            <input type="text" class="form-control" readonly name="type" id="guardName-{{$setting->id}}" value="{{ $setting->type }}">
+            <label for="type">Website Url</label>
+            <input type="text" class="form-control" readonly name="type" id="guardName-{{$setting->id}}" value="{{ $setting->website }}">
         </div>
         <div class="form-group col-12">
-            <label for="value">Value</label>
-            <div id="value">{{ $setting->value }}</div>
+            <label for="value">Website Logo</label>
+            <div id="value"><img src="{{ ($setting->site_logo)? '/storage/websites/'.basename($setting->site_logo) : '' }}" height="50px" /></div>
         </div>
     </div>
     <x-slot name="footer">

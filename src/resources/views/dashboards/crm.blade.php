@@ -20,39 +20,39 @@
                     @endif
 
                     <div class="row">
- @component('admin::common-components.crm-widget')
+<x-admin-crm>
      @slot('iconClass') align-self-center icon-lg icon-dual-warning  @endslot
      @slot('title') Happy Customers  @endslot
      @slot('cost') 65K @endslot
      @slot('progressCost') 55 @endslot
      @slot('progressClass') progress-bar bg-warning @endslot
- @endcomponent
+</x-admin-crm>
 
 
- @component('admin::common-components.crm-widget')
+<x-admin-crm>
      @slot('iconClass') align-self-center icon-lg icon-dual-purple  @endslot
      @slot('title') New Customers  @endslot
      @slot('cost') 12K @endslot
      @slot('progressCost') 39 @endslot
      @slot('progressClass') progress-bar bg-purple @endslot
- @endcomponent
+</x-admin-crm>
 
-  @component('admin::common-components.crm-widget')
+<x-admin-crm>
      @slot('iconClass') align-self-center icon-lg icon-dual-success  @endslot
      @slot('title') New Deals  @endslot
      @slot('cost') 40 @endslot
      @slot('progressCost') 48 @endslot
      @slot('isActive') true @endslot
      @slot('progressClass') progress-bar bg-success @endslot
- @endcomponent
+</x-admin-crm>
 
-  @component('admin::common-components.crm-widget')
+<x-admin-crm>
      @slot('iconClass') align-self-center icon-lg icon-dual-pink  @endslot
      @slot('title') New Register  @endslot
      @slot('cost') 890 @endslot
      @slot('progressCost') 22 @endslot
      @slot('progressClass') progress-bar bg-pink @endslot
- @endcomponent
+</x-admin-crm>
 
                     </div><!--end row-->
 

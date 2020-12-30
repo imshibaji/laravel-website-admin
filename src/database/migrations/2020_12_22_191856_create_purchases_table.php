@@ -15,6 +15,10 @@ class CreatePurchasesTable extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
+
+            $table->integer('location_id')->nullable();
+            $table->integer('country_id')->nullable();
+            $table->integer('business_id')->nullable();
             $table->timestamps();
         });
     }

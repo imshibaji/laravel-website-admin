@@ -3,6 +3,8 @@
     <!-- Navbar -->
     <nav class="navbar-custom">
         <ul class="list-unstyled topbar-nav float-right mb-0">
+            <x-admin-company-selector />
+
             <li class="mr-2">
                 <a href="#" id="night_mode" class="nav-link">
                     @if($color_scheme == 'light')
@@ -12,7 +14,6 @@
                     @endIf
                 </a>
             </li>
-
 
             @if (config('admin.top_right_menu.lang.view', true))
                 <x-admin-translate />

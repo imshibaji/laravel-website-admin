@@ -26,7 +26,7 @@ class MetaTagProvider extends ServiceProvider
     public function boot()
     {
         Blade::directive('meta', function () {
-            $url = $_SERVER['PATH_INFO'];
+            $url = 'http://'.$_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
             return MetaBuilder::render($url);
         });
         // Template Variables

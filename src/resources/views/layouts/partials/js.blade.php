@@ -12,5 +12,6 @@
 {{-- <script src="{{ URL::asset( $assetLink . '/plugins/formio/formio.full.min.js') }}"></script> --}}
 @yield('js_plugins')
 <!-- footerScript -->
+@livewireScripts
 @yield('footerScript')
 @yield('scripts')

@@ -6,13 +6,15 @@ use Illuminate\View\Component;
 
 class Datatable extends Component
 {
+    public $export;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($export=false)
     {
+        $this->export = $export;
     }
 
     /**
