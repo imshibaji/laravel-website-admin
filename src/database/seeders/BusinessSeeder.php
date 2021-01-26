@@ -29,7 +29,7 @@ class BusinessSeeder extends Seeder
             'state' => 'West Bengal',
             'country' => 'in',
             'is_active' => 'on',
-            'default' => 'off'
+            'default' => 'on'
         ],
         [
             'name' => 'LARNR Education',

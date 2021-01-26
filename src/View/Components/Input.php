@@ -9,12 +9,14 @@ class Input extends Component
     public $name;
     public $fname;
     public $col;
+    public $icon;
     public $required;
     public $readonly;
     public $disabled;
     public $type;
     public $placeholder;
     public $value;
+    public $addBtn;
 
     /**
      * Create a new component instance.
@@ -26,6 +28,7 @@ class Input extends Component
         $fname = null,
         $type = 'text',
         $col = 12,
+        $icon = null,
         $required = null,
         $readonly = null,
         $disabled = null,
@@ -37,6 +40,7 @@ class Input extends Component
         $this->fname = $fname ?? $name;
         $this->type = $type;
         $this->col = $col;
+        $this->icon = $icon;
         $this->required = $required;
         $this->readonly = $readonly;
         $this->disabled = $disabled;

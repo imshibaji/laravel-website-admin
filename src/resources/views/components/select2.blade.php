@@ -1,6 +1,6 @@
-<div class="form-row col-{{ $col ?? 12 }}">
-    <label style="height: 10px;">{{$name}}@if($required)<span class="text-danger">*</span>@endif</label>
-    <select name="{{ Str::lower(str_replace(' ', '_', $fname)) }}" @if($readonly) readonly @endif  @if($disabled) disabled @endif class="select2 mb-3 select2-multiple" style="width: 100%" @if($multiple) multiple="multiple" @endif data-placeholder="Choose">
+<div class="form-group col-{{ $col ?? 12 }}">
+    <label>{{$name}}@if($required)<span class="text-danger">*</span>@endif</label>
+    <select name="{{ Str::lower(str_replace(' ', '_', $fname)) }}" @if($required) required @endif @if($readonly) readonly @endif  @if($disabled) disabled @endif class="select2 mb-3 select2-multiple" style="width: 100%" @if($multiple) multiple="multiple" @endif data-placeholder="Choose">
         @if($option)
             {{$option}}
         @else

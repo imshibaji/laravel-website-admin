@@ -33,8 +33,7 @@ class CreateUserDetailsTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('profile_bg');
-            $table->dropColumn('is_active');
+            // $table->dropColumn('is_active');
             $table->dropColumn('address');
             $table->dropColumn('contact_no');
             $table->dropColumn('whatsapp_no');

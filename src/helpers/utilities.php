@@ -1,5 +1,7 @@
 <?php
 
+use Shibaji\Admin\Models\Common\Business;
+
 function console_log($data) {
     $output = '';
 
@@ -46,6 +48,10 @@ function checkPermission($data, $role){
     return $out;
 }
 
+function dtformat($format, $timestamp){
+    return date($format, strtotime($timestamp));
+}
+
 function json_to_object($json, $assoc=false){
     return json_decode($json, $assoc);
 }
@@ -56,4 +62,7 @@ function object_to_json($object){
 
 function array_to_object($items){
     return json_decode(json_encode($items));
+}
+function business(){
+    return Business::where('default', 'on')->first();
 }

@@ -17,9 +17,9 @@
             </a>
         @endforeach
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="">
+        <a class="dropdown-item" href="{{$businesses_link}}">
             <i class="fas fa-cogs fa-lg"></i>
-             <span class="pl-2"> Manage Companies</span>
+             <span class="pl-2"> Manage Businesses</span>
         </a>
     </div>
 </li>

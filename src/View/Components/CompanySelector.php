@@ -3,17 +3,20 @@
 namespace Shibaji\Admin\View\Components;
 
 use Illuminate\View\Component;
-use Shibaji\Admin\Models\Business;
+use Shibaji\Admin\Models\Common\Business;
 
 class CompanySelector extends Component
 {
     public $companies;
+    public $businesses_link;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(
+        $link=null
+    )
     {
         // $this->companies = [
             // [ 'link' => '#', 'title' => 'Medust Technology Pvt. Ltd.', 'selected' => true ],
@@ -38,6 +41,7 @@ class CompanySelector extends Component
         }, $datas->toArray());
         // dd($company_data);
         $this->companies = $company_data;
+        $this->businesses_link = $link;
     }
 
     /**

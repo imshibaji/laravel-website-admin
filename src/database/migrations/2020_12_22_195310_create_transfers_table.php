@@ -15,7 +15,13 @@ class CreateTransfersTable extends Migration
     {
         Schema::create('transfers', function (Blueprint $table) {
             $table->id();
+            $table->integer('business_id');
+            $table->integer('expanse_transaction_id');
+            $table->integer('income_transaction_id');
             $table->timestamps();
+            $table->softDeletes();
+
+            $table->index('business_id');
         });
     }
 

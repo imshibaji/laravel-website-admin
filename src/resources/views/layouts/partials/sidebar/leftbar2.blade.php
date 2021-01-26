@@ -61,18 +61,18 @@
                     </li>
                 @endif
 
-                @if (count(config('admin.left_side_menu.shop')) > 0)
+                @if (count(config('admin.left_side_menu.online')) > 0)
                 <li class="leftbar-menu-item">
                     <a href="javascript: void(0);" class="menu-link">
-                        <i data-feather="package" class="align-self-center vertical-menu-icon icon-dual-vertical"></i>
-                        <span>Online Shop</span>
+                        <i data-feather="chrome" class="align-self-center vertical-menu-icon icon-dual-vertical"></i>
+                        <span>Online</span>
                         <span class="menu-arrow">
                             <i class="mdi mdi-chevron-right"></i>
                         </span>
                     </a>
                     <ul class="nav-second-level" aria-expanded="false">
-                        @if(config('admin.left_side_menu.shop'))
-                            @foreach (config('admin.left_side_menu.shop', '[]') as $menu)
+                        @if(config('admin.left_side_menu.online'))
+                            @foreach (config('admin.left_side_menu.online', '[]') as $menu)
                             @if (isset($menu['child']))
                                 @if(isset($menu['view']) && $menu['view'] == true)
                                     <li>
@@ -97,18 +97,18 @@
                 </li>
             @endif
 
-                @if (count(config('admin.left_side_menu.app')) > 0)
+                @if (count(config('admin.left_side_menu.offline')) > 0)
                     <li class="leftbar-menu-item">
                         <a href="javascript: void(0);" class="menu-link">
                             <i data-feather="database" class="align-self-center vertical-menu-icon icon-dual-vertical"></i>
-                            <span>Apps</span>
+                            <span>Offline</span>
                             <span class="menu-arrow">
                                 <i class="mdi mdi-chevron-right"></i>
                             </span>
                         </a>
                         <ul class="nav-second-level" aria-expanded="false">
-                            @if(config('admin.left_side_menu.app'))
-                                @foreach (config('admin.left_side_menu.app', '[]') as $menu)
+                            @if(config('admin.left_side_menu.offline'))
+                                @foreach (config('admin.left_side_menu.offline', '[]') as $menu)
                                 @if (isset($menu['child']))
                                     @if(isset($menu['view']) && $menu['view'] == true)
                                         <li>
@@ -205,6 +205,42 @@
                             @endif
                         </ul>
                     </li>
+                @endif
+
+                @if (count(config('admin.left_side_menu.app')) > 0)
+                <li class="leftbar-menu-item">
+                    <a href="javascript: void(0);" class="menu-link">
+                        <i data-feather="codepen" class="align-self-center vertical-menu-icon icon-dual-vertical"></i>
+                        <span>Apps</span>
+                        <span class="menu-arrow">
+                            <i class="mdi mdi-chevron-right"></i>
+                        </span>
+                    </a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        @if(config('admin.left_side_menu.app'))
+                            @foreach (config('admin.left_side_menu.app', '[]') as $menu)
+                            @if (isset($menu['child']))
+                                @if(isset($menu['view']) && $menu['view'] == true)
+                                    <li>
+                                        <a href="javascript: void(0);"><i class="ti-control-record"></i>{{ $menu['label'] }} <span class="menu-arrow left-has-menu"><i class="mdi mdi-chevron-right"></i></span></a>
+                                        <ul class="nav-second-level" aria-expanded="false">
+                                            @foreach ($menu['child'] as $item)
+                                                @isset($item['view'])
+                                                    <li><a href="{{ config('admin.prefix', 'admin') . $item['link']}}">{{ $item['label'] }}</a></li>
+                                                @endisset
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                @endif
+                            @else
+                                @if(isset($menu['view']) && $menu['view'] == true)
+                                    <li class="nav-item"><a class="nav-link" href="{{ config('admin.prefix', 'admin') . $menu['link']}}">{{ $menu['label'] }}</a></li>
+                                @endif
+                            @endif
+                            @endforeach
+                        @endif
+                    </ul>
+                </li>
                 @endif
             </ul>
         </div>

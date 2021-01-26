@@ -1,6 +1,6 @@
 <!-- Button trigger modal -->
 @php
-    $adminID = $modalId ?? 'admin'.time();
+    $adminID = $modalId ?? 'admin_'.Str::lower(Str::snake($btnname));
 @endphp
 @if($nobtn == false)
 <button type="button" class="btn btn-{{$type}}" data-toggle="modal" data-target="#{{$adminID}}">

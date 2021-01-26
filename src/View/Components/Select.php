@@ -9,6 +9,7 @@ class Select extends Component
     public $name;
     public $fname;
     public $col;
+    public $icon;
     public $readonly;
     public $disabled;
     public $multiple;
@@ -16,6 +17,7 @@ class Select extends Component
     public $placeholder;
     public $option;
     public $required;
+    public $addBtn;
 
     /**
      * Create a new component instance.
@@ -27,6 +29,7 @@ class Select extends Component
         $fname = null,
         $type = 'text',
         $col = 12,
+        $icon = null,
         $readonly = null,
         $disabled = null,
         $placeholder = null,
@@ -38,6 +41,7 @@ class Select extends Component
         $this->fname = $fname ?? $name;
         $this->type = $type;
         $this->col = $col;
+        $this->icon = $icon;
         $this->readonly = $readonly;
         $this->disabled = $disabled;
         $this->placeholder = $placeholder;

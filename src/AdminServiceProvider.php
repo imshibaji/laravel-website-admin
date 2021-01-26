@@ -2,12 +2,15 @@
 namespace Shibaji\Admin;
 
 use Illuminate\Foundation\AliasLoader;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\ServiceProvider;
 use Maatwebsite\Excel\ExcelServiceProvider;
 use Plank\Metable\MetableServiceProvider;
 use Shibaji\Admin\Console\Admin;
 use Shibaji\Admin\Console\AdminPub;
+use Shibaji\Admin\Models\Common\Business;
 use Shibaji\Admin\Providers\MetaTagProvider;
 use Shibaji\Admin\Providers\RouteServiceProvider;
 use Shibaji\Admin\Providers\WigetsProvider;
@@ -21,6 +24,12 @@ class AdminServiceProvider extends ServiceProvider{
     {
         $this->mergeConfigFrom(
             __DIR__.'/config/admin.php', 'admin'
+        );
+        $this->mergeConfigFrom(
+            __DIR__.'/config/money.php', 'money'
+        );
+        $this->mergeConfigFrom(
+            __DIR__.'/config/timezone.php', 'timezone'
         );
         $this->bindProviders();
     }

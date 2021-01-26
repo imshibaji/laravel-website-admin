@@ -3,9 +3,14 @@
 namespace Shibaji\Admin\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
+use Shibaji\Admin\Http\Livewire\Bill;
+use Shibaji\Admin\Http\Livewire\Invoice;
+use Shibaji\Admin\View\Components\Activity;
 use Shibaji\Admin\View\Components\Alert;
 use Shibaji\Admin\View\Components\Analytics;
 use Shibaji\Admin\View\Components\ApexChart;
+use Shibaji\Admin\View\Components\Base;
 use Shibaji\Admin\View\Components\Breadcrumb;
 use Shibaji\Admin\View\Components\CompanySelector;
 use Shibaji\Admin\View\Components\ContactList;
@@ -59,6 +64,9 @@ class WigetsProvider extends ServiceProvider
     }
 
     private function bindComponents(){
+        Livewire::component('admin-invoice', Invoice::class);
+        Livewire::component('admin-bill', Bill::class);
+
         $this->loadViewComponentsAs('admin', [
             Alert::class,
             Modal::class,
@@ -92,6 +100,8 @@ class WigetsProvider extends ServiceProvider
             Textarea::class,
             SwitchBtn::class,
             FileUploader::class,
+            Base::class,
+            Activity::class,
         ]);
     }
 }

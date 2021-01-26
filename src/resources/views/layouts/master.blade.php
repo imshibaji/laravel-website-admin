@@ -10,9 +10,7 @@
 
         <!-- App favicon -->
         <link rel="shortcut icon" href="{{ asset( $assetLink . '/images/favicon.ico') }}">
-
         @yield('headers')
-
         @php
             $color_scheme = isset($_COOKIE["color_scheme"]) ? $_COOKIE["color_scheme"] : false;
             // if ($color_scheme === false) $color_scheme = 'light';

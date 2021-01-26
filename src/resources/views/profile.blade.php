@@ -53,10 +53,6 @@
                             <input type="file" class="form-control" name="profile_photo" id="profile_photo" value="{{$user->profile_photo_url}}">
                         </div>
                         <div class="form-group col-12">
-                            <label for="profile_bg">Profile Background Photo</label>
-                            <input type="file" class="form-control" name="profile_bg" id="profile_bg" value="{{$user->profile_bg}}">
-                        </div>
-                        <div class="form-group col-12">
                             <label for="address">Address</label>
                             <textarea class="form-control" name="address" id="address">{{$user->address}}</textarea>
                         </div>

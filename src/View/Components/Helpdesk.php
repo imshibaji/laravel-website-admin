@@ -8,10 +8,10 @@ class Helpdesk extends Component
 {
 
     public $title;
-    public $feather;
-    public $iconClaass;
+    public $icon;
+    public $color;
     public $price;
-    public $percentage;
+    public $percent;
     public $updown;
 
     /**
@@ -21,18 +21,18 @@ class Helpdesk extends Component
      */
     public function __construct(
         $title = 'Open Tickets',
-        $feather = 'book-open',
-        $iconClaass = 'align-self-center icon-lg icon-dual-success',
+        $icon = 'book-open',
+        $color = 'success',
         $price = '21',
-        $percentage = '2.6%',
+        $percent = '2.6%',
         $updown = 'up'
     )
     {
         $this->title = $title;
-        $this->feather = $feather;
-        $this->iconClaass = $iconClaass;
+        $this->icon = $icon;
+        $this->color = $color;
         $this->price = $price;
-        $this->percentage = $percentage;
+        $this->percent = $percent;
         $this->updown = $updown;
     }
 

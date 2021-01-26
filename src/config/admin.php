@@ -98,26 +98,31 @@ return [
             [
                 'link' => '/crm',
                 'label' => 'CRM Dash'
-            ]
-        ],
-        'shop' => [
-            [
-                'link' => '/shop1',
-                'label' => 'Shop 1',
-                'view' => true
             ],
-            [
-                'link' => '/shop2',
-                'label' => 'Shop 2',
-                'view' => true
-            ]
-        ],
-        'app' => [
             [
                 'link' => '/widgets',
                 'label' => 'All Widgets',
                 'view' => true,
             ],
+        ],
+        'online' => [
+            [
+                'link' => '/pages',
+                'label' => 'Pages',
+                'view' => true,
+            ],
+            [
+                'link' => '/posts',
+                'label' => 'Posts',
+                'view' => true,
+            ],
+            [
+                'link' => '/seo',
+                'label' => 'SEOs',
+                'view' => true
+            ],
+        ],
+        'offline' => [
             [
                 'link' => '/items',
                 'label' => 'Items',
@@ -162,7 +167,7 @@ return [
                     ],
                     [
                         'link' => '/vendors',
-                        'label' => 'Customers',
+                        'label' => 'Vendors',
                         'view' => true
                     ]
                 ]
@@ -183,8 +188,8 @@ return [
                         'view' => true
                     ],
                     [
-                        'link' => '/transations',
-                        'label' => 'Transations',
+                        'link' => '/transactions',
+                        'label' => 'Transactions',
                         'view' => true
                     ],
                     [
@@ -197,6 +202,60 @@ return [
             [
                 'link' => '/reports',
                 'label' => 'Reports',
+                'view' => true
+            ]
+        ],
+        'users' =>  [
+            [
+                'link' => '/contacts',
+                'label' => 'All Contacts',
+                'view' => true,
+            ],
+            [
+                'link' => '',
+                'label' => 'Employees',
+                'view' => true,
+                'child' => [
+                    [
+                        'link' => '/managments',
+                        'label' => 'Managments',
+                        'view' => true
+                    ],
+                    [
+                        'link' => '/managers',
+                        'label' => 'Managers',
+                        'view' => true
+                    ],
+                    [
+                        'link' => '/creatives',
+                        'label' => 'Creatives',
+                        'view' => true
+                    ],
+                    [
+                        'link' => '/suporters',
+                        'label' => 'Suporters',
+                        'view' => true
+                    ],
+                    [
+                        'link' => '/marketers',
+                        'label' => 'Marketers',
+                        'view' => true
+                    ],
+                ],
+            ],
+            [
+                'link' => '/user',
+                'label' => 'Users',
+                'view' => true
+            ],
+            [
+                'link' => '/role',
+                'label' => 'Roles',
+                'view' => true
+            ],
+            [
+                'link' => '/permission',
+                'label' => 'Permissions',
                 'view' => true
             ]
         ],
@@ -220,17 +279,17 @@ return [
                         'view' => true
                     ],
                     [
+                        'link' => '/locations',
+                        'label' => 'Locations',
+                        'desc' => 'Branch Name, Address, email, Register & Tax Number etc.',
+                        'icon' => 'map',
+                        'view' => true
+                    ],
+                    [
                         'link' => '/setup/local',
                         'label' => 'Localisation',
                         'desc' => 'Set fiscal year, time zone, date format, more.',
                         'icon' => 'map-pin',
-                        'view' => true
-                    ],
-                    [
-                        'link' => '/setup/invoice',
-                        'label' => 'Invoice',
-                        'desc' => 'Customize invoice prefix, number, terms, footer etc.',
-                        'icon' => 'layout',
                         'view' => true
                     ],
                     [
@@ -241,74 +300,52 @@ return [
                         'view' => true
                     ],
                     [
-                        'link' => '/setup/email',
-                        'label' => 'Email',
-                        'desc' => 'Change the sending protocol and email templates.',
-                        'icon' => 'mail',
+                        'link' => '/setup/invoice',
+                        'label' => 'Invoice',
+                        'desc' => 'Customize invoice prefix, number, terms, footer etc.',
+                        'icon' => 'layout',
                         'view' => true
                     ],
                     [
-                        'link' => '/setup/scheduling',
-                        'label' => 'Scheduling',
-                        'desc' => 'Automatic reminders and command for recurring',
-                        'icon' => 'clock',
+                        'link' => '/setup/bill',
+                        'label' => 'Bill',
+                        'desc' => 'Customize bill prefix, number, terms, footer etc.',
+                        'icon' => 'layout',
                         'view' => true
                     ],
                     [
-                        'link' => '/setup/categories',
+                        'link' => '/categories',
                         'label' => 'Categories',
                         'desc' => 'Unlimited categories for income, expense, and item',
                         'icon' => 'list',
                         'view' => true
                     ],
                     [
-                        'link' => '/setup/currencies',
+                        'link' => '/currencies',
                         'label' => 'Currencies',
                         'desc' => 'Create and manage currencies and set their rates',
                         'icon' => 'dollar-sign',
                         'view' => true
                     ],
                     [
-                        'link' => '/setup/taxes',
+                        'link' => '/taxes',
                         'label' => 'Taxes',
                         'desc' => 'Fixed, normal, inclusive, and compound tax rates',
                         'icon' => 'activity',
                         'view' => true
                     ],
-                    [
-                        'link' => '/setup/pay-mode',
-                        'label' => 'Payments Mode',
-                        'desc' => 'Choose the standard payment option Like PayPal',
-                        'icon' => 'credit-card',
-                        'view' => true
-                    ],
-                    [
-                        'link' => '/setup/sms',
-                        'label' => 'SMS Gateway',
-                        'desc' => 'Create SMS  Gateway options for admin usage',
-                        'icon' => 'smartphone',
-                        'view' => true
-                    ],
-                    [
-                        'link' => '/settings',
-                        'label' => 'Website Setting',
-                        'desc' => 'Website Link, logo, keywords, description etc.',
-                        'icon' => 'server',
-                        'view' => true
-                    ],
-                    // New Settings will be added here
-                    /*[
-                        'link' => '/settings/email',
-                        'label' => 'Email',
-                        'desc' => 'Change the sending protocol and email templates.',
-                        'icon' => 'mail',
-                        'view' => true
-                    ],*/
                 ]
             ],
             [
-                'link' => '/seo',
-                'label' => 'Page SEOs',
+                'link' => '/websites',
+                'label' => 'Website Setting',
+                'desc' => 'Website Link, logo, keywords, description etc.',
+                'icon' => 'server',
+                'view' => true
+            ],
+            [
+                'link' => '/countries',
+                'label' => 'Countries',
                 'view' => true
             ],
             [
@@ -317,27 +354,52 @@ return [
                 'view' => true
             ],
             [
+                'link' => '/updates',
+                'label' => 'Updates',
+                'view' => true,
+            ],
+            [
                 'link' => '/reset-all',
                 'label' => 'Remove All Data',
                 'view' => true,
             ],
         ],
-        'users' =>  [
+        'app' => [
             [
-                'link' => '/user',
-                'label' => 'All Users',
+                'link' => '/notifications',
+                'label' => 'Notifications',
+                'desc' => 'Change the sending protocol and email templates.',
+                'icon' => 'mail',
                 'view' => true
             ],
             [
-                'link' => '/role',
-                'label' => 'Roles',
+                'link' => '/setup/pay-mode',
+                'label' => 'Payments Mode',
+                'desc' => 'Choose the standard payment option Like PayPal',
+                'icon' => 'credit-card',
                 'view' => true
             ],
             [
-                'link' => '/permission',
-                'label' => 'Permissions',
+                'link' => '/setup/email',
+                'label' => 'Email Setup',
+                'desc' => 'Change the sending protocol and email templates.',
+                'icon' => 'mail',
                 'view' => true
-            ]
+            ],
+            [
+                'link' => '/setup/smssetup',
+                'label' => 'SMS Gateway',
+                'desc' => 'Create SMS  Gateway options for admin usage',
+                'icon' => 'smartphone',
+                'view' => true
+            ],
+            [
+                'link' => '/setup/scheduling',
+                'label' => 'Scheduling',
+                'desc' => 'Automatic reminders and command for recurring',
+                'icon' => 'clock',
+                'view' => true
+            ],
         ],
     ],
 

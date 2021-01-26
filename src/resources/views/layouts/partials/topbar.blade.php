@@ -3,7 +3,7 @@
     <!-- Navbar -->
     <nav class="navbar-custom">
         <ul class="list-unstyled topbar-nav float-right mb-0">
-            <x-admin-company-selector />
+            <x-admin-company-selector :link="route('admin.businesses.index')" />
 
             <li class="mr-2">
                 <a href="#" id="night_mode" class="nav-link">

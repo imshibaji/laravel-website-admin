@@ -1,6 +1,7 @@
 <?php
 namespace Shibaji\Admin\Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
@@ -141,6 +142,8 @@ class RolesAndPermissionsSeeder extends Seeder
 
         $role = Role::create(['name' => 'admin']);
         $role->givePermissionTo(Permission::all());
+
+        User::find(1)->syncRoles($role);
 
         // or may be done by chaining
         Role::create(['name' => 'moderator']);

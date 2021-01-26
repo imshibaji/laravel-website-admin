@@ -13,6 +13,8 @@ class SwitchBtn extends Component
     public $color;
     public $disabled;
     public $url;
+    public $on;
+    public $off;
     /**
      * Create a new component instance.
      *
@@ -25,7 +27,9 @@ class SwitchBtn extends Component
         $color='primary',
         $col = 12,
         $disabled = null,
-        $url = ''
+        $url = '',
+        $on='on',
+        $off='off'
     )
     {
         $this->name = $name;
@@ -36,6 +40,8 @@ class SwitchBtn extends Component
         $this->col = $col;
         $this->disabled = $disabled;
         $this->url = $url;
+        $this->on = $on;
+        $this->off = $off;
     }
 
     /**
